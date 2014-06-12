@@ -1,6 +1,5 @@
 package uk.ac.man.cs.finderapplication.model;
 
-import java.io.File;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.reasoner.NodeSet;
@@ -15,7 +14,7 @@ import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
 
 public class FinderOntology {
 
-    public static final Preferences PREFERENCES;
+    //public static final Preferences PREFERENCES;
 
     public static final String TOPPING_SUFFIX = "";//"Topping";
 
@@ -29,9 +28,9 @@ public class FinderOntology {
 
     private ShortFormProvider sfp;
 
-    static {
+    /*static {
         PREFERENCES = Preferences.getInstance();
-    }
+    }*/
 
      public FinderOntology(){
         loadOntology();
@@ -88,7 +87,7 @@ public class FinderOntology {
 
     private void setupShortFormProvider() {
         final Map<OWLAnnotationProperty, List<String>> langMap = new HashMap<OWLAnnotationProperty, List<String>>();
-        langMap.put(df.getRDFSLabel(), Arrays.asList(PREFERENCES.getLanguage()));
+        //langMap.put(df.getRDFSLabel(), Arrays.asList(PREFERENCES.getLanguage()));
         sfp = new AnnotationValueShortFormProvider(Arrays.asList(df.getRDFSLabel()),
                 langMap, manager);
     }

@@ -1,0 +1,669 @@
+<?xml version="1.0"?>
+
+
+<!DOCTYPE rdf:RDF [
+    <!ENTITY owl "http://www.w3.org/2002/07/owl#" >
+    <!ENTITY xsd "http://www.w3.org/2001/XMLSchema#" >
+    <!ENTITY rdfs "http://www.w3.org/2000/01/rdf-schema#" >
+    <!ENTITY rdf "http://www.w3.org/1999/02/22-rdf-syntax-ns#" >
+]>
+
+
+<rdf:RDF xmlns="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#"
+     xml:base="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#AsianDressingSouce -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#AsianDressingSouce">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Sauce"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Avocado -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Avocado">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Fruits"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#AvocadoRolls -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#AvocadoRolls">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Rolls"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Beef -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Beef">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Meat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#BlackPepperSpice -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#BlackPepperSpice">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#PepperSpice"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#BodyParts -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#BodyParts">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Seafood"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#BrownRice -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#BrownRice">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Rice"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Carrot -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Carrot">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Vegetables"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Chicken -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Chicken">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Meat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Chives -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Chives">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Vegetables"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#CookStyle -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#CookStyle"/>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Cooked -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Cooked">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#CookStyle"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#CorianderDressingSouce -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#CorianderDressingSouce">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Sauce"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#CorianderSpice -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#CorianderSpice">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Spice"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Crusted -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Crusted">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Cooked"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Cucumber -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Cucumber">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Vegetables"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Duck -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Duck">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Meat"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Fish -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Fish">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Seafood"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Fruits -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Fruits">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Ingredients‎"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Futomaki -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Futomaki">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Sushi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Gunkan -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Gunkan">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Sushi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#HandRolls -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#HandRolls">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Sushi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#ISO -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#ISO">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Sushi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Ingredients‎ -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Ingredients‎"/>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#JapaneseMayonnaiseSouce -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#JapaneseMayonnaiseSouce">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#MayonnaiseSouce"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#JapanesePickles -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#JapanesePickles">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Pickles"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#KatsuSauce -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#KatsuSauce">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Sauce"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Maki -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Maki">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Sushi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#MasagoRoe -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#MasagoRoe">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Roe"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#MasagoSouce -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#MasagoSouce">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Sauce"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#MayonnaiseSouce -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#MayonnaiseSouce">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Sauce"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Meat -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Meat">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Ingredients‎"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#MoromiMisoSauce -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#MoromiMisoSauce">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Sauce"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Nigiri -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Nigiri">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Sushi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Nori -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Nori">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Seaweed"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Omelette -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Omelette">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Ingredients‎"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#PepperSpice -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#PepperSpice">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Spice"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Pickles -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Pickles">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Ingredients‎"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Prawn -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Prawn">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Seafood"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#PrawnTopping -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#PrawnTopping">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Topping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Radish -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Radish">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Vegetables"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Rare -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Rare">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Cooked"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#RasdishPickles -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#RasdishPickles">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Pickles"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Raw -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Raw">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#CookStyle"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Rice -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Rice">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Ingredients‎"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#RicePaper -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#RicePaper">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Wrap"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Roe -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Roe">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Seafood"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Rolls -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Rolls">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Ingredients‎"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Salmon -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Salmon">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Fish"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#SalmonPart -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#SalmonPart">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#BodyParts"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#SalmonSkin -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#SalmonSkin">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#SalmonPart"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#SalmonTopping -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#SalmonTopping">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Topping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Sashimi -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Sashimi">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Sushi"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Sauce -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Sauce">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Ingredients‎"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Seafood -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Seafood">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Ingredients‎"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Seared -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Seared">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Cooked"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Seaweed -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Seaweed">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Seafood"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#SesameSpice -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#SesameSpice">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Spice"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#ShichimiPowderSpice -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#ShichimiPowderSpice">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Spice"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Smelt -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Smelt">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Fish"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#SmeltFishRoe -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#SmeltFishRoe">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Roe"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#SoftShellCrab -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#SoftShellCrab">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Seafood"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#SoyaBean -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#SoyaBean">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Vegetables"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Spice -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Spice">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Ingredients‎"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#SpringOnion -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#SpringOnion">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Vegetables"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#SuMiso -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#SuMiso">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Seaweed"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Sushi -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Sushi"/>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#SweetChilliMayonnaiseSouce -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#SweetChilliMayonnaiseSouce">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#MayonnaiseSouce"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#SweetOmelette -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#SweetOmelette">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Omelette"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#TamagoOmelette -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#TamagoOmelette">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Omelette"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Topping -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Topping">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Ingredients‎"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Tuna -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Tuna">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Fish"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#TunaTopping -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#TunaTopping">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Topping"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Vegetables -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Vegetables">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Ingredients‎"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#WasabiSouce -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#WasabiSouce">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Sauce"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Wrap -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Wrap">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Ingredients‎"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#YellowfinTuna -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#YellowfinTuna">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Tuna"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#YellowfinTunaLoin -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#YellowfinTunaLoin">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#YellowfinTunaPart"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#YellowfinTunaPart -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#YellowfinTunaPart">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#BodyParts"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#YuzuTobikoRoe -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#YuzuTobikoRoe">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/machdd/ontologies/2013/10/untitled-ontology-16#Roe"/>
+    </owl:Class>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 3.4.2) http://owlapi.sourceforge.net -->
+
