@@ -279,7 +279,8 @@ public class SettingFrame extends JFrame implements ActionListener, DocumentList
             fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
             fc.setAcceptAllFileFilterUsed(false);
             fc.setFileFilter(new FileNameExtensionFilter("*.gif", "GIF"));
-            fc.setFileFilter(new FileNameExtensionFilter("*.jpg", "JPG")); 
+            fc.setFileFilter(new FileNameExtensionFilter("*.jpg", "JPG"));
+            fc.setFileFilter(new FileNameExtensionFilter("*.png", "PNG")); 
             int returnVal = fc.showOpenDialog(this);
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                 File file = fc.getSelectedFile();

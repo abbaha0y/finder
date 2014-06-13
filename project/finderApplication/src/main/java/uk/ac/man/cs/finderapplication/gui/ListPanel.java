@@ -45,142 +45,145 @@ import uk.ac.man.cs.finderapplication.selection.SelectionListener;
  */
 public abstract class ListPanel extends JPanel implements Selectable {
 
-	private JList list;
-	private Action addAction;
-	private Action removeAction;
-	private String title;
-	private Selectable selectable;
+    private JList list;
+    private Action addAction;
+    private Action removeAction;
+    private String title;
+    private Selectable selectable;
 
     private FinderOntology ontology;
 
-	public ListPanel(FinderOntology ontology, String title,
-	                        Selectable selectable,
-	                         ChoiceModel choiceModel) {
-		this.ontology = ontology;
+    public ListPanel(FinderOntology ontology,
+            String title,
+            Selectable selectable,
+            ChoiceModel choiceModel) {
+        
+        this.ontology = ontology;
         this.title = title;
-		this.selectable = selectable;
-		choiceModel.addChoiceModelListener(new ChoiceModelListener() {
-			public void modelChanged(ChoiceModelChangedEvent e) {
-				updateInterface();
-			}
-		});
+	this.selectable = selectable;
+        
+	choiceModel.addChoiceModelListener(new ChoiceModelListener() {
+            public void modelChanged(ChoiceModelChangedEvent e) {
+                updateInterface();
+            }
+	});
 
 
-	}
+    }
 
-	protected void createUI() {
-		addAction = getAddAction();
-		removeAction = getRemoveAction();
-		JPanel panel = new JPanel(new BorderLayout(7, 7));
-		list = new JList(new DefaultListModel());
-		list.setCellRenderer(new OWLClassListCellRenderer());
-		panel.add(new JScrollPane(list));
-		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 7, 7));
-		buttonPanel.add(new JButton(addAction));
-		buttonPanel.add(new JButton(removeAction));
-		panel.add(buttonPanel, BorderLayout.NORTH);
-		setLayout(new BorderLayout(7, 7));
-		add(panel);
-		setBorder(BorderFactory.createCompoundBorder(BorderFactory.createTitledBorder(title),
+    protected void createUI() {
+	addAction = getAddAction();
+	removeAction = getRemoveAction();
+	JPanel panel = new JPanel(new BorderLayout(7, 7));
+	list = new JList(new DefaultListModel());
+	list.setCellRenderer(new OWLClassListCellRenderer());
+	panel.add(new JScrollPane(list));
+	JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 7, 7));
+	buttonPanel.add(new JButton(addAction));
+	buttonPanel.add(new JButton(removeAction));
+	panel.add(buttonPanel, BorderLayout.NORTH);
+	setLayout(new BorderLayout(7, 7));
+	add(panel);
+	setBorder(BorderFactory.createCompoundBorder(BorderFactory.createTitledBorder(title),
 		                                             BorderFactory.createEmptyBorder(7, 7, 7, 7)));
-		removeAction.setEnabled(false);
-		addAction.setEnabled(false);
-		list.addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent e) {
-			 if(list.getSelectedValue() != null) {
-				ListPanel.this.removeAction.setEnabled(true);
-			}
-			else {
-				ListPanel.this.removeAction.setEnabled(false);
-			}
-			}
-		});
-		selectable.addSelectionListener(new SelectionListener() {
-			public void selectionChanged(SelectionEvent e) {
-				if(selectable.getSelection() != null) {
-					addAction.setEnabled(true);
-				}
-				else {
-					addAction.setEnabled(false);
-				}
-			}
-		});
-	}
-
-	protected abstract Collection getListItems();
-
-	protected abstract Action getAddAction();
-
-	protected abstract Action getRemoveAction();
-
-	protected void updateInterface() {
-		DefaultListModel model = (DefaultListModel)list.getModel();
-		model.removeAllElements();
-		Iterator it = getListItems().iterator();
-		while(it.hasNext()) {
-			model.addElement(it.next());
+	removeAction.setEnabled(false);
+	addAction.setEnabled(false);
+        
+	list.addListSelectionListener(new ListSelectionListener() {
+            public void valueChanged(ListSelectionEvent e) {
+                if(list.getSelectedValue() != null) {
+                    ListPanel.this.removeAction.setEnabled(true);
+                }
+                else {
+                    ListPanel.this.removeAction.setEnabled(false);
+                }
+            }
+	});
+        
+	selectable.addSelectionListener(new SelectionListener() {
+            public void selectionChanged(SelectionEvent e) {
+		if(selectable.getSelection() != null) {
+                    addAction.setEnabled(true);
 		}
+		else {
+                    addAction.setEnabled(false);
+		}
+            }
+	});
+    }
 
+    protected abstract Collection getListItems();
+
+    protected abstract Action getAddAction();
+
+    protected abstract Action getRemoveAction();
+
+    protected void updateInterface() {
+	DefaultListModel model = (DefaultListModel)list.getModel();
+	model.removeAllElements();
+	Iterator it = getListItems().iterator();
+	while(it.hasNext()) {
+            model.addElement(it.next());
 	}
+    }
 
 
-	/////////////////////////////////////////////////////////////////////////////
-	//
-	// Renderer for OWLClass items
-	//
-	/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+//
+// Renderer for OWLClass items
+//
+/////////////////////////////////////////////////////////////////////////////
 
-	public class OWLClassListCellRenderer extends DefaultListCellRenderer {
+    public class OWLClassListCellRenderer extends DefaultListCellRenderer {
+        
+        private Icon icon = Icons.getIngIcon();
 
-		private Icon icon = Icons.getIngIcon();
-
-		public Component getListCellRendererComponent(JList list,
+        public Component getListCellRendererComponent(JList list,
 		                                              Object value,
 		                                              int index,
 		                                              boolean isSelected,
 		                                              boolean cellHasFocus) {
 
-			JLabel label = (JLabel)  super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-			label.setText(ontology.render((OWLClass)value));
-			label.setIcon(icon);
-			return label;
-		}
+            JLabel label = (JLabel)  super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+            label.setText(ontology.render((OWLClass)value));
+            label.setIcon(icon);
+            return label;
 	}
+    }
 
-	/////////////////////////////////////////////////////////////////////////////
-	//
-	// Implementation of Selectable
-	//
-	/////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////
+//
+// Implementation of Selectable
+//
+/////////////////////////////////////////////////////////////////////////////
 
 
-	public Object getSelection() {
-		return list.getSelectedValue();
+    public Object getSelection() {
+	return list.getSelectedValue();
+    }
+
+    public void setSelection(Object obj) {
+
+    }
+
+    private List<SelectionListener> selectionListeners = new ArrayList<SelectionListener>();
+
+    public void addSelectionListener(SelectionListener lsnr) {
+	selectionListeners.add(lsnr);
+    }
+
+
+    public void removeSelectionListener(SelectionListener lsnr) {
+	selectionListeners.remove(lsnr);
+    }
+
+    protected void fireSelectionChangedEvent() {
+	Iterator it = selectionListeners.iterator();
+	SelectionEvent e = new SelectionEvent(this);
+	while(it.hasNext()) {
+            ((SelectionListener)it.next()).selectionChanged(e);
 	}
-
-
-	public void setSelection(Object obj) {
-
-	}
-
-	private List<SelectionListener> selectionListeners = new ArrayList<SelectionListener>();
-
-	public void addSelectionListener(SelectionListener lsnr) {
-		selectionListeners.add(lsnr);
-	}
-
-
-	public void removeSelectionListener(SelectionListener lsnr) {
-		selectionListeners.remove(lsnr);
-	}
-
-	protected void fireSelectionChangedEvent() {
-		Iterator it = selectionListeners.iterator();
-		SelectionEvent e = new SelectionEvent(this);
-		while(it.hasNext()) {
-			((SelectionListener)it.next()).selectionChanged(e);
-		}
-	}
+    }
 }
 
 

@@ -1,16 +1,16 @@
 package uk.ac.man.cs.finderapplication.model;
 
+import java.io.File;
+import java.util.*;
+import javax.swing.*;
+import org.semanticweb.HermiT.Reasoner;
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.*;
 import org.semanticweb.owlapi.reasoner.NodeSet;
 import org.semanticweb.owlapi.reasoner.OWLReasoner;
+import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
 import org.semanticweb.owlapi.util.AnnotationValueShortFormProvider;
 import org.semanticweb.owlapi.util.ShortFormProvider;
-
-import javax.swing.*;
-import java.util.*;
-import org.semanticweb.HermiT.Reasoner;
-import org.semanticweb.owlapi.reasoner.OWLReasonerFactory;
 
 public class FinderOntology {
 
@@ -47,8 +47,8 @@ public class FinderOntology {
             df = manager.getOWLDataFactory();
             //ontology = manager.loadOntologyFromOntologyDocument(PREFERENCES.getOntologyDocumentIRI());
             // hardcoded ontology creatition
-            //System.out.println(new Settings().getOntologyLocation());
-            //ontology = manager.loadOntologyFromOntologyDocument(IRI.create(new File(new Settings().getOntologyLocation())));
+            System.out.println(new Settings().getOnologyLocation());
+            ontology = manager.loadOntologyFromOntologyDocument(IRI.create(new File(new Settings().getOnologyLocation()).getAbsoluteFile()));
         } catch (final Throwable e) {
             Runnable runnable = new Runnable() {
                 public void run() {

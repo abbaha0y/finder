@@ -24,7 +24,7 @@ public class Icons {
 	}
 
 	public static ImageIcon getIngIcon() {
-		URL url = Icons.class.getResource("/PizzaSliceIcon.png");
+		URL url = Icons.class.getResource("/defualt_App_Icon.png");
 		return new ImageIcon(url);
 	}
         

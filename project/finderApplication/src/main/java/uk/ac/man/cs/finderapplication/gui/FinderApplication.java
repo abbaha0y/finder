@@ -10,6 +10,13 @@ import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import java.io.File;
 import javax.swing.JFrame;
+import org.semanticweb.owlapi.apibinding.OWLManager;
+import org.semanticweb.owlapi.model.IRI;
+import org.semanticweb.owlapi.model.OWLDataFactory;
+import org.semanticweb.owlapi.model.OWLOntology;
+import org.semanticweb.owlapi.model.OWLOntologyCreationException;
+import org.semanticweb.owlapi.model.OWLOntologyManager;
+import uk.ac.man.cs.finderapplication.model.ChoiceModel;
 import uk.ac.man.cs.finderapplication.model.FinderOntology;
 import uk.ac.man.cs.finderapplication.model.Settings;
 
@@ -24,7 +31,9 @@ public class FinderApplication extends JFrame{
     LogoPanel logoPanel;
     Settings setting;
     
-    public FinderApplication(File file){
+    private ChoiceModel choiceModel;
+    
+    public FinderApplication(File ontologyFile){
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(900, 600);
         this.setLocationRelativeTo(null);
@@ -33,7 +42,11 @@ public class FinderApplication extends JFrame{
         
         setting = new Settings();
         finderPanel = new FinderPanel();
+        ontology = new FinderOntology();
+        choiceModel = new ChoiceModel(ontology);
         setupLogoPanel();
+        setupChooserPanel(ontology);
+        
         this.getContentPane().setLayout(new BorderLayout());
         this.getContentPane().add(finderPanel);
         
@@ -43,8 +56,14 @@ public class FinderApplication extends JFrame{
         logoPanel = new LogoPanel(Toolkit.getDefaultToolkit().getImage(setting.getLogoLocation()));
         finderPanel.setLogoComponent(logoPanel);
     }
+    
+    private void setupChooserPanel(FinderOntology ont){
+        finderPanel.setButtomLeftComponent(new ChooserPanel(ont, this,choiceModel));
+        finderPanel.setButtomCenterComponent(new QueryPanel(ont,this,choiceModel));
+    }
     // Testing
     public static void main(String[] arg){
+
         FinderApplication f = new FinderApplication(null);
         f.setVisible(true);
     }
