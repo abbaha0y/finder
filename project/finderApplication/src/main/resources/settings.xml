@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Settings>
-    <Ontology OntLocation="./src/main/resources/sushi_9223429_atheer.owl"/>
-    <UI IconLocation="./src/main/resources/defualt_Icon.png" LogoLocation="./src/main/resources/defualt_Logo.jpg"/>
-</Settings>
