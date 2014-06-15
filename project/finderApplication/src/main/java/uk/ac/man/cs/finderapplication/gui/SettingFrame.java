@@ -24,6 +24,7 @@ import javax.swing.SpringLayout;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import uk.ac.man.cs.finderapplication.model.Annotations;
 import uk.ac.man.cs.finderapplication.model.Settings;
 
 /**
@@ -316,20 +317,33 @@ public class SettingFrame extends JFrame implements ActionListener, DocumentList
             logo = txtNLogo.getText().trim();
             icon = txtNAppIcon.getText().trim();
             ontologyLocation = txtNOntologyLocation.getText().trim();
-            setting = new Settings(ontologyLocation,logo,icon);
-            
-            try {
-                saveFile(new File(ontologyLocation));
-                if(!logo.equals(""))
-                    saveFile(new File(logo));
-                if(!icon.equals(""))
-                    saveFile(new File(icon));
-            } catch (IOException ex) {
-                Logger.getLogger(SettingFrame.class.getName()).log(Level.SEVERE, null, ex);
+            /////////////////////////////////////////////
+            //should implemeent a check for annotations//
+            /////////////////////////////////////////////
+            Annotations a = new Annotations(new File(ontologyLocation));
+            if(!a.checkAnnotationsExist()){
+                JOptionPane.showMessageDialog(null,
+                            "This ontology is not configured.  (This probably happened\n" +
+                            "because the ontology does not have configration's annotations) ");
+                    card.show(mainPanel,"nsp");
             }
-            this.dispose();
-            finder = new FinderApplication(new File(ontologyLocation));
-            finder.setVisible(true);
+            /////////////////////////////////////////////
+            else{
+                setting = new Settings(ontologyLocation,logo,icon);
+            
+                try {
+                    saveFile(new File(ontologyLocation));
+                    if(!logo.equals(""))
+                        saveFile(new File(logo));
+                    if(!icon.equals(""))
+                        saveFile(new File(icon));
+                } catch (IOException ex) {
+                    Logger.getLogger(SettingFrame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                this.dispose();
+                finder = new FinderApplication(new File(ontologyLocation));
+                finder.setVisible(true);
+            }
             
         }
         else if(e.getSource() == btnNCancel){

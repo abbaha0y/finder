@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import uk.ac.man.cs.finderapplication.model.ChoiceModel;
 import uk.ac.man.cs.finderapplication.model.FinderOntology;
+import uk.ac.man.cs.finderapplication.selection.Selectable;
 
 /**
  *
@@ -40,28 +41,31 @@ public class QueryPanel extends JPanel {
 	private ListPanel excludeListPanel;
 
 	private FinderApplication application;
+        
+        private Selectable selectable;
 
-    public QueryPanel(FinderOntology ontology, FinderApplication application, ChoiceModel choiceModel) {
+    public QueryPanel(FinderOntology ontology, FinderApplication application, Selectable selectable) {
 		this.ontology = ontology;
 		this.application = application;
-		//choiceModel = new ChoiceModel(ontology);
-                this.choiceModel = choiceModel;
+		choiceModel = new ChoiceModel(ontology);
+                //this.choiceModel = choiceModel;
+                this.selectable = selectable;
 		createUI();
 	}
 
 	protected void createUI() {
-		setLayout(new BorderLayout());
+            setLayout(new BorderLayout());
 
-        //add size Panel here
-		ingPanel = new IngPanel(ontology);
-		Box box = new Box(BoxLayout.Y_AXIS);
-		includeListPanel = new IncludeListPanel(ontology, ingPanel, choiceModel);
-		box.add(includeListPanel);
+            //add size Panel here
+            ingPanel = new IngPanel(ontology);
+            Box box = new Box(BoxLayout.Y_AXIS);
+            includeListPanel = new IncludeListPanel(ontology, selectable, choiceModel);
+            box.add(includeListPanel);
 
-        box.add(Box.createVerticalStrut(12));
-		excludeListPanel = new ExcludeListPanel(ontology, ingPanel, choiceModel);
+            box.add(Box.createVerticalStrut(12));
+            excludeListPanel = new ExcludeListPanel(ontology, selectable, choiceModel);
 		box.add(excludeListPanel);
-        box.setBorder(BorderFactory.createEmptyBorder(0, 0, 12, 12));
+            box.setBorder(BorderFactory.createEmptyBorder(0, 0, 12, 12));
 		add(box);
 		setupQueryPanel();
     }
@@ -96,7 +100,7 @@ public class QueryPanel extends JPanel {
         Action queryReasonerAction = new AbstractAction("Get "+templates.getItemAt(0).toString()) {
             public void actionPerformed(ActionEvent e) {
                 Collection c = ontology.getPizzas(choiceModel.getIncluded(), choiceModel.getExcluded());
-                //application.showResultsPanel(c);
+                application.showResultsPanel(c);
             }
         };
         

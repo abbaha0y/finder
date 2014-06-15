@@ -102,8 +102,8 @@ public class IngPanel extends JPanel implements Selectable {
         }
     }
 
-
-	public static void main(String [] args) {
+        // for test
+	/*public static void main(String [] args) {
 		IngPanel panel = new IngPanel(new FinderOntology());
 		JFrame frm = new JFrame();
 		frm.setSize(300, 400);
@@ -112,7 +112,7 @@ public class IngPanel extends JPanel implements Selectable {
 		frm.getContentPane().add(new JLabel("Toppings!"), BorderLayout.NORTH);
 		frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frm.show();
-	}
+	}*/
 
 	/////////////////////////////////////////////////////////////////////////////
 	//

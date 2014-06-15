@@ -74,13 +74,16 @@ public abstract class ListPanel extends JPanel implements Selectable {
     protected void createUI() {
 	addAction = getAddAction();
 	removeAction = getRemoveAction();
+        
 	JPanel panel = new JPanel(new BorderLayout(7, 7));
 	list = new JList(new DefaultListModel());
 	list.setCellRenderer(new OWLClassListCellRenderer());
 	panel.add(new JScrollPane(list));
 	JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 7, 7));
+        
 	buttonPanel.add(new JButton(addAction));
 	buttonPanel.add(new JButton(removeAction));
+        
 	panel.add(buttonPanel, BorderLayout.NORTH);
 	setLayout(new BorderLayout(7, 7));
 	add(panel);

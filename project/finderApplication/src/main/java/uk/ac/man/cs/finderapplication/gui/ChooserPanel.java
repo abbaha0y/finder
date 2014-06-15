@@ -22,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import uk.ac.man.cs.finderapplication.model.ChoiceModel;
 import uk.ac.man.cs.finderapplication.model.FinderOntology;
+import uk.ac.man.cs.finderapplication.selection.Selectable;
 
 /**
  * User: matthewhorridge<br>
@@ -34,19 +35,19 @@ import uk.ac.man.cs.finderapplication.model.FinderOntology;
  */
 public class ChooserPanel extends JPanel {
 
-	private FinderOntology ontology;
+    private FinderOntology ontology;
 
-	private ChoiceModel choiceModel;
+    private ChoiceModel choiceModel;
 
-	private IngPanel ingPanel;
+    private IngPanel ingPanel;
 
-	private FinderApplication application;
+    private FinderApplication application;
 
-    public ChooserPanel(FinderOntology ontology, FinderApplication application, ChoiceModel choiceModel) {
+    public ChooserPanel(FinderOntology ontology, FinderApplication application) {
 		this.ontology = ontology;
 		this.application = application;
-		//choiceModel = new ChoiceModel(ontology);
-                this.choiceModel = choiceModel;
+		choiceModel = new ChoiceModel(ontology);
+                //this.choiceModel = choiceModel;
 		createUI();
 	}
 
@@ -65,37 +66,10 @@ public class ChooserPanel extends JPanel {
     public Dimension getPreferredSize() {
         return new Dimension(800, 600);
     }
+    
+   public Selectable getSelectable(){
+       return ingPanel;
+   }
 
-
-    protected void setupQueryPanel() {
-        final JButton btnGet = new JButton();
-        JPanel queryPanel = new JPanel();
-        queryPanel.setLayout(new BorderLayout());
-        queryPanel.setBorder(BorderFactory.createEmptyBorder(12, 12, 12, 12));
-        
-        String[] s = {"Sushi","Sushi Dish"};
-        final JComboBox templates = new JComboBox(s);
-        JLabel lblTemplates = new JLabel("Templates: ");
-        JPanel templatesPanel = new JPanel();
-        templatesPanel.setLayout(new BorderLayout());
-        templatesPanel.add(lblTemplates,BorderLayout.WEST);
-        templatesPanel.add(templates,BorderLayout.CENTER);
-        Action templatesAction = new AbstractAction(){
-            public void actionPerformed(ActionEvent e) {
-                   btnGet.setText("Get "+templates.getSelectedItem().toString());
-            }
-        };
-        templates.setAction(templatesAction);
-        
-        
-        Action queryReasonerAction = new AbstractAction("Get "+templates.getItemAt(0).toString()) {
-            public void actionPerformed(ActionEvent e) {
-                Collection c = ontology.getPizzas(choiceModel.getIncluded(), choiceModel.getExcluded());
-            }
-        };
-        
-        
-        btnGet.setAction(queryReasonerAction);
-    }
 }
 
