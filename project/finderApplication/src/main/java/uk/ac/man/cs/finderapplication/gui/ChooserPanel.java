@@ -42,6 +42,11 @@ public class ChooserPanel extends JPanel {
     private IngPanel ingPanel;
 
     private FinderApplication application;
+    
+    private JSplitPane splitPane;
+    
+    private FiltersPanel filterPanel;
+    
 
     public ChooserPanel(FinderOntology ontology, FinderApplication application) {
 		this.ontology = ontology;
@@ -55,10 +60,20 @@ public class ChooserPanel extends JPanel {
 		setLayout(new BorderLayout());
 
         //add size Panel here
-
+                splitPane = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
+                //splitPane.setDividerLocation(200);
+                splitPane.setDividerSize(0);
+                
+                if(ontology.FilterExists()){
+                    filterPanel = new FiltersPanel(ontology.getFilters(), ontology.getOntology());
+                    splitPane.setTopComponent(filterPanel);
+                }
+                
+                
 		ingPanel = new IngPanel(ontology);
-
-		add(ingPanel);
+                splitPane.setBottomComponent(ingPanel);
+                
+		add(splitPane);
 		//setupQueryPanel();
     }
 

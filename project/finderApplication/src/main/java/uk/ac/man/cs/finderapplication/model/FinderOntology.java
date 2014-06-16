@@ -36,10 +36,8 @@ public class FinderOntology {
         loadOntology();
         setupReasoner();
         setupShortFormProvider();
-        //getSuffix();
+        //System.out.println(getFilters());
     }
-
-
 
     protected void loadOntology() {
         try {
@@ -88,6 +86,7 @@ public class FinderOntology {
     private void setupShortFormProvider() {
         final Map<OWLAnnotationProperty, List<String>> langMap = new HashMap<OWLAnnotationProperty, List<String>>();
         //langMap.put(df.getRDFSLabel(), Arrays.asList(PREFERENCES.getLanguage()));
+        langMap.put(df.getRDFSLabel(), Arrays.asList("en"));
         sfp = new AnnotationValueShortFormProvider(Arrays.asList(df.getRDFSLabel()),
                 langMap, manager);
     }
@@ -367,5 +366,26 @@ public class FinderOntology {
                 }
             }
         return cls;   
+    }
+    
+    public Set<OWLClass> getFilters(){
+        Set<OWLClass> filters = new HashSet<OWLClass>();
+        for(OWLClass c:ontology.getClassesInSignature()){
+            for(OWLAnnotation a:c.getAnnotations(ontology)){
+                if(a.getValue().toString().contains("filter")){
+                    filters.add(c);
+                }
+            }
+        }
+        return filters;
+    }
+    
+    public boolean FilterExists(){
+        if(getFilters().size()!=0){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }
