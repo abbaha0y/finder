@@ -23,6 +23,7 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.MutableTreeNode;
+import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
 import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLClassExpression;
@@ -53,7 +54,7 @@ public class IngPanel extends JPanel implements Selectable {
 		this.ontology = ontology;
 		clsNodeMap = new HashMap();
 		createUI();
-
+                //System.out.println(getTreeModel().getRoot());
 	}
 
 	protected void createUI() {
@@ -212,5 +213,13 @@ public class IngPanel extends JPanel implements Selectable {
 			((SelectionListener)it.next()).selectionChanged(e);
 		}
 	}
+        
+        public void setTreeModel(TreeModel model){
+            tree.setModel(model);
+        }
+        
+        public TreeModel getTreeModel(){
+            return tree.getModel();
+        }
 }
 

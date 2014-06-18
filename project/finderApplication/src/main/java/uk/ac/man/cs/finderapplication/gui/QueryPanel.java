@@ -57,7 +57,7 @@ public class QueryPanel extends JPanel {
             setLayout(new BorderLayout());
 
             //add size Panel here
-            ingPanel = new IngPanel(ontology);
+            //ingPanel = new IngPanel(ontology);
             Box box = new Box(BoxLayout.Y_AXIS);
             includeListPanel = new IncludeListPanel(ontology, selectable, choiceModel);
             box.add(includeListPanel);

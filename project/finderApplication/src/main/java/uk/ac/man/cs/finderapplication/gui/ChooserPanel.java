@@ -20,7 +20,9 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
+import uk.ac.man.cs.finderapplication.controller.FiltersController;
 import uk.ac.man.cs.finderapplication.model.ChoiceModel;
+import uk.ac.man.cs.finderapplication.model.FilterModel;
 import uk.ac.man.cs.finderapplication.model.FinderOntology;
 import uk.ac.man.cs.finderapplication.selection.Selectable;
 
@@ -47,6 +49,10 @@ public class ChooserPanel extends JPanel {
     
     private FiltersPanel filterPanel;
     
+    FilterModel filterModel;
+    
+    FiltersController controller;
+    
 
     public ChooserPanel(FinderOntology ontology, FinderApplication application) {
 		this.ontology = ontology;
@@ -64,16 +70,19 @@ public class ChooserPanel extends JPanel {
                 //splitPane.setDividerLocation(200);
                 splitPane.setDividerSize(0);
                 
-                if(ontology.FilterExists()){
-                    filterPanel = new FiltersPanel(ontology.getFilters(), ontology.getOntology());
-                    splitPane.setTopComponent(filterPanel);
-                }
-                
-                
 		ingPanel = new IngPanel(ontology);
                 splitPane.setBottomComponent(ingPanel);
                 
+                if(ontology.FilterExists()){
+                    filterPanel = new FiltersPanel(ontology.getFilters(), ontology.getOntology());
+                    splitPane.setTopComponent(filterPanel);
+                    filterModel = new FilterModel(filterPanel.getFilters(), ontology.getOntology(), ingPanel.getTreeModel());
+                    
+                    controller = new FiltersController(filterModel, this);
+                    controller.contol();
+                }
 		add(splitPane);
+                
 		//setupQueryPanel();
     }
 
@@ -84,6 +93,14 @@ public class ChooserPanel extends JPanel {
     
    public Selectable getSelectable(){
        return ingPanel;
+   }
+   
+   public IngPanel getIngPanel(){
+       return ingPanel;
+   }
+   
+   public FiltersPanel getFilterPanel(){
+       return filterPanel;
    }
 
 }
