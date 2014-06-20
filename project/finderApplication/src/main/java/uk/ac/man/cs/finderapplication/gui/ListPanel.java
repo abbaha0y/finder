@@ -81,8 +81,12 @@ public abstract class ListPanel extends JPanel implements Selectable {
 	panel.add(new JScrollPane(list));
 	JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 7, 7));
         
-	buttonPanel.add(new JButton(addAction));
-	buttonPanel.add(new JButton(removeAction));
+        JButton btnAdd = new JButton(addAction);
+        JButton btnRemove = new JButton(removeAction);
+        
+        
+	buttonPanel.add(btnAdd);
+	buttonPanel.add(btnRemove);
         
 	panel.add(buttonPanel, BorderLayout.NORTH);
 	setLayout(new BorderLayout(7, 7));

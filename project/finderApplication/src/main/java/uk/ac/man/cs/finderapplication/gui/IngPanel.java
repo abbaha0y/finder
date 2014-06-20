@@ -7,17 +7,32 @@
 package uk.ac.man.cs.finderapplication.gui;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
+import javax.swing.AbstractListModel;
 import javax.swing.BorderFactory;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.DefaultListModel;
 import javax.swing.Icon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTree;
+import javax.swing.ListModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -32,6 +47,7 @@ import uk.ac.man.cs.finderapplication.model.FinderOntology;
 import uk.ac.man.cs.finderapplication.selection.Selectable;
 import uk.ac.man.cs.finderapplication.selection.SelectionEvent;
 import uk.ac.man.cs.finderapplication.selection.SelectionListener;
+import uk.ac.manchester.cs.owl.owlapi.OWLClassImpl;
 
 /**
  * User: matthewhorridge<br>
@@ -45,31 +61,62 @@ import uk.ac.man.cs.finderapplication.selection.SelectionListener;
 public class IngPanel extends JPanel implements Selectable {
 
 	private JTree tree;
+        
+        private JList list;
+        
+        private CardLayout card;
+        
+        private JPanel p;
+        // determine the view if is a tree or list
+        // 1 = tree, 0 = list
+        private boolean view;
 
 	private FinderOntology ontology;
 
 	private HashMap clsNodeMap;
+        
 
-	public IngPanel(FinderOntology ontology) {
-		this.ontology = ontology;
-		clsNodeMap = new HashMap();
-		createUI();
-                //System.out.println(getTreeModel().getRoot());
+	public IngPanel(FinderOntology ontology, boolean view) {
+            this.view = view;
+            this.ontology = ontology;
+            clsNodeMap = new HashMap();
+            createUI();
+            //System.out.println(getTreeModel().getRoot());
 	}
 
 	protected void createUI() {
+            card = new CardLayout();
+            p = new JPanel(card);
+            
 		setLayout(new BorderLayout());
 		setBorder(BorderFactory.createEmptyBorder(12, 12, 12, 12));
 
         tree = buildTree();
-
+        list = buildList();
 
         tree.addTreeSelectionListener(new TreeSelectionListener() {
 			public void valueChanged(TreeSelectionEvent e) {
 				fireSelectionChangedEvent();
 			}
 		});
-		add(new JScrollPane(tree));
+        
+        list.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                fireSelectionChangedEvent();
+            }
+        });
+        
+        p.add("Tree", tree);
+        p.add("List",list);
+        add(new JScrollPane(p));
+		if(view){
+                    card.show(p, "Tree");
+                }
+                else{
+                    card.show(p, "List");
+                }
+            
 	}
 
 	protected JTree buildTree()  {
@@ -87,10 +134,60 @@ public class IngPanel extends JPanel implements Selectable {
             t.setCellRenderer(new OWLClassTreeCellRenderer());
             return t;
 	}
+        
+        protected JList buildList(){
+            DefaultListModel model = new DefaultListModel();
+            
+            for (OWLClassExpression owlClassExpression : ontology.getIngredientsCategories()) {
+                OWLClass cls = (OWLClass) owlClassExpression;
+                addClsToList(cls, model);
+            }
+            JList ls = new JList(model);
+            
+            
+            ArrayList arrayList =  new ArrayList(Arrays.asList(model.toArray()));
+            
+            Set<String> s=new TreeSet<String>();
+            s.addAll(arrayList);
+            arrayList.clear();
+            Iterator it=s.iterator();
+            while (it.hasNext())  
+            {  
+                arrayList.add(it.next());
+            } 
+            
+            Collections.sort(arrayList);
+            
+            //System.out.println(arrayList.size());
+            model.removeAllElements();
+            for(int i=0;i<arrayList.size();i++){
+                //System.out.println(arrayList.get(i).toString());
+                model.addElement(arrayList.get(i));
+            }
+            ls.setCellRenderer(new OWLClassListCellRenderer());
+            return ls;
+        }
+        
+        protected void addClsToList(OWLClass cls, DefaultListModel model){
+            // add class and its subclasses
+            //System.out.println(cls);
+            MutableTreeNode childNode = new MyDefaultMutableTreeNode(cls);
+            clsNodeMap.put(cls, childNode);
+            //model.add(0,childNode);
+            model.addElement(childNode);
+
+            // Iterator it = cls.getInferredSubclasses().iterator();
+            NodeSet<OWLClass> subClasses = ontology.getReasoner().getSubClasses(cls, true);
+            if (!subClasses.containsEntity(ontology.getOntology().getOWLOntologyManager().getOWLDataFactory().getOWLNothing())) {
+                for(OWLClass curCls : subClasses.getFlattened()) {
+                    addClsToList(curCls, model);
+                }
+            }
+        }
 
 	protected void addClsToTree(OWLClass cls, MutableTreeNode treeNode) {
 		// add class and its subclasses
-		MutableTreeNode childNode = new DefaultMutableTreeNode(cls);
+		MutableTreeNode childNode = new MyDefaultMutableTreeNode(cls);
 		clsNodeMap.put(cls, childNode);
 		treeNode.insert(childNode, 0);
 
@@ -168,6 +265,37 @@ public class IngPanel extends JPanel implements Selectable {
 
 
 	}
+        ////////////////////////////////////////////////////////////////////////////
+        public class OWLClassListCellRenderer extends DefaultListCellRenderer {
+
+		private Icon icon;
+
+		public OWLClassListCellRenderer() {
+			icon = Icons.getIngIcon();
+		}
+
+                @Override
+		public Component getListCellRendererComponent(JList list,
+		                                              Object value,
+		                                              int index,
+		                                              boolean sel,
+		                                              boolean hasFocus) {
+                    
+			JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, sel, hasFocus);
+			Object obj = ((DefaultMutableTreeNode)value).getUserObject();
+			
+                        if(obj instanceof OWLClass) {
+				label.setText(ontology.render(((OWLClass) obj)));
+			}
+			else {
+				label.setText(value.toString());
+			}
+                        label.setIcon(icon);
+			return label;
+		}
+
+
+	}
 
 
 
@@ -179,20 +307,41 @@ public class IngPanel extends JPanel implements Selectable {
 
 
 	public Object getSelection() {
+            if(view){
 		TreePath treePath = tree.getSelectionPath();
 		if(treePath != null) {
 			DefaultMutableTreeNode treeNode = (DefaultMutableTreeNode)treePath.getLastPathComponent();
-			return treeNode.getUserObject();
+			//System.out.println(treeNode.getUserObject());
+                        return treeNode.getUserObject();
 		}
-		return null;
+		
+            }
+            else{
+                //System.out.println(list.getSelectedValue());
+                DefaultMutableTreeNode treeNode = (DefaultMutableTreeNode)list.getSelectedValue();
+                //if(treeNode.getUserObject() != null)
+                if(treeNode != null)
+                return treeNode.getUserObject();
+                else{
+                    
+                }
+            }
+            return null;
 	}
 
 
 	public void setSelection(Object obj) {
+            if(view){
 		DefaultMutableTreeNode treeNode = (DefaultMutableTreeNode)clsNodeMap.get(obj);
 		if(treeNode != null) {
-			tree.setSelectionPath(new TreePath(treeNode.getPath()));
+                    tree.setSelectionPath(new TreePath(treeNode.getPath()));
 		}
+            }
+            else{
+                if(obj != null){
+                    list.setSelectedValue(obj, true);
+                }
+            }
 	}
 
 	private ArrayList selectionListeners = new ArrayList();
@@ -221,5 +370,32 @@ public class IngPanel extends JPanel implements Selectable {
         public TreeModel getTreeModel(){
             return tree.getModel();
         }
+        
+        public void setListModel(ListModel model){
+            list.setModel(model);
+        }
+        
+        public ListModel getListModel(){
+            return list.getModel();
+        }
+        
+        public JList getList(){
+            return list;
+        }
 }
 
+class MyDefaultMutableTreeNode extends DefaultMutableTreeNode implements Comparable{
+
+    Object obj;
+    
+    public MyDefaultMutableTreeNode(Object obj){
+        super(obj);
+        this.obj = obj;
+    }
+    
+    @Override
+    public int compareTo(Object o) {
+        return obj.toString().compareTo(o.toString());
+    }
+    
+}

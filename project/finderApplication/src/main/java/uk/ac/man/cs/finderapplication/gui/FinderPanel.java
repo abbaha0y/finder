@@ -40,15 +40,18 @@ public class FinderPanel extends JPanel{
 	}
 	
 	public void setLogoComponent(Component comp){
-		logoSP.setTopComponent(comp);
+            logoSP.setTopComponent(comp);
 	}
 	public void setButtomLeftComponent(Component comp){
-		buttomLeft.setLeftComponent(comp);
+            buttomLeft.setLeftComponent(comp);
 	}
 	public void setButtomCenterComponent(Component comp){
-		buttomRight.setLeftComponent(comp);
+            buttomRight.setLeftComponent(comp);
 	}
 	public void setButtomRightComponent(Component comp){
-		buttomRight.setRightComponent(comp);
+            buttomRight.setRightComponent(comp);
 	}
+        public void setDividerLocationButtomLeft(){
+            buttomLeft.setDividerLocation(300);
+        }
 }

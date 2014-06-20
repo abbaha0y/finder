@@ -15,15 +15,18 @@ import javax.swing.Action;
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
-import uk.ac.man.cs.finderapplication.controller.FiltersController;
+import uk.ac.man.cs.finderapplication.controller.ListFiltersController;
+import uk.ac.man.cs.finderapplication.controller.TreeFiltersController;
 import uk.ac.man.cs.finderapplication.model.ChoiceModel;
-import uk.ac.man.cs.finderapplication.model.FilterModel;
 import uk.ac.man.cs.finderapplication.model.FinderOntology;
+import uk.ac.man.cs.finderapplication.model.ListFilterModel;
+import uk.ac.man.cs.finderapplication.model.TreeFilterModel;
 import uk.ac.man.cs.finderapplication.selection.Selectable;
 
 /**
@@ -47,15 +50,21 @@ public class ChooserPanel extends JPanel {
     
     private JSplitPane splitPane;
     
-    private FiltersPanel filterPanel;
+    private TreeFiltersPanel filterPanel;
     
-    FilterModel filterModel;
+    TreeFilterModel filterModel;
+    TreeFiltersController controller;
     
-    FiltersController controller;
+    private boolean view;
+    
+    ListFilterModel listFilterModel;
+    ListFiltersController listFiltersController;
+    private ListFiltersPanel listFilterPanel;
     
 
-    public ChooserPanel(FinderOntology ontology, FinderApplication application) {
-		this.ontology = ontology;
+    public ChooserPanel(FinderOntology ontology, FinderApplication application, boolean view) {
+	this.view = view;	
+            this.ontology = ontology;
 		this.application = application;
 		choiceModel = new ChoiceModel(ontology);
                 //this.choiceModel = choiceModel;
@@ -70,16 +79,25 @@ public class ChooserPanel extends JPanel {
                 //splitPane.setDividerLocation(200);
                 splitPane.setDividerSize(0);
                 
-		ingPanel = new IngPanel(ontology);
+		ingPanel = new IngPanel(ontology,view);
                 splitPane.setBottomComponent(ingPanel);
                 
-                if(ontology.FilterExists()){
-                    filterPanel = new FiltersPanel(ontology.getFilters(), ontology.getOntology());
+                if(ontology.FilterExists() && view){
+                    filterPanel = new TreeFiltersPanel(ontology.getFilters(), ontology.getOntology());
                     splitPane.setTopComponent(filterPanel);
-                    filterModel = new FilterModel(filterPanel.getFilters(), ontology.getOntology(), ingPanel.getTreeModel());
+                    filterModel = new TreeFilterModel(filterPanel.getFilters(), ontology.getOntology(), ingPanel.getTreeModel());
                     
-                    controller = new FiltersController(filterModel, this);
+                    controller = new TreeFiltersController(filterModel, this);
                     controller.contol();
+                }
+                if(!view){
+                    listFilterPanel = new ListFiltersPanel();
+                    splitPane.setTopComponent(listFilterPanel);
+                    listFilterModel = new ListFilterModel((DefaultListModel) ingPanel.getListModel(),listFilterPanel.getFilter());
+                    
+                    
+                    listFiltersController = new ListFiltersController(listFilterModel, this);
+                    listFiltersController.contol();
                 }
 		add(splitPane);
                 
@@ -99,8 +117,12 @@ public class ChooserPanel extends JPanel {
        return ingPanel;
    }
    
-   public FiltersPanel getFilterPanel(){
+   public TreeFiltersPanel getFilterPanel(){
        return filterPanel;
+   }
+   
+   public ListFiltersPanel getListFilterPanel(){
+       return listFilterPanel;
    }
 
 }

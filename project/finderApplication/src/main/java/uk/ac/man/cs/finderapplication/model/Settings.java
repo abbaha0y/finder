@@ -42,6 +42,12 @@ public class Settings {
         PrepSettings();
     }
     
+    public Settings(String ontLocation){
+        PrepSettings();
+        this.ontologyLocation = ontLocation;
+        bulidConfigFile();
+    }
+    
     public Settings(String ontLocation, String logoLocation, String iconLocation){
         this.ontologyLocation = ontLocation;
 

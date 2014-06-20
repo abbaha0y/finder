@@ -11,25 +11,22 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JCheckBox;
 import javax.swing.tree.TreeModel;
-import org.semanticweb.owlapi.model.OWLAnnotation;
 import org.semanticweb.owlapi.model.OWLClass;
-import org.semanticweb.owlapi.model.OWLOntology;
 import uk.ac.man.cs.finderapplication.gui.ChooserPanel;
-import uk.ac.man.cs.finderapplication.gui.IngPanel;
-import uk.ac.man.cs.finderapplication.model.FilterModel;
+import uk.ac.man.cs.finderapplication.model.TreeFilterModel;
 
 /**
  *
  * @author Hani Al Abbas - hani.alabbas@postgrad.manchester.ac.uk
  */
-public class FiltersController {
-    private FilterModel filterModel;
+public class TreeFiltersController {
+    private TreeFilterModel filterModel;
     private ChooserPanel chooserPanel;
     private ActionListener actionListener;
     ArrayList<JCheckBox> checkBoxes;
     ArrayList<OWLClass> filters;
     
-    public FiltersController(FilterModel filterModel, ChooserPanel chooserPanel){
+    public TreeFiltersController(TreeFilterModel filterModel, ChooserPanel chooserPanel){
         this.filterModel = filterModel;
         this.chooserPanel = chooserPanel;
         filters = chooserPanel.getFilterPanel().getFilters();

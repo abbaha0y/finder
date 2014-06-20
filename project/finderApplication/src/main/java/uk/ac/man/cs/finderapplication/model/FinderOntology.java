@@ -86,7 +86,7 @@ public class FinderOntology {
     private void setupShortFormProvider() {
         final Map<OWLAnnotationProperty, List<String>> langMap = new HashMap<OWLAnnotationProperty, List<String>>();
         //langMap.put(df.getRDFSLabel(), Arrays.asList(PREFERENCES.getLanguage()));
-        langMap.put(df.getRDFSLabel(), Arrays.asList("fr"));
+        langMap.put(df.getRDFSLabel(), Arrays.asList("en"));
         sfp = new AnnotationValueShortFormProvider(Arrays.asList(df.getRDFSLabel()),
                 langMap, manager);
     }

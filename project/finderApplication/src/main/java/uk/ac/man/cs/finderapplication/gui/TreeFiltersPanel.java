@@ -23,7 +23,7 @@ import org.semanticweb.owlapi.model.OWLOntology;
  *
  * @author Hani Al Abbas - hani.alabbas@postgrad.manchester.ac.uk
  */
-public class FiltersPanel extends JPanel{
+public class TreeFiltersPanel extends JPanel{
     OWLOntology ontology;
     ArrayList<OWLClass> filters;
     ArrayList<JCheckBox> btnFilterArray;
@@ -34,7 +34,7 @@ public class FiltersPanel extends JPanel{
     OWLClass selectedFilter;
     
     
-    public FiltersPanel(ArrayList<OWLClass> filters, OWLOntology ontology){
+    public TreeFiltersPanel(ArrayList<OWLClass> filters, OWLOntology ontology){
         this.filters = filters;
         this.ontology = ontology;
         btnFilterArray = new ArrayList<>(filters.size());

@@ -18,12 +18,12 @@ import org.semanticweb.owlapi.model.OWLOntology;
  *
  * @author Hani Al Abbas - hani.alabbas@postgrad.manchester.ac.uk
  */
-public class FilterModel {
+public class TreeFilterModel {
     ArrayList<OWLClass> filters;
     OWLOntology ontology;
     TreeModel originalModel, filteredModel;
     
-    public FilterModel(ArrayList<OWLClass> filters, OWLOntology ontology, TreeModel originalModel){
+    public TreeFilterModel(ArrayList<OWLClass> filters, OWLOntology ontology, TreeModel originalModel){
         this.filters = filters;
         this.ontology = ontology;
         this.originalModel = originalModel;
