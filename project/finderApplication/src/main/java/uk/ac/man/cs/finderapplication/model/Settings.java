@@ -7,6 +7,7 @@
 package uk.ac.man.cs.finderapplication.model;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
@@ -37,11 +38,14 @@ import org.xml.sax.SAXException;
  */
 public class Settings {
     
-    final static String DEFUALT_LOGO = "./resources/defualt_Logo.jpg";
-    final static String DEFUALT_ICON = "./resources/defualt_Icon.png";
+    final String DEFUALT_LOGO = this.getClass().getClassLoader().getResource("defualt_Logo.jpg").toString();//"./resources/defualt_Logo.jpg";
+    final String DEFUALT_ICON = this.getClass().getClassLoader().getResource("defualt_Icon.png").toString();
     
     String ontologyLocation,logoLocation,iconLocation;
     String fileName;
+    
+    String homefilepath = System.getProperty("user.home")+"/FinderApplication";
+    
     public Settings(){
         PrepSettings();
     }
@@ -54,21 +58,8 @@ public class Settings {
     
     public Settings(String ontLocation, String logoLocation, String iconLocation){
         this.ontologyLocation = ontLocation;
-
-        if(logoLocation.equals("")){
-            this.logoLocation = DEFUALT_LOGO;
-        }
-        else
-        {
-            this.logoLocation = logoLocation;
-        }
-        if(iconLocation.equals("")){
-           this.iconLocation =  DEFUALT_ICON;
-        }
-        else
-        {
-            this.iconLocation = iconLocation;
-        }
+        this.logoLocation = logoLocation;
+        this.iconLocation = iconLocation;
         bulidConfigFile();
     }
     
@@ -83,7 +74,8 @@ public class Settings {
             Document doc;
             docFactory = DocumentBuilderFactory.newInstance();
             docBuilder = docFactory.newDocumentBuilder();
-            doc = docBuilder.parse("./src/main/resources/settings.xml");
+            System.out.println(new File(homefilepath+"/settings.xml").exists());
+            doc = docBuilder.parse(homefilepath+"/settings.xml");
             Node root = doc.getFirstChild();
             Node ont = doc.getElementsByTagName("Ontology").item(0);
             NamedNodeMap attr = ont.getAttributes();
@@ -108,6 +100,13 @@ public class Settings {
     }
     
     private void bulidConfigFile(){
+        //////////////////////////////////////
+        /// Fix setting file location      ///
+        //////////////////////////////////////
+        //
+        
+        //////////////////////////////////////
+        
         DocumentBuilderFactory docFactory;
         DocumentBuilder docBuilder = null;
         docFactory = DocumentBuilderFactory.newInstance();
@@ -123,16 +122,16 @@ public class Settings {
         Element ontLocation = doc.createElement("Ontology");
 	rootElement.appendChild(ontLocation);
         Attr attrOntologyLocation = doc.createAttribute("OntLocation");
-	attrOntologyLocation.setValue("./src/main/resources/"+ new File(ontologyLocation).getName());
+	attrOntologyLocation.setValue(homefilepath+"/"+ new File(ontologyLocation).getName());
 	ontLocation.setAttributeNode(attrOntologyLocation);
         
         Element ui = doc.createElement("UI");
         rootElement.appendChild(ui);
         Attr attrLogo = doc.createAttribute("LogoLocation");
-        attrLogo.setValue("./src/main/resources/"+ new File(logoLocation).getName());
+        attrLogo.setValue(homefilepath+"/"+ new File(logoLocation).getName());
         ui.setAttributeNode(attrLogo);
         Attr attrIcon = doc.createAttribute("IconLocation");
-        attrIcon.setValue("./src/main/resources/"+ new File(iconLocation).getName());
+        attrIcon.setValue(homefilepath+"/"+ new File(iconLocation).getName());
         ui.setAttributeNode(attrIcon);
         
         // write the content into xml file
@@ -145,7 +144,7 @@ public class Settings {
         }
 	DOMSource source = new DOMSource(doc);
         //System.out.println(Settings.class.getResource("").toString());
-	StreamResult result = new StreamResult(new File("./src/main/resources/settings.xml"));
+	StreamResult result = new StreamResult(new File(homefilepath+"/settings.xml"));
         try {
             transformer.setOutputProperty(OutputKeys.INDENT, "yes");
             transformer.setOutputProperty(OutputKeys.METHOD, "xml");
@@ -167,7 +166,5 @@ public class Settings {
     public String getIconLocation(){
         return iconLocation;
     }
-    
-    
     
 }
