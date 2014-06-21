@@ -90,7 +90,7 @@ public class FinderOntology {
         sfp = new AnnotationValueShortFormProvider(Arrays.asList(df.getRDFSLabel()),
                 langMap, manager);
     }
-
+    
     /**
      * getReasoner
      *
@@ -387,5 +387,45 @@ public class FinderOntology {
         else{
             return false;
         }
+    }
+    
+    public Map<String, Double> getLanguages(){
+        Map<String, Double> hashMap = new HashMap<String, Double>();
+        double numOfClasses = ontology.getClassesInSignature().size();
+        for(OWLClass c:ontology.getClassesInSignature()){
+            for(OWLAnnotation a:c.getAnnotations(ontology)){
+                if(a.toString().contains("@")){
+                    String key = a.toString().substring(a.toString().indexOf("@")+1, a.toString().indexOf(")"));
+                    if(hashMap.containsKey(key)){
+                        hashMap.put(key, hashMap.get(key)+1);
+                    }
+                    else{
+                        hashMap.put(key, 1.0);
+                    }
+                }
+            }
+        }
+        Map<String, Double> fullNamesHashMap = new TreeMap<String, Double>();
+        Iterator it = hashMap.entrySet().iterator();
+        while (it.hasNext()) {
+            Map.Entry pairs = (Map.Entry)it.next();
+            if(pairs.getKey().equals("en")){
+                fullNamesHashMap.put("English", ((double)pairs.getValue()/numOfClasses*100));
+            }
+            else if(pairs.getKey().equals("de")){
+                fullNamesHashMap.put("German", ((double)pairs.getValue()/numOfClasses*100));
+            }
+            else if(pairs.getKey().equals("es")){
+                fullNamesHashMap.put("Spanish", ((double)pairs.getValue()/numOfClasses*100));
+            }
+            else if(pairs.getKey().equals("fr")){
+                fullNamesHashMap.put("French", ((double)pairs.getValue()/numOfClasses*100));
+            }
+            else if(pairs.getKey().equals("pt")){
+                fullNamesHashMap.put("Portuguese", ((double)pairs.getValue()/numOfClasses*100));
+            }
+	}
+        
+        return fullNamesHashMap;
     }
 }

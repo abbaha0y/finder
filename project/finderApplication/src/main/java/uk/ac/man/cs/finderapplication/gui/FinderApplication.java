@@ -7,12 +7,14 @@
 package uk.ac.man.cs.finderapplication.gui;
 
 import java.awt.BorderLayout;
-import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.Map;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -20,17 +22,9 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
-import javax.swing.JOptionPane;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import org.semanticweb.owlapi.apibinding.OWLManager;
-import org.semanticweb.owlapi.model.IRI;
 import org.semanticweb.owlapi.model.OWLClass;
-import org.semanticweb.owlapi.model.OWLDataFactory;
-import org.semanticweb.owlapi.model.OWLOntology;
-import org.semanticweb.owlapi.model.OWLOntologyCreationException;
-import org.semanticweb.owlapi.model.OWLOntologyManager;
-import uk.ac.man.cs.finderapplication.model.ChoiceModel;
 import uk.ac.man.cs.finderapplication.model.FinderOntology;
 import uk.ac.man.cs.finderapplication.model.Settings;
 import uk.ac.man.cs.finderapplication.selection.Selectable;
@@ -57,6 +51,7 @@ public class FinderApplication extends JFrame implements ActionListener{
     ImageIcon importImage;
     
     JRadioButtonMenuItem rbMenuItemTreeView,rbMenuItemListView;
+    private ArrayList<JRadioButtonMenuItem> languages;
     boolean view;
     
     public FinderApplication(File ontologyFile){
@@ -125,6 +120,23 @@ public class FinderApplication extends JFrame implements ActionListener{
         importImage = new ImageIcon(getClass().getClassLoader().getResource("./uiConfig.png"));
         menuItemUIConfig.setIcon(importImage);
         menuConfiguration.add(menuItemUIConfig);
+        
+        ButtonGroup groupLanguages = new ButtonGroup();
+        JMenu menuItemLanguages = new JMenu("Languages");
+        menuConfiguration.add(menuItemLanguages);
+        
+        languages = new ArrayList<>(ontology.getLanguages().size());
+        
+        Iterator it = ontology.getLanguages().entrySet().iterator();
+        //System.out.println(ontology.getLanguages().size());
+        for(int i=0; i<ontology.getLanguages().size(); i++){
+            Map.Entry pairs = (Map.Entry)it.next();
+            JRadioButtonMenuItem temp = new JRadioButtonMenuItem(pairs.getKey().toString()+"\t"+String.format("%05.2f",pairs.getValue())+"%");
+            languages.add(temp);
+            groupLanguages.add(languages.get(i));
+            menuItemLanguages.add(languages.get(i));
+        }
+        //System.out.println(ontology.getLanguages());
     }
     
     private void setupLogoPanel(){
