@@ -51,7 +51,10 @@ public class SettingFrame extends JFrame implements ActionListener, DocumentList
     Settings setting;    
     CardLayout card;
     
+    String homefilepath = System.getProperty("user.home")+"/FinderApplication";
+    
     public SettingFrame(){
+        new File(homefilepath).mkdir();
         bulidUI();
     }
     
@@ -68,6 +71,8 @@ public class SettingFrame extends JFrame implements ActionListener, DocumentList
         txtNOntologyLocation = new JTextField(20);
         
         txtNOntologyLocation.getDocument().addDocumentListener(this);
+        txtNAppIcon.getDocument().addDocumentListener(this);
+        txtNLogo.getDocument().addDocumentListener(this);
         
         txtNLogo.setEditable(false);
         txtNAppIcon.setEditable(false);
@@ -178,18 +183,22 @@ public class SettingFrame extends JFrame implements ActionListener, DocumentList
         ysp.add(pYSettings, BorderLayout.CENTER);
         ysp.add(pYButton, BorderLayout.SOUTH);  
         
+        setting = new Settings(txtYOntologyLocation.getText(),txtYLogo.getText(),txtYAppIcon.getText());
+        
     }
     
     private void bulidUI(){
+        // prepare the frame
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(600, 200);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setTitle("Finder Settings");
-        
+        // application icon
         this.setIconImage(Toolkit.getDefaultToolkit().getImage("/defualt_Icon.png"));
         
         setupNoSettingsPanel();
+        
         if(checkSettingsExists()){
             setupYesSettingsPanel();
             mainPanel = new JPanel(new CardLayout());
@@ -201,8 +210,6 @@ public class SettingFrame extends JFrame implements ActionListener, DocumentList
         this.getContentPane().setLayout(new BorderLayout());
             mainPanel.add(nsp,"nsp");
         }
-        
-        
         
         this.getContentPane().add(mainPanel);
         
@@ -217,7 +224,7 @@ public class SettingFrame extends JFrame implements ActionListener, DocumentList
     
     public boolean checkSettingsExists(){
         //System.out.println(getClass().getResource("/settings.xml").toString());
-    File f = new File("./src/main/resources/settings.xml");        
+    File f = new File(homefilepath+"/settings.xml");        
     //File f = new File("./src/main/resources/settings.xml");
         if(f.exists()){
             return true;
@@ -229,10 +236,10 @@ public class SettingFrame extends JFrame implements ActionListener, DocumentList
     
     private void saveFile(File f) throws IOException{
         //File file = new File("./src/main/resources/"+f.getName());
-        File file = new File("./src/main/resources/"+f.getName());
+        File file = new File(homefilepath+"/"+f.getName());
         if(file.exists() && file.isFile()){
             int dialogButton = JOptionPane.YES_NO_OPTION;
-            int dialogResult = JOptionPane.showConfirmDialog(this, "The ontology is already exist\nDo you want to replace it?", "Confirmation",dialogButton,1,Icons.getAppIcon());
+            int dialogResult = JOptionPane.showConfirmDialog(this, f.getName()+" is already exist\nDo you want to replace it?", "Confirmation",dialogButton,1,Icons.getAppIcon());
             if(dialogResult==0){
                 Files.delete(file.toPath());
                 Files.copy(f.toPath(), file.toPath());
@@ -244,8 +251,11 @@ public class SettingFrame extends JFrame implements ActionListener, DocumentList
 
     @Override
     public void insertUpdate(DocumentEvent e) {
-        if(!txtNOntologyLocation.getText().trim().equals("")){
+        if(!txtNOntologyLocation.getText().trim().equals("")&&
+                !txtNAppIcon.getText().trim().equals("")&&
+                !txtNLogo.getText().trim().equals("")){
             btnNOK.setEnabled(true);
+            setting = new Settings(txtNOntologyLocation.getText().trim(),txtNLogo.getText().trim(),txtNAppIcon.getText().trim());
         }
         else{
             btnNOK.setEnabled(false);
@@ -254,8 +264,11 @@ public class SettingFrame extends JFrame implements ActionListener, DocumentList
 
     @Override
     public void removeUpdate(DocumentEvent e) {
-        if(!txtNOntologyLocation.getText().trim().equals("")){
+        if(!txtNOntologyLocation.getText().trim().equals("")&&
+                !txtNAppIcon.getText().trim().equals("")&&
+                !txtNLogo.getText().trim().equals("")){
             btnNOK.setEnabled(true);
+            setting = new Settings(txtNOntologyLocation.getText().trim(),txtNLogo.getText().trim(),txtNAppIcon.getText().trim());
         }
         else{
             btnNOK.setEnabled(false);
@@ -264,8 +277,11 @@ public class SettingFrame extends JFrame implements ActionListener, DocumentList
 
     @Override
     public void changedUpdate(DocumentEvent e) {
-        if(!txtNOntologyLocation.getText().trim().equals("")){
+        if(!txtNOntologyLocation.getText().trim().equals("")&&
+                !txtNAppIcon.getText().trim().equals("")&&
+                !txtNLogo.getText().trim().equals("")){
             btnNOK.setEnabled(true);
+            setting = new Settings(txtNOntologyLocation.getText().trim(),txtNLogo.getText().trim(),txtNAppIcon.getText().trim());
         }
         else{
             btnNOK.setEnabled(false);
@@ -312,6 +328,7 @@ public class SettingFrame extends JFrame implements ActionListener, DocumentList
                 txtNOntologyLocation.setText(file.getAbsolutePath());
             }
         }
+        //actions for nospanel
         else if(e.getSource() == btnNOK){
             String logo,icon,ontologyLocation;
             logo = txtNLogo.getText().trim();
@@ -329,8 +346,7 @@ public class SettingFrame extends JFrame implements ActionListener, DocumentList
             }
             /////////////////////////////////////////////
             else{
-                setting = new Settings(ontologyLocation,logo,icon);
-            
+                
                 try {
                     saveFile(new File(ontologyLocation));
                     if(!logo.equals(""))
@@ -340,8 +356,10 @@ public class SettingFrame extends JFrame implements ActionListener, DocumentList
                 } catch (IOException ex) {
                     Logger.getLogger(SettingFrame.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                //setting = new Settings(ontologyLocation,logo,icon);
+                
                 this.dispose();
-                finder = new FinderApplication(new File(ontologyLocation));
+                finder = new FinderApplication(new File(ontologyLocation), setting);
                 finder.setVisible(true);
             }
             
@@ -351,7 +369,7 @@ public class SettingFrame extends JFrame implements ActionListener, DocumentList
         }
         else if(e.getSource() == btnYOK){
             this.dispose();
-            finder = new FinderApplication(new File(txtYOntologyLocation.getText().trim()));
+            finder = new FinderApplication(new File(txtYOntologyLocation.getText().trim()),setting);
             finder.setVisible(true);
         }
         else if(e.getSource() == btnYModify){
