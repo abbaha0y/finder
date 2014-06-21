@@ -131,7 +131,7 @@ public class FinderApplication extends JFrame implements ActionListener{
         //System.out.println(ontology.getLanguages().size());
         for(int i=0; i<ontology.getLanguages().size(); i++){
             Map.Entry pairs = (Map.Entry)it.next();
-            JRadioButtonMenuItem temp = new JRadioButtonMenuItem(pairs.getKey().toString()+"\t"+String.format("%05.2f",pairs.getValue())+"%");
+            JRadioButtonMenuItem temp = new JRadioButtonMenuItem(String.format("%.2f",pairs.getValue())+"%"+"\t"+pairs.getKey().toString());
             languages.add(temp);
             groupLanguages.add(languages.get(i));
             menuItemLanguages.add(languages.get(i));

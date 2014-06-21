@@ -3,7 +3,6 @@ package uk.ac.man.cs.finderapplication.gui;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.FlowLayout;
-import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,7 +11,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -135,9 +133,9 @@ public class SettingFrame extends JFrame implements ActionListener, DocumentList
         txtYAppIcon = new JTextField(20);
         txtYOntologyLocation = new JTextField(20);
         
-        txtYLogo.setText(set.getLogoLocation());
-        txtYAppIcon.setText(set.getIconLocation());
-        txtYOntologyLocation.setText(set.getOnologyLocation());
+        txtYLogo.setText(set.getLogoLocation().toString());
+        txtYAppIcon.setText(set.getIconLocation().toString());
+        txtYOntologyLocation.setText(set.getOnologyLocation().toString());
         
         txtYLogo.setEditable(false);
         txtYAppIcon.setEditable(false);
@@ -188,6 +186,7 @@ public class SettingFrame extends JFrame implements ActionListener, DocumentList
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setTitle("Finder Settings");
+        
         this.setIconImage(Toolkit.getDefaultToolkit().getImage("/defualt_Icon.png"));
         
         setupNoSettingsPanel();
@@ -218,7 +217,8 @@ public class SettingFrame extends JFrame implements ActionListener, DocumentList
     
     public boolean checkSettingsExists(){
         //System.out.println(getClass().getResource("/settings.xml").toString());
-        File f = new File("./src/main/resources/settings.xml");
+    File f = new File("./src/main/resources/settings.xml");        
+    //File f = new File("./src/main/resources/settings.xml");
         if(f.exists()){
             return true;
 	}else
@@ -228,8 +228,8 @@ public class SettingFrame extends JFrame implements ActionListener, DocumentList
     }
     
     private void saveFile(File f) throws IOException{
+        //File file = new File("./src/main/resources/"+f.getName());
         File file = new File("./src/main/resources/"+f.getName());
-        
         if(file.exists() && file.isFile()){
             int dialogButton = JOptionPane.YES_NO_OPTION;
             int dialogResult = JOptionPane.showConfirmDialog(this, "The ontology is already exist\nDo you want to replace it?", "Confirmation",dialogButton,1,Icons.getAppIcon());

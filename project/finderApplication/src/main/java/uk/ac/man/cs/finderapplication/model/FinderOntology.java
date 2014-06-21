@@ -346,7 +346,7 @@ public class FinderOntology {
      * @return
      */
     protected Set<OWLClass> filterClasses(NodeSet<OWLClass> original) {
-        Set<OWLClass> result = new TreeSet<OWLClass>();
+        Set<OWLClass> result = new TreeSet<>();
         for (OWLClass cls : original.getFlattened()) {
             if (reasoner.isSatisfiable(cls)) {
                 result.add(cls);
@@ -369,7 +369,7 @@ public class FinderOntology {
     }
     
     public ArrayList<OWLClass> getFilters(){
-        ArrayList<OWLClass> filters = new ArrayList<OWLClass>();
+        ArrayList<OWLClass> filters = new ArrayList<>();
         for(OWLClass c:ontology.getClassesInSignature()){
             for(OWLAnnotation a:c.getAnnotations(ontology)){
                 if(a.getValue().toString().contains("filter")){
@@ -390,7 +390,8 @@ public class FinderOntology {
     }
     
     public Map<String, Double> getLanguages(){
-        Map<String, Double> hashMap = new HashMap<String, Double>();
+        Map<String, Double> hashMap;
+        hashMap = new HashMap<>();
         double numOfClasses = ontology.getClassesInSignature().size();
         for(OWLClass c:ontology.getClassesInSignature()){
             for(OWLAnnotation a:c.getAnnotations(ontology)){
@@ -405,10 +406,9 @@ public class FinderOntology {
                 }
             }
         }
-        Map<String, Double> fullNamesHashMap = new TreeMap<String, Double>();
-        Iterator it = hashMap.entrySet().iterator();
-        while (it.hasNext()) {
-            Map.Entry pairs = (Map.Entry)it.next();
+        Map<String, Double> fullNamesHashMap;
+        fullNamesHashMap = new TreeMap<>();
+        for (Map.Entry pairs : hashMap.entrySet()) {
             if(pairs.getKey().equals("en")){
                 fullNamesHashMap.put("English", ((double)pairs.getValue()/numOfClasses*100));
             }
@@ -424,7 +424,7 @@ public class FinderOntology {
             else if(pairs.getKey().equals("pt")){
                 fullNamesHashMap.put("Portuguese", ((double)pairs.getValue()/numOfClasses*100));
             }
-	}
+        }
         
         return fullNamesHashMap;
     }
