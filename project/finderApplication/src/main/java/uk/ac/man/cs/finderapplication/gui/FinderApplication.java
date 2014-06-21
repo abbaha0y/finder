@@ -11,10 +11,14 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -22,6 +26,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import org.semanticweb.owlapi.model.OWLClass;
@@ -54,7 +59,9 @@ public class FinderApplication extends JFrame implements ActionListener{
     private ArrayList<JRadioButtonMenuItem> languages;
     boolean view;
     
-    public FinderApplication(File ontologyFile){
+    String homefilepath = System.getProperty("user.home")+"/FinderApplication";
+    
+    public FinderApplication(File ontologyFile, Settings setting){
         view = true;
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(900, 600);
@@ -62,7 +69,7 @@ public class FinderApplication extends JFrame implements ActionListener{
         this.setResizable(false);
         this.setTitle("The Manchester Finder");
         
-        setting = new Settings();
+        this.setting = setting;
         finderPanel = new FinderPanel();
         ontology = new FinderOntology();
         //choiceModel = new ChoiceModel(ontology);
@@ -85,7 +92,7 @@ public class FinderApplication extends JFrame implements ActionListener{
 	menuBar.add(menuFile);
         
         menuItemImport = new JMenuItem("Import new ontology");
-        importImage = new ImageIcon(getClass().getClassLoader().getResource("./import.png"));
+        //importImage = new ImageIcon(getClass().getClassLoader().getResource("./import.png"));
         menuItemImport.setIcon(importImage);
         menuFile.add(menuItemImport);
         menuItemImport.addActionListener(this);
@@ -93,7 +100,7 @@ public class FinderApplication extends JFrame implements ActionListener{
         menuFile.addSeparator();
         
         menuItemExit = new JMenuItem("Exit");
-        importImage = new ImageIcon(getClass().getClassLoader().getResource("./exit.png"));
+        //importImage = new ImageIcon(getClass().getClassLoader().getResource("./exit.png"));
         menuItemExit.setIcon(importImage);
         menuFile.add(menuItemExit);
         menuItemExit.addActionListener(this);
@@ -117,7 +124,7 @@ public class FinderApplication extends JFrame implements ActionListener{
 	menuBar.add(menuConfiguration);
         
         menuItemUIConfig = new JMenuItem("UI Configuration");
-        importImage = new ImageIcon(getClass().getClassLoader().getResource("./uiConfig.png"));
+        //importImage = new ImageIcon(getClass().getClassLoader().getResource("./uiConfig.png"));
         menuItemUIConfig.setIcon(importImage);
         menuConfiguration.add(menuItemUIConfig);
         
@@ -174,11 +181,11 @@ public class FinderApplication extends JFrame implements ActionListener{
     }
     
     // Testing
-    public static void main(String[] arg){
+    //public static void main(String[] arg){
 
-        FinderApplication f = new FinderApplication(null);
-        f.setVisible(true);
-    }
+    //    FinderApplication f = new FinderApplication(null);
+    //    f.setVisible(true);
+    //}
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -194,6 +201,11 @@ public class FinderApplication extends JFrame implements ActionListener{
                 /*JOptionPane.showMessageDialog(fc, "The application will be"
                 +"restarted for the new import to take effect");*/
                 File file = fc.getSelectedFile();
+                try {
+                    saveFile(file);
+                } catch (IOException ex) {
+                    Logger.getLogger(FinderApplication.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 Settings s = new Settings(file.getAbsolutePath());
             
                 ontology = new FinderOntology();
@@ -215,6 +227,21 @@ public class FinderApplication extends JFrame implements ActionListener{
             setupChooserPanel(ontology);
             setupQueryPanel(ontology);
             setupResultsPanel(ontology);
+        }
+    }
+    
+     private void saveFile(File f) throws IOException{
+        //File file = new File("./src/main/resources/"+f.getName());
+        File file = new File(homefilepath+"/"+f.getName());
+        if(file.exists() && file.isFile()){
+            int dialogButton = JOptionPane.YES_NO_OPTION;
+            int dialogResult = JOptionPane.showConfirmDialog(this, "The ontology is already exist\nDo you want to replace it?", "Confirmation",dialogButton,1,Icons.getAppIcon());
+            if(dialogResult==0){
+                Files.delete(file.toPath());
+                Files.copy(f.toPath(), file.toPath());
+            }
+        }else{
+            Files.copy(f.toPath(), file.toPath());
         }
     }
 }
