@@ -10,16 +10,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.AbstractListModel;
 import javax.swing.DefaultListModel;
-import javax.swing.JList;
 import javax.swing.JTextField;
 import javax.swing.ListModel;
 
 /**
  *
  * @author Hani Al Abbas - hani.alabbas@postgrad.manchester.ac.uk
+ * Based on the Filter JList hack in Swing Hacks book by
+ * Joshua Marinacci & Chris Adamson
  */
 public class ListFilterModel extends AbstractListModel{
-    private ArrayList filteredModel,originalModel;
+    private final ArrayList filteredModel,originalModel;
     JTextField filter;
 
     public ListFilterModel(DefaultListModel model, JTextField filter){

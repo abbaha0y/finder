@@ -32,10 +32,10 @@ public class FinderOntology {
         PREFERENCES = Preferences.getInstance();
     }*/
 
-     public FinderOntology(){
+     public FinderOntology(String lang){
         loadOntology();
         setupReasoner();
-        setupShortFormProvider();
+        setupShortFormProvider(lang);
         //System.out.println(getFilters());
     }
 
@@ -83,10 +83,10 @@ public class FinderOntology {
         }
     }
 
-    private void setupShortFormProvider() {
+    public void setupShortFormProvider(String s) {
         final Map<OWLAnnotationProperty, List<String>> langMap = new HashMap<OWLAnnotationProperty, List<String>>();
         //langMap.put(df.getRDFSLabel(), Arrays.asList(PREFERENCES.getLanguage()));
-        langMap.put(df.getRDFSLabel(), Arrays.asList("en"));
+        langMap.put(df.getRDFSLabel(), Arrays.asList(s));
         sfp = new AnnotationValueShortFormProvider(Arrays.asList(df.getRDFSLabel()),
                 langMap, manager);
     }
@@ -164,7 +164,6 @@ public class FinderOntology {
                 last = ch;
             }
         }
-        
         return sb.toString();
     }
 
@@ -395,7 +394,7 @@ public class FinderOntology {
         double numOfClasses = ontology.getClassesInSignature().size();
         for(OWLClass c:ontology.getClassesInSignature()){
             for(OWLAnnotation a:c.getAnnotations(ontology)){
-                if(a.toString().contains("@")){
+                if(a.toString().contains("@") && a.getProperty().isLabel()){
                     String key = a.toString().substring(a.toString().indexOf("@")+1, a.toString().indexOf(")"));
                     if(hashMap.containsKey(key)){
                         hashMap.put(key, hashMap.get(key)+1);
@@ -408,11 +407,9 @@ public class FinderOntology {
         }
         Map<String, Double> fullNamesHashMap;
         fullNamesHashMap = new TreeMap<>();
+        fullNamesHashMap.put("English", new Double(100));
         for (Map.Entry pairs : hashMap.entrySet()) {
-            if(pairs.getKey().equals("en")){
-                fullNamesHashMap.put("English", ((double)pairs.getValue()/numOfClasses*100));
-            }
-            else if(pairs.getKey().equals("de")){
+            if(pairs.getKey().equals("de")){
                 fullNamesHashMap.put("German", ((double)pairs.getValue()/numOfClasses*100));
             }
             else if(pairs.getKey().equals("es")){

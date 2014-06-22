@@ -240,10 +240,13 @@ public class IngPanel extends JPanel implements Selectable {
 			Object obj = ((DefaultMutableTreeNode)value).getUserObject();
 			
                         if(obj instanceof OWLClass) {
-				label.setText(ontology.render(((OWLClass) obj)));
+                            
+                            label.setText(ontology.render(((OWLClass) obj)));
+                            //System.out.println(ontology.render(((OWLClass) obj)));
 			}
 			else {
-				label.setText(value.toString());
+                            label.setText(value.toString());
+                            //System.out.println(value.toString());
 			}
 			return label;
 		}

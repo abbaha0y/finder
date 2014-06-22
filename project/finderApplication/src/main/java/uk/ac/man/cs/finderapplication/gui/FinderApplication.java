@@ -19,6 +19,8 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -30,7 +32,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import org.semanticweb.owlapi.model.OWLClass;
+import uk.ac.man.cs.finderapplication.controller.LanguagesController;
 import uk.ac.man.cs.finderapplication.model.FinderOntology;
+import uk.ac.man.cs.finderapplication.model.LanguageModel;
 import uk.ac.man.cs.finderapplication.model.Settings;
 import uk.ac.man.cs.finderapplication.selection.Selectable;
 
@@ -52,7 +56,10 @@ public class FinderApplication extends JFrame implements ActionListener{
     
     ChooserPanel p;
     
+    JMenuBar menuBar;
+    JMenu menuFile,menuView,menuConfiguration,menuItemLanguages, menuHelp;
     JMenuItem menuItemImport,menuItemExit,menuItemUIConfig;
+    ButtonGroup groupView, groupLanguages;
     ImageIcon importImage;
     
     JRadioButtonMenuItem rbMenuItemTreeView,rbMenuItemListView;
@@ -60,6 +67,16 @@ public class FinderApplication extends JFrame implements ActionListener{
     boolean view;
     
     String homefilepath = System.getProperty("user.home")+"/FinderApplication";
+    
+    private Action aboutAction = new AbstractAction("About") {
+		public void actionPerformed(ActionEvent e) {
+			AboutDialog dlg = new AboutDialog(FinderApplication.this);
+			dlg.setVisible(true);
+		}
+	};
+    
+    LanguagesController langController;
+    LanguageModel langModel;
     
     public FinderApplication(File ontologyFile, Settings setting){
         view = true;
@@ -71,28 +88,28 @@ public class FinderApplication extends JFrame implements ActionListener{
         
         this.setting = setting;
         finderPanel = new FinderPanel();
-        ontology = new FinderOntology();
+        ontology = new FinderOntology("en");
         //choiceModel = new ChoiceModel(ontology);
         setupMenuBar();
         setupLogoPanel();
         setupChooserPanel(ontology);
         setupQueryPanel(ontology);
         setupResultsPanel(ontology);
-        
+        //ontology.setupShortFormProvider("fr");
         this.getContentPane().setLayout(new BorderLayout());
         this.getContentPane().add(finderPanel);
         
     }
     
     private void setupMenuBar(){
-        JMenuBar menuBar = new JMenuBar();
+        menuBar = new JMenuBar();
         setJMenuBar(menuBar);
         
-        JMenu menuFile = new JMenu("File");
+        menuFile = new JMenu("File");
 	menuBar.add(menuFile);
         
         menuItemImport = new JMenuItem("Import new ontology");
-        //importImage = new ImageIcon(getClass().getClassLoader().getResource("./import.png"));
+        importImage = new ImageIcon(getClass().getClassLoader().getResource("import.png"));
         menuItemImport.setIcon(importImage);
         menuFile.add(menuItemImport);
         menuItemImport.addActionListener(this);
@@ -100,36 +117,32 @@ public class FinderApplication extends JFrame implements ActionListener{
         menuFile.addSeparator();
         
         menuItemExit = new JMenuItem("Exit");
-        //importImage = new ImageIcon(getClass().getClassLoader().getResource("./exit.png"));
+        importImage = new ImageIcon(getClass().getClassLoader().getResource("exit.png"));
         menuItemExit.setIcon(importImage);
         menuFile.add(menuItemExit);
         menuItemExit.addActionListener(this);
         
-        ButtonGroup group = new ButtonGroup();
-        JMenu menuView = new JMenu("View");
+        groupView = new ButtonGroup();
+        menuView = new JMenu("View");
         
         rbMenuItemTreeView = new JRadioButtonMenuItem("Tree View");
         rbMenuItemTreeView.addActionListener(this);
         rbMenuItemListView = new JRadioButtonMenuItem("List View");
         rbMenuItemListView.addActionListener(this);
         rbMenuItemTreeView.setSelected(true);
-        group.add(rbMenuItemTreeView);
+        groupView.add(rbMenuItemTreeView);
         menuView.add(rbMenuItemTreeView);
-        group.add(rbMenuItemListView);
+        groupView.add(rbMenuItemListView);
         menuView.add(rbMenuItemListView);
 	menuBar.add(menuView);
         
         
-        JMenu menuConfiguration = new JMenu("Configuration");
+        menuConfiguration = new JMenu("Configuration");
 	menuBar.add(menuConfiguration);
+    
         
-        menuItemUIConfig = new JMenuItem("UI Configuration");
-        //importImage = new ImageIcon(getClass().getClassLoader().getResource("./uiConfig.png"));
-        menuItemUIConfig.setIcon(importImage);
-        menuConfiguration.add(menuItemUIConfig);
-        
-        ButtonGroup groupLanguages = new ButtonGroup();
-        JMenu menuItemLanguages = new JMenu("Languages");
+        groupLanguages = new ButtonGroup();
+        menuItemLanguages = new JMenu("Available Languages");
         menuConfiguration.add(menuItemLanguages);
         
         languages = new ArrayList<>(ontology.getLanguages().size());
@@ -138,12 +151,30 @@ public class FinderApplication extends JFrame implements ActionListener{
         //System.out.println(ontology.getLanguages().size());
         for(int i=0; i<ontology.getLanguages().size(); i++){
             Map.Entry pairs = (Map.Entry)it.next();
-            JRadioButtonMenuItem temp = new JRadioButtonMenuItem(String.format("%.2f",pairs.getValue())+"%"+"\t"+pairs.getKey().toString());
+            JRadioButtonMenuItem temp = new JRadioButtonMenuItem(pairs.getKey().toString());
+            if(pairs.getKey().toString().equals("English")){
+                temp.setSelected(true);
+            }
             languages.add(temp);
+            languages.get(i).setToolTipText("Represents "+String.format("%.2f",pairs.getValue())+"% of the ontology");
             groupLanguages.add(languages.get(i));
             menuItemLanguages.add(languages.get(i));
         }
-        //System.out.println(ontology.getLanguages());
+        
+        langModel = new LanguageModel(ontology);
+        
+        langController = new LanguagesController(langModel, this);
+        langController.control();
+        
+        menuItemUIConfig = new JMenuItem("UI Configuration");
+        importImage = new ImageIcon(getClass().getClassLoader().getResource("uiConfig.png"));
+        menuItemUIConfig.setIcon(importImage);
+        menuConfiguration.add(menuItemUIConfig);
+        
+        menuHelp = new JMenu("Help");
+        menuBar.add(menuHelp);
+        JMenuItem menuItemAbout = new JMenuItem(aboutAction);
+        menuHelp.add(menuItemAbout);
     }
     
     private void setupLogoPanel(){
@@ -181,11 +212,11 @@ public class FinderApplication extends JFrame implements ActionListener{
     }
     
     // Testing
-    //public static void main(String[] arg){
+    /*public static void main(String[] arg){
 
-    //    FinderApplication f = new FinderApplication(null);
-    //    f.setVisible(true);
-    //}
+        FinderApplication f = new FinderApplication(null);
+        f.setVisible(true);
+    }*/
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -208,10 +239,11 @@ public class FinderApplication extends JFrame implements ActionListener{
                 }
                 Settings s = new Settings(file.getAbsolutePath());
             
-                ontology = new FinderOntology();
+                ontology = new FinderOntology("en");
                 setupChooserPanel(ontology);
                 setupQueryPanel(ontology);
                 setupResultsPanel(ontology);
+                setupMenuBar();
                 //txtNOntologyLocation.setText(file.getAbsolutePath());
             }
         }
@@ -221,6 +253,8 @@ public class FinderApplication extends JFrame implements ActionListener{
         else if(e.getSource()==rbMenuItemTreeView){
             view = true;
             setupChooserPanel(ontology);
+            setupQueryPanel(ontology);
+            setupResultsPanel(ontology);
         }
         else if(e.getSource()==rbMenuItemListView){
             view = false;
@@ -244,4 +278,14 @@ public class FinderApplication extends JFrame implements ActionListener{
             Files.copy(f.toPath(), file.toPath());
         }
     }
+     
+     public ArrayList<JRadioButtonMenuItem> getLanguages(){
+         return languages;
+     }
+     
+     public void refreshIngView(){
+        setupChooserPanel(ontology);
+        setupQueryPanel(ontology);
+        setupResultsPanel(ontology);
+     }
 }
