@@ -50,11 +50,12 @@ public class FinderApplication extends JFrame implements ActionListener{
     Settings setting;
     
     Selectable selectable;
-    ResultsPanel r;
     JFileChooser fc;
     //private ChoiceModel choiceModel;
     
-    ChooserPanel p;
+    ChooserPanel cp;
+    QueryPanel qp;
+    ResultsPanel rp;
     
     JMenuBar menuBar;
     JMenu menuFile,menuView,menuConfiguration,menuItemLanguages, menuHelp;
@@ -183,20 +184,21 @@ public class FinderApplication extends JFrame implements ActionListener{
     }
     
     private void setupChooserPanel(FinderOntology ont){
-        p = new ChooserPanel(ont, this, view);
+        cp = new ChooserPanel(ont, this, view);
         finderPanel.setDividerLocationButtomLeft();
-        finderPanel.setButtomLeftComponent(p);
-        setSelectable(p.getSelectable());
+        finderPanel.setButtomLeftComponent(cp);
+        setSelectable(cp.getSelectable());
     }
     
     private void setupQueryPanel(FinderOntology ont){
         //pass the selectable to the queryPanel
-        finderPanel.setButtomCenterComponent(new QueryPanel(ont,this,getSelecatable()));
+        qp = new QueryPanel(ont,this,getSelecatable());
+        finderPanel.setButtomCenterComponent(qp);
     }
     
     private void setupResultsPanel(FinderOntology ont){
-        r =  new ResultsPanel(ont, this);
-        finderPanel.setButtomRightComponent(r);
+        rp =  new ResultsPanel(ont, this);
+        finderPanel.setButtomRightComponent(rp);
     }
     
     private void setSelectable(Selectable selectable){
@@ -208,7 +210,7 @@ public class FinderApplication extends JFrame implements ActionListener{
     }
     
     public void showResultsPanel(Collection<OWLClass> results) {
-	r.setPizzas(results);
+	rp.setPizzas(results);
     }
     
     // Testing
@@ -284,8 +286,16 @@ public class FinderApplication extends JFrame implements ActionListener{
      }
      
      public void refreshIngView(){
-        setupChooserPanel(ontology);
-        setupQueryPanel(ontology);
+        cp.getTree().repaint();
+        cp.getList().repaint();
+        qp.getIncList().repaint();
+        qp.getExcList().repaint();
+        //rp.setPizzaPanels(rp.getPanels());
+        //qp.refershResult();
         setupResultsPanel(ontology);
+        cp.refreshFilters();
+        //setupChooserPanel(ontology);
+        //setupQueryPanel(ontology);
+        //setupResultsPanel(ontology);
      }
 }

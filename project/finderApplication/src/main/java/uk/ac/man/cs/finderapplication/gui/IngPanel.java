@@ -385,6 +385,10 @@ public class IngPanel extends JPanel implements Selectable {
         public JList getList(){
             return list;
         }
+        
+        public JTree getTree(){
+            return tree;
+        }
 }
 
 class MyDefaultMutableTreeNode extends DefaultMutableTreeNode implements Comparable{

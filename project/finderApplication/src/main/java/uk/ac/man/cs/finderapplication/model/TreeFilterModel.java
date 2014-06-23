@@ -35,6 +35,7 @@ public class TreeFilterModel {
     }
     
     private void applyTreeFilter(DefaultMutableTreeNode filter){
+        //filter
         int count = originalModel.getChildCount(filter);
         //System.out.println(count);
         for(int i=0;i<count;i++){

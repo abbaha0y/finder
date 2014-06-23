@@ -19,8 +19,10 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
+import javax.swing.JTree;
 import uk.ac.man.cs.finderapplication.controller.ListFiltersController;
 import uk.ac.man.cs.finderapplication.controller.TreeFiltersController;
 import uk.ac.man.cs.finderapplication.model.ChoiceModel;
@@ -83,7 +85,7 @@ public class ChooserPanel extends JPanel {
                 splitPane.setBottomComponent(ingPanel);
                 
                 if(ontology.FilterExists() && view){
-                    filterPanel = new TreeFiltersPanel(ontology.getFilters(), ontology.getOntology());
+                    filterPanel = new TreeFiltersPanel(ontology.getFilters(), ontology);
                     splitPane.setTopComponent(filterPanel);
                     filterModel = new TreeFilterModel(filterPanel.getFilters(), ontology.getOntology(), ingPanel.getTreeModel());
                     
@@ -124,6 +126,23 @@ public class ChooserPanel extends JPanel {
    public ListFiltersPanel getListFilterPanel(){
        return listFilterPanel;
    }
-
+   
+   public JTree getTree(){
+       return ingPanel.getTree();
+   }
+   
+   public JList getList(){
+       return ingPanel.getList();
+   }
+   
+   public void refreshFilters(){
+        filterPanel = new TreeFiltersPanel(ontology.getFilters(), ontology);
+        splitPane.setTopComponent(filterPanel);
+        filterModel = new TreeFilterModel(filterPanel.getFilters(), ontology.getOntology(), ingPanel.getTreeModel());
+                    
+        controller = new TreeFiltersController(filterModel, this);
+        controller.contol();
+   }
+   
 }
 

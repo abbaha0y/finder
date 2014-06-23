@@ -18,6 +18,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import uk.ac.man.cs.finderapplication.model.ChoiceModel;
@@ -110,6 +111,21 @@ public class QueryPanel extends JPanel {
         queryPanel.add(btnGet, BorderLayout.EAST);
         add(queryPanel, BorderLayout.SOUTH);
     }
+    
+    public JList getIncList(){
+        return includeListPanel.getList();
+    }
+    
+    public JList getExcList(){
+        return excludeListPanel.getList();
+    }
+    
+    public void refershResult(){
+        Collection c = ontology.getPizzas(choiceModel.getIncluded(), choiceModel.getExcluded());
+        application.showResultsPanel(c);
+    }
+    
+    
 }
 
 

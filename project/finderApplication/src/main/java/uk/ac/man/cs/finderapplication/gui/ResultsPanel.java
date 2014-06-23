@@ -38,6 +38,8 @@ public class ResultsPanel extends JPanel {
 	private FinderApplication application;
 
 	private Box box;
+        
+        private PizzaPanel [] panels ;
 
 
 	public ResultsPanel(FinderOntology ontology, FinderApplication application) {
@@ -64,7 +66,7 @@ public class ResultsPanel extends JPanel {
      * @return
      */
 	private PizzaPanel [] createPizzaPanels(Collection<OWLClass> pizzas) {
-		PizzaPanel [] panels = new PizzaPanel[pizzas.size()];
+		panels = new PizzaPanel[pizzas.size()];
 		int counter = 0;
 		for(Iterator it = pizzas.iterator(); it.hasNext(); counter++) {
 			OWLClass cls = (OWLClass) it.next();
@@ -73,7 +75,7 @@ public class ResultsPanel extends JPanel {
 		return panels;
 	}
 
-	private void setPizzaPanels(PizzaPanel [] panels) {
+	protected void setPizzaPanels(PizzaPanel [] panels) {
 		box.removeAll();
 		for(int i = 0; i < panels.length; i++) {
 			box.add(panels[i]);
@@ -81,5 +83,9 @@ public class ResultsPanel extends JPanel {
 		}
 		revalidate();
 	}
+        
+        public PizzaPanel [] getPanels(){
+            return panels;
+        }
 }
 

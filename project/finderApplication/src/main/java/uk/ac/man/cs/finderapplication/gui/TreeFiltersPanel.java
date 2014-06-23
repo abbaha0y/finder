@@ -18,6 +18,7 @@ import javax.swing.SpringLayout;
 import org.semanticweb.owlapi.model.OWLAnnotation;
 import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLOntology;
+import uk.ac.man.cs.finderapplication.model.FinderOntology;
 
 /**
  *
@@ -32,12 +33,14 @@ public class TreeFiltersPanel extends JPanel{
     JPanel filterPanel;
     JLabel lblTitle;
     OWLClass selectedFilter;
+    FinderOntology o;
     
     
-    public TreeFiltersPanel(ArrayList<OWLClass> filters, OWLOntology ontology){
+    public TreeFiltersPanel(ArrayList<OWLClass> filters, FinderOntology o){
         this.filters = filters;
-        this.ontology = ontology;
+        //this.ontology = ontology;
         btnFilterArray = new ArrayList<>(filters.size());
+        this.o = o;
         setupFilterPanel();
     }
     
@@ -69,11 +72,13 @@ public class TreeFiltersPanel extends JPanel{
     
     private String getFilterName(OWLClass filterClass){
         String filterName="";
-        for(OWLAnnotation a:filterClass.getAnnotations(ontology)){
+        /*for(OWLAnnotation a:filterClass.getAnnotations(ontology)){
             if(a.getProperty().toString().contains("label")){
                 filterName = a.getValue().toString().replace("\"", "");
             }
-        }
+        }*/
+        filterName=o.render(filterClass);
+        System.out.println(filterName);
         return filterName;
     }
     

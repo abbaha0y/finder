@@ -191,6 +191,10 @@ public abstract class ListPanel extends JPanel implements Selectable {
             ((SelectionListener)it.next()).selectionChanged(e);
 	}
     }
+    
+    public JList getList(){
+        return list;
+    }
 }
 
 
