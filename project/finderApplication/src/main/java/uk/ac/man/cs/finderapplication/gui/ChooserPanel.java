@@ -136,12 +136,14 @@ public class ChooserPanel extends JPanel {
    }
    
    public void refreshFilters(){
+       if(!view){
         filterPanel = new TreeFiltersPanel(ontology.getFilters(), ontology);
         splitPane.setTopComponent(filterPanel);
         filterModel = new TreeFilterModel(filterPanel.getFilters(), ontology.getOntology(), ingPanel.getTreeModel());
                     
         controller = new TreeFiltersController(filterModel, this);
         controller.contol();
+       }
    }
    
 }

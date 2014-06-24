@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package uk.ac.man.cs.finderapplication.gui;
 
 import java.awt.BorderLayout;
@@ -42,51 +41,51 @@ import uk.ac.man.cs.finderapplication.selection.Selectable;
  *
  * @author Hani Al Abbas - hani.alabbas@postgrad.manchester.ac.uk
  */
-public class FinderApplication extends JFrame implements ActionListener{
-    
+public class FinderApplication extends JFrame implements ActionListener {
+
     FinderOntology ontology;
     FinderPanel finderPanel;
     LogoPanel logoPanel;
     Settings setting;
-    
+
     Selectable selectable;
     JFileChooser fc;
     //private ChoiceModel choiceModel;
-    
+
     ChooserPanel cp;
     QueryPanel qp;
     ResultsPanel rp;
-    
+
     JMenuBar menuBar;
-    JMenu menuFile,menuView,menuConfiguration,menuItemLanguages, menuHelp;
-    JMenuItem menuItemImport,menuItemExit,menuItemUIConfig;
+    JMenu menuFile, menuView, menuConfiguration, menuItemLanguages, menuHelp;
+    JMenuItem menuItemImport, menuItemExit, menuItemUIConfig;
     ButtonGroup groupView, groupLanguages;
     ImageIcon importImage;
-    
-    JRadioButtonMenuItem rbMenuItemTreeView,rbMenuItemListView;
+
+    JRadioButtonMenuItem rbMenuItemTreeView, rbMenuItemListView;
     private ArrayList<JRadioButtonMenuItem> languages;
     boolean view;
-    
-    String homefilepath = System.getProperty("user.home")+"/FinderApplication";
-    
+
+    String homefilepath = System.getProperty("user.home") + "/FinderApplication";
+
     private Action aboutAction = new AbstractAction("About") {
-		public void actionPerformed(ActionEvent e) {
-			AboutDialog dlg = new AboutDialog(FinderApplication.this);
-			dlg.setVisible(true);
-		}
-	};
-    
+        public void actionPerformed(ActionEvent e) {
+            AboutDialog dlg = new AboutDialog(FinderApplication.this);
+            dlg.setVisible(true);
+        }
+    };
+
     LanguagesController langController;
     LanguageModel langModel;
-    
-    public FinderApplication(File ontologyFile, Settings setting){
+
+    public FinderApplication(File ontologyFile, Settings setting) {
         view = true;
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(900, 600);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.setTitle("The Manchester Finder");
-        
+
         this.setting = setting;
         finderPanel = new FinderPanel();
         ontology = new FinderOntology("en");
@@ -99,33 +98,33 @@ public class FinderApplication extends JFrame implements ActionListener{
         //ontology.setupShortFormProvider("fr");
         this.getContentPane().setLayout(new BorderLayout());
         this.getContentPane().add(finderPanel);
-        
+
     }
-    
-    private void setupMenuBar(){
+
+    private void setupMenuBar() {
         menuBar = new JMenuBar();
         setJMenuBar(menuBar);
-        
+
         menuFile = new JMenu("File");
-	menuBar.add(menuFile);
-        
+        menuBar.add(menuFile);
+
         menuItemImport = new JMenuItem("Import new ontology");
         importImage = new ImageIcon(getClass().getClassLoader().getResource("import.png"));
         menuItemImport.setIcon(importImage);
         menuFile.add(menuItemImport);
         menuItemImport.addActionListener(this);
-        
+
         menuFile.addSeparator();
-        
+
         menuItemExit = new JMenuItem("Exit");
         importImage = new ImageIcon(getClass().getClassLoader().getResource("exit.png"));
         menuItemExit.setIcon(importImage);
         menuFile.add(menuItemExit);
         menuItemExit.addActionListener(this);
-        
+
         groupView = new ButtonGroup();
         menuView = new JMenu("View");
-        
+
         rbMenuItemTreeView = new JRadioButtonMenuItem("Tree View");
         rbMenuItemTreeView.addActionListener(this);
         rbMenuItemListView = new JRadioButtonMenuItem("List View");
@@ -135,94 +134,113 @@ public class FinderApplication extends JFrame implements ActionListener{
         menuView.add(rbMenuItemTreeView);
         groupView.add(rbMenuItemListView);
         menuView.add(rbMenuItemListView);
-	menuBar.add(menuView);
-        
-        
+        menuBar.add(menuView);
+
         menuConfiguration = new JMenu("Configuration");
-	menuBar.add(menuConfiguration);
-    
-        
-        groupLanguages = new ButtonGroup();
+        menuBar.add(menuConfiguration);
+
+        //groupLanguages = new ButtonGroup();
         menuItemLanguages = new JMenu("Available Languages");
         menuConfiguration.add(menuItemLanguages);
+
+        /*languages = new ArrayList<>(ontology.getLanguages().size());
         
-        languages = new ArrayList<>(ontology.getLanguages().size());
-        
-        Iterator it = ontology.getLanguages().entrySet().iterator();
-        //System.out.println(ontology.getLanguages().size());
-        for(int i=0; i<ontology.getLanguages().size(); i++){
-            Map.Entry pairs = (Map.Entry)it.next();
-            JRadioButtonMenuItem temp = new JRadioButtonMenuItem(pairs.getKey().toString());
-            if(pairs.getKey().toString().equals("English")){
-                temp.setSelected(true);
-            }
-            languages.add(temp);
-            languages.get(i).setToolTipText("Represents "+String.format("%.2f",pairs.getValue())+"% of the ontology");
-            groupLanguages.add(languages.get(i));
-            menuItemLanguages.add(languages.get(i));
-        }
-        
+         Iterator it = ontology.getLanguages().entrySet().iterator();
+         //System.out.println(ontology.getLanguages().size());
+         for(int i=0; i<ontology.getLanguages().size(); i++){
+         Map.Entry pairs = (Map.Entry)it.next();
+         JRadioButtonMenuItem temp = new JRadioButtonMenuItem(pairs.getKey().toString());
+         if(pairs.getKey().toString().equals("English")){
+         temp.setSelected(true);
+         }
+         languages.add(temp);
+         languages.get(i).setToolTipText("Represents "+String.format("%.2f",pairs.getValue())+"% of the ontology");
+         groupLanguages.add(languages.get(i));
+         menuItemLanguages.add(languages.get(i));
+         }*/
+        setupMenuLanguage();
+
         langModel = new LanguageModel(ontology);
-        
+
         langController = new LanguagesController(langModel, this);
         langController.control();
-        
+
         menuItemUIConfig = new JMenuItem("UI Configuration");
         importImage = new ImageIcon(getClass().getClassLoader().getResource("uiConfig.png"));
         menuItemUIConfig.setIcon(importImage);
         menuConfiguration.add(menuItemUIConfig);
-        
+
         menuHelp = new JMenu("Help");
         menuBar.add(menuHelp);
         JMenuItem menuItemAbout = new JMenuItem(aboutAction);
         menuHelp.add(menuItemAbout);
     }
-    
-    private void setupLogoPanel(){
+
+    private void setupLogoPanel() {
         logoPanel = new LogoPanel(Toolkit.getDefaultToolkit().getImage(setting.getLogoLocation()));
         finderPanel.setLogoComponent(logoPanel);
     }
-    
-    private void setupChooserPanel(FinderOntology ont){
+
+    private void setupChooserPanel(FinderOntology ont) {
         cp = new ChooserPanel(ont, this, view);
         finderPanel.setDividerLocationButtomLeft();
         finderPanel.setButtomLeftComponent(cp);
         setSelectable(cp.getSelectable());
     }
-    
-    private void setupQueryPanel(FinderOntology ont){
+
+    private void setupQueryPanel(FinderOntology ont) {
         //pass the selectable to the queryPanel
-        qp = new QueryPanel(ont,this,getSelecatable());
+        qp = new QueryPanel(ont, this, getSelecatable());
         finderPanel.setButtomCenterComponent(qp);
     }
-    
-    private void setupResultsPanel(FinderOntology ont){
-        rp =  new ResultsPanel(ont, this);
+
+    private void setupResultsPanel(FinderOntology ont) {
+        rp = new ResultsPanel(ont, this);
         finderPanel.setButtomRightComponent(rp);
     }
-    
-    private void setSelectable(Selectable selectable){
+
+    private void setSelectable(Selectable selectable) {
         this.selectable = selectable;
     }
-    
-    private Selectable getSelecatable(){
+
+    private Selectable getSelecatable() {
         return selectable;
     }
-    
+
     public void showResultsPanel(Collection<OWLClass> results) {
-	rp.setPizzas(results);
+        rp.setPizzas(results);
     }
-    
+
     // Testing
     /*public static void main(String[] arg){
 
-        FinderApplication f = new FinderApplication(null);
-        f.setVisible(true);
-    }*/
+     FinderApplication f = new FinderApplication(null);
+     f.setVisible(true);
+     }*/
+    public void setupMenuLanguage() {
+        groupLanguages = new ButtonGroup();
+        menuItemLanguages.removeAll();
+        
+        languages = new ArrayList<>(ontology.getLanguages().size());
+
+        Iterator it = ontology.getLanguages().entrySet().iterator();
+        //System.out.println(ontology.getLanguages().size());
+        for (int i = 0; i < ontology.getLanguages().size(); i++) {
+            Map.Entry pairs = (Map.Entry) it.next();
+            JRadioButtonMenuItem temp = new JRadioButtonMenuItem(pairs.getKey().toString());
+            if (pairs.getKey().toString().equals("English")) {
+                temp.setSelected(true);
+            }
+            languages.add(temp);
+            languages.get(i).setToolTipText("Represents " + String.format("%.2f", pairs.getValue()) + "% of the ontology");
+            groupLanguages.add(languages.get(i));
+            menuItemLanguages.add(languages.get(i));
+        }
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==menuItemImport){
+        if (e.getSource() == menuItemImport) {
             fc = new JFileChooser();
             fc.setCurrentDirectory(new File(System.getProperty("user.home")));
             fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -230,9 +248,9 @@ public class FinderApplication extends JFrame implements ActionListener{
             fc.setFileFilter(new FileNameExtensionFilter("*.owl", "OWL"));
             int returnVal = fc.showOpenDialog(this);
             if (returnVal == JFileChooser.APPROVE_OPTION) {
-            
+
                 /*JOptionPane.showMessageDialog(fc, "The application will be"
-                +"restarted for the new import to take effect");*/
+                 +"restarted for the new import to take effect");*/
                 File file = fc.getSelectedFile();
                 try {
                     saveFile(file);
@@ -240,52 +258,53 @@ public class FinderApplication extends JFrame implements ActionListener{
                     Logger.getLogger(FinderApplication.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 Settings s = new Settings(file.getAbsolutePath());
-            
+
                 ontology = new FinderOntology("en");
                 setupChooserPanel(ontology);
                 setupQueryPanel(ontology);
                 setupResultsPanel(ontology);
-                setupMenuBar();
+                //setupMenuBar();
+                setupMenuLanguage();
+                langModel = new LanguageModel(ontology);
+                langController = new LanguagesController(langModel, this);
+                langController.control();
                 //txtNOntologyLocation.setText(file.getAbsolutePath());
             }
-        }
-        else if(e.getSource()==menuItemExit){
+        } else if (e.getSource() == menuItemExit) {
             System.exit(0);
-        }
-        else if(e.getSource()==rbMenuItemTreeView){
+        } else if (e.getSource() == rbMenuItemTreeView) {
             view = true;
             setupChooserPanel(ontology);
             setupQueryPanel(ontology);
             setupResultsPanel(ontology);
-        }
-        else if(e.getSource()==rbMenuItemListView){
+        } else if (e.getSource() == rbMenuItemListView) {
             view = false;
             setupChooserPanel(ontology);
             setupQueryPanel(ontology);
             setupResultsPanel(ontology);
         }
     }
-    
-     private void saveFile(File f) throws IOException{
+
+    private void saveFile(File f) throws IOException {
         //File file = new File("./src/main/resources/"+f.getName());
-        File file = new File(homefilepath+"/"+f.getName());
-        if(file.exists() && file.isFile()){
+        File file = new File(homefilepath + "/" + f.getName());
+        if (file.exists() && file.isFile()) {
             int dialogButton = JOptionPane.YES_NO_OPTION;
-            int dialogResult = JOptionPane.showConfirmDialog(this, "The ontology is already exist\nDo you want to replace it?", "Confirmation",dialogButton,1,Icons.getAppIcon());
-            if(dialogResult==0){
+            int dialogResult = JOptionPane.showConfirmDialog(this, "The ontology is already exist\nDo you want to replace it?", "Confirmation", dialogButton, 1, Icons.getAppIcon());
+            if (dialogResult == 0) {
                 Files.delete(file.toPath());
                 Files.copy(f.toPath(), file.toPath());
             }
-        }else{
+        } else {
             Files.copy(f.toPath(), file.toPath());
         }
     }
-     
-     public ArrayList<JRadioButtonMenuItem> getLanguages(){
-         return languages;
-     }
-     
-     public void refreshIngView(){
+
+    public ArrayList<JRadioButtonMenuItem> getLanguages() {
+        return languages;
+    }
+
+    public void refreshIngView() {
         cp.getTree().repaint();
         cp.getList().repaint();
         qp.getIncList().repaint();
@@ -297,5 +316,5 @@ public class FinderApplication extends JFrame implements ActionListener{
         //setupChooserPanel(ontology);
         //setupQueryPanel(ontology);
         //setupResultsPanel(ontology);
-     }
+    }
 }

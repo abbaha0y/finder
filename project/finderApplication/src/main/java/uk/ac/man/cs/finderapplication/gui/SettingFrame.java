@@ -51,7 +51,7 @@ public class SettingFrame extends JFrame implements ActionListener, DocumentList
     Settings setting;    
     CardLayout card;
     
-    String homefilepath = System.getProperty("user.home")+"/FinderApplication";
+    String homefilepath = System.getProperty("user.dir")+"/FinderApplication";
     
     public SettingFrame(){
         new File(homefilepath).mkdir();
@@ -292,7 +292,7 @@ public class SettingFrame extends JFrame implements ActionListener, DocumentList
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == btnNLogo){
             fc = new JFileChooser();
-            fc.setCurrentDirectory(new File(System.getProperty("user.home")));
+            fc.setCurrentDirectory(new File(System.getProperty("user.dir")));
             fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
             fc.setAcceptAllFileFilterUsed(false);
             fc.setFileFilter(new FileNameExtensionFilter("*.gif", "GIF"));
@@ -306,7 +306,7 @@ public class SettingFrame extends JFrame implements ActionListener, DocumentList
         }
         else if(e.getSource() == btnNAppIcon){
             fc = new JFileChooser();
-            fc.setCurrentDirectory(new File(System.getProperty("user.home")));
+            fc.setCurrentDirectory(new File(System.getProperty("user.dir")));
             fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
             fc.setAcceptAllFileFilterUsed(false);
             fc.setFileFilter(new FileNameExtensionFilter("*.png", "PNG"));
@@ -318,7 +318,7 @@ public class SettingFrame extends JFrame implements ActionListener, DocumentList
         }
         else if(e.getSource() == btnNOntologyLocation){
             fc = new JFileChooser();
-            fc.setCurrentDirectory(new File(System.getProperty("user.home")));
+            fc.setCurrentDirectory(new File(System.getProperty("user.dir")));
             fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
             fc.setAcceptAllFileFilterUsed(false);
             fc.setFileFilter(new FileNameExtensionFilter("*.owl", "OWL"));

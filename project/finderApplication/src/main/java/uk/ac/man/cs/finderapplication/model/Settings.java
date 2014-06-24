@@ -44,7 +44,7 @@ public class Settings {
     String ontologyLocation,logoLocation,iconLocation;
     String fileName;
     
-    String homefilepath = System.getProperty("user.home")+"/FinderApplication";
+    String homefilepath = System.getProperty("user.dir")+"/FinderApplication";
     
     public Settings(){
         PrepSettings();
