@@ -51,7 +51,7 @@ public class IncludeListPanel extends ListPanel {
 	public IncludeListPanel(final FinderOntology ontology,
                                    final Selectable selectable,
 	                               final ChoiceModel choiceModel) {
-		super(ontology, "Included toppings:", selectable, choiceModel);
+		super(ontology, "Included Ingredients:", selectable, choiceModel);
 		this.choiceModel = choiceModel;
 		this.selectable = selectable;
 		createUI();

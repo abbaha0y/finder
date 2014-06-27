@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JRadioButtonMenuItem;
-import uk.ac.man.cs.finderapplication.gui.FinderApplication;
+import uk.ac.man.cs.finderapplication.gui.MainFinderApplication;
 import uk.ac.man.cs.finderapplication.model.LanguageModel;
 
 /**
@@ -21,10 +21,10 @@ public class LanguagesController {
     
     ArrayList<JRadioButtonMenuItem> arrayListLanguages;
     private ActionListener actionListener;
-    FinderApplication view;
+    MainFinderApplication view;
     LanguageModel model;
     
-    public LanguagesController(LanguageModel model, FinderApplication view){
+    public LanguagesController(LanguageModel model, MainFinderApplication view){
         this.view = view;
         this.model = model;
     }

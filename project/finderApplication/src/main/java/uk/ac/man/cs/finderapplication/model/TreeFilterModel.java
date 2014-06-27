@@ -7,12 +7,14 @@
 package uk.ac.man.cs.finderapplication.model;
 
 import java.util.ArrayList;
+import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
+import javax.swing.tree.TreePath;
 import org.semanticweb.owlapi.model.OWLAnnotation;
 import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLOntology;
+import uk.ac.man.cs.finderapplication.gui.MyMutableTreeNode;
 
 /**
  *
@@ -21,41 +23,57 @@ import org.semanticweb.owlapi.model.OWLOntology;
 public class TreeFilterModel {
     ArrayList<OWLClass> filters;
     OWLOntology ontology;
-    TreeModel originalModel, filteredModel;
+    TreeModel originalModel, tempModel;
+    JTree tree;
     
-    public TreeFilterModel(ArrayList<OWLClass> filters, OWLOntology ontology, TreeModel originalModel){
+    public TreeFilterModel(ArrayList<OWLClass> filters, OWLOntology ontology, JTree tree){
         this.filters = filters;
         this.ontology = ontology;
-        this.originalModel = originalModel;
+        this.originalModel = tree.getModel();
+        this.tempModel = originalModel;
+        this.tree = tree;
+        
     }
     
     public void applyFilter(int filterIndex){
-        DefaultMutableTreeNode node = getMatchingNode(((DefaultMutableTreeNode)originalModel.getRoot()),new DefaultMutableTreeNode((filters.get(filterIndex))));
+        MyMutableTreeNode node = (MyMutableTreeNode) getMatchingNode(((DefaultMutableTreeNode)originalModel.getRoot()),new DefaultMutableTreeNode((filters.get(filterIndex))));
+        node.setType(true);
         applyTreeFilter(node);
     }
     
-    private void applyTreeFilter(DefaultMutableTreeNode filter){
+    public void undoFilter(){
+        MyMutableTreeNode root = (MyMutableTreeNode) originalModel.getRoot();
+        root.setType(false);
+        removeFilter(root);
+    }
+    
+    private void applyTreeFilter(MyMutableTreeNode filter){
         //filter
         int count = originalModel.getChildCount(filter);
-        //System.out.println(count);
         for(int i=0;i<count;i++){
-            DefaultMutableTreeNode currnetNode = (DefaultMutableTreeNode) originalModel.getChild(filter, i);
+            MyMutableTreeNode currnetNode = (MyMutableTreeNode) originalModel.getChild(filter, i);
+            currnetNode.setType(true);
             if(currnetNode.isLeaf()){
-		filter.add(currnetNode);
-                //System.out.println(currnetNode);
             }
             else{
-		filter.add(currnetNode);
-                //System.out.println(currnetNode);
 		applyTreeFilter(currnetNode);
             }
         }
-	filteredModel = new DefaultTreeModel(filter);
+	tree.setSelectionPath(new TreePath(filter.getPath()));
     }
     
-    public void removeFilter(){
-        filteredModel = originalModel;
+    private void removeFilter(MyMutableTreeNode root){
+        int count = root.getChildCount();
+        for(int i =0;i<count; i++){
+            MyMutableTreeNode currnetNode = (MyMutableTreeNode) originalModel.getChild(root, i);
+            currnetNode.setType(false);
+            if(!currnetNode.isLeaf()){
+                removeFilter(currnetNode);
+            }
+        }
+        //tree.collapsePath(new TreePath(root.getPath()));
     }
+    
     
     private String getFilterName(OWLClass filterClass){
         String filterName = null;
@@ -68,7 +86,7 @@ public class TreeFilterModel {
     }
     
     public TreeModel getTreeModel(){
-        return filteredModel;
+        return originalModel;
     }
     
     public DefaultMutableTreeNode getMatchingNode(DefaultMutableTreeNode root ,DefaultMutableTreeNode filterName){

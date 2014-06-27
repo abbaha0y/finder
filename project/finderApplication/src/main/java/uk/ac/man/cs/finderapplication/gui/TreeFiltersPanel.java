@@ -78,7 +78,7 @@ public class TreeFiltersPanel extends JPanel{
             }
         }*/
         filterName=o.render(filterClass);
-        System.out.println(filterName);
+        //System.out.println(filterName);
         return filterName;
     }
     
@@ -88,5 +88,9 @@ public class TreeFiltersPanel extends JPanel{
     
     public ArrayList<OWLClass> getFilters(){
         return filters;
+    }
+    
+    public void setFilterLabel(String s){
+        lblTitle.setText(s);
     }
 }

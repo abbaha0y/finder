@@ -26,7 +26,7 @@ import uk.ac.man.cs.finderapplication.selection.Selectable;
  */
 public class ExcludeListPanel extends ListPanel {
 
-    public static final String TITLE = "Excluded toppings:";
+    public static final String TITLE = "Excluded Ingredients:";
 
     private ChoiceModel choiceModel;
 

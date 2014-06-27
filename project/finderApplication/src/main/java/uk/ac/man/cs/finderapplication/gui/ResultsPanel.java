@@ -35,14 +35,14 @@ public class ResultsPanel extends JPanel {
 
 	private FinderOntology ontology;
 
-	private FinderApplication application;
+	private MainFinderApplication application;
 
 	private Box box;
         
         private PizzaPanel [] panels ;
 
 
-	public ResultsPanel(FinderOntology ontology, FinderApplication application) {
+	public ResultsPanel(FinderOntology ontology, MainFinderApplication application) {
 		this.ontology = ontology;
 		this.application = application;
 		createUI();

@@ -50,6 +50,8 @@ public abstract class ListPanel extends JPanel implements Selectable {
     private Action removeAction;
     private String title;
     private Selectable selectable;
+    JButton btnAdd;
+    JButton btnRemove;
 
     private FinderOntology ontology;
 
@@ -81,8 +83,8 @@ public abstract class ListPanel extends JPanel implements Selectable {
 	panel.add(new JScrollPane(list));
 	JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT, 7, 7));
         
-        JButton btnAdd = new JButton(addAction);
-        JButton btnRemove = new JButton(removeAction);
+        btnAdd = new JButton(addAction);
+        btnRemove = new JButton(removeAction);
         
         
 	buttonPanel.add(btnAdd);
@@ -194,6 +196,18 @@ public abstract class ListPanel extends JPanel implements Selectable {
     
     public JList getList(){
         return list;
+    }
+    
+    public void setTextAddBtn(String s){
+        btnAdd.setText(s);
+    }
+    public void setTextRemoveBtn(String s){
+        btnRemove.setText(s);
+    }
+    
+    public void setLabelIng(String s){
+        this.setBorder(BorderFactory.createCompoundBorder(BorderFactory.createTitledBorder(s),
+		                                             BorderFactory.createEmptyBorder(7, 7, 7, 7)));
     }
 }
 

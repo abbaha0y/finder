@@ -8,17 +8,7 @@ package uk.ac.man.cs.finderapplication.gui;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.util.Collection;
-import javax.swing.AbstractAction;
-import javax.swing.Action;
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
@@ -48,7 +38,7 @@ public class ChooserPanel extends JPanel {
 
     private IngPanel ingPanel;
 
-    private FinderApplication application;
+    private MainFinderApplication application;
     
     private JSplitPane splitPane;
     
@@ -64,7 +54,7 @@ public class ChooserPanel extends JPanel {
     private ListFiltersPanel listFilterPanel;
     
 
-    public ChooserPanel(FinderOntology ontology, FinderApplication application, boolean view) {
+    public ChooserPanel(FinderOntology ontology, MainFinderApplication application, boolean view) {
 	this.view = view;	
             this.ontology = ontology;
 		this.application = application;
@@ -87,7 +77,7 @@ public class ChooserPanel extends JPanel {
                 if(ontology.FilterExists() && view){
                     filterPanel = new TreeFiltersPanel(ontology.getFilters(), ontology);
                     splitPane.setTopComponent(filterPanel);
-                    filterModel = new TreeFilterModel(filterPanel.getFilters(), ontology.getOntology(), ingPanel.getTreeModel());
+                    filterModel = new TreeFilterModel(filterPanel.getFilters(), ontology.getOntology(), ingPanel.getTree());
                     
                     controller = new TreeFiltersController(filterModel, this);
                     controller.contol();
@@ -139,11 +129,15 @@ public class ChooserPanel extends JPanel {
        if(!view){
         filterPanel = new TreeFiltersPanel(ontology.getFilters(), ontology);
         splitPane.setTopComponent(filterPanel);
-        filterModel = new TreeFilterModel(filterPanel.getFilters(), ontology.getOntology(), ingPanel.getTreeModel());
+        filterModel = new TreeFilterModel(filterPanel.getFilters(), ontology.getOntology(), ingPanel.getTree());
                     
         controller = new TreeFiltersController(filterModel, this);
         controller.contol();
        }
+   }
+   
+   public void setFilterLabel(String s){
+       filterPanel.setFilterLabel(s);
    }
    
 }

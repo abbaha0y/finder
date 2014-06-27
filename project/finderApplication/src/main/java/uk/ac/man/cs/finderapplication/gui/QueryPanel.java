@@ -41,11 +41,13 @@ public class QueryPanel extends JPanel {
 
 	private ListPanel excludeListPanel;
 
-	private FinderApplication application;
+	private MainFinderApplication application;
         
         private Selectable selectable;
+        
+        private JButton btnGet;
 
-    public QueryPanel(FinderOntology ontology, FinderApplication application, Selectable selectable) {
+    public QueryPanel(FinderOntology ontology, MainFinderApplication application, Selectable selectable) {
 		this.ontology = ontology;
 		this.application = application;
 		choiceModel = new ChoiceModel(ontology);
@@ -69,6 +71,7 @@ public class QueryPanel extends JPanel {
             box.setBorder(BorderFactory.createEmptyBorder(0, 0, 12, 12));
 		add(box);
 		setupQueryPanel();
+                
     }
 
 
@@ -78,27 +81,27 @@ public class QueryPanel extends JPanel {
 
 
     protected void setupQueryPanel() {
-        final JButton btnGet = new JButton();
+        btnGet = new JButton();
         JPanel queryPanel = new JPanel();
         queryPanel.setLayout(new BorderLayout());
         queryPanel.setBorder(BorderFactory.createEmptyBorder(12, 12, 12, 12));
         
-        String[] s = {"Sushi","Sushi Dish"};
-        final JComboBox templates = new JComboBox(s);
-        JLabel lblTemplates = new JLabel("Templates: ");
-        JPanel templatesPanel = new JPanel();
-        templatesPanel.setLayout(new BorderLayout());
-        templatesPanel.add(lblTemplates,BorderLayout.WEST);
-        templatesPanel.add(templates,BorderLayout.CENTER);
-        Action templatesAction = new AbstractAction(){
+        //String[] s = {"Sushi","Sushi Dish"};
+        //final JComboBox templates = new JComboBox(s);
+        //JLabel lblTemplates = new JLabel("Templates: ");
+        //JPanel templatesPanel = new JPanel();
+        //templatesPanel.setLayout(new BorderLayout());
+        //templatesPanel.add(lblTemplates,BorderLayout.WEST);
+        //templatesPanel.add(templates,BorderLayout.CENTER);
+        /*Action templatesAction = new AbstractAction(){
             public void actionPerformed(ActionEvent e) {
                    btnGet.setText("Get "+templates.getSelectedItem().toString());
             }
         };
-        templates.setAction(templatesAction);
+        templates.setAction(templatesAction);*/
         
         
-        Action queryReasonerAction = new AbstractAction("Get "+templates.getItemAt(0).toString()) {
+        Action queryReasonerAction = new AbstractAction("Get "+ontology.render(ontology.getBaseClass())) {
             public void actionPerformed(ActionEvent e) {
                 Collection c = ontology.getPizzas(choiceModel.getIncluded(), choiceModel.getExcluded());
                 application.showResultsPanel(c);
@@ -107,7 +110,7 @@ public class QueryPanel extends JPanel {
         
         
         btnGet.setAction(queryReasonerAction);
-        queryPanel.add(templatesPanel,BorderLayout.WEST);
+        //queryPanel.add(templatesPanel,BorderLayout.WEST);
         queryPanel.add(btnGet, BorderLayout.EAST);
         add(queryPanel, BorderLayout.SOUTH);
     }
@@ -125,6 +128,31 @@ public class QueryPanel extends JPanel {
         application.showResultsPanel(c);
     }
     
+    
+    public void setIncAddBtn(String s){
+        includeListPanel.setTextAddBtn(s);
+    }
+    public void setIncRemBtn(String s){
+        includeListPanel.setTextRemoveBtn(s);
+    }
+    
+    public void setExcAddBtn(String s){
+        excludeListPanel.setTextAddBtn(s);
+    }
+    public void setExcRemBtn(String s){
+        excludeListPanel.setTextRemoveBtn(s);
+    }
+    
+    public void setLabelInc(String s){
+        includeListPanel.setLabelIng(s);
+    }
+    public void setLabelExc(String s){
+        excludeListPanel.setLabelIng(s);
+    }
+    
+    public void setGetBtn(String s){
+        btnGet.setText(s);
+    }
     
 }
 

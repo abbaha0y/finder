@@ -41,12 +41,13 @@ import uk.ac.man.cs.finderapplication.selection.Selectable;
  *
  * @author Hani Al Abbas - hani.alabbas@postgrad.manchester.ac.uk
  */
-public class FinderApplication extends JFrame implements ActionListener {
+public class MainFinderApplication extends JFrame implements ActionListener {
 
     FinderOntology ontology;
     FinderPanel finderPanel;
     LogoPanel logoPanel;
     Settings setting;
+    //Configuration c;
 
     Selectable selectable;
     JFileChooser fc;
@@ -66,19 +67,26 @@ public class FinderApplication extends JFrame implements ActionListener {
     private ArrayList<JRadioButtonMenuItem> languages;
     boolean view;
 
-    String homefilepath = System.getProperty("user.home") + "/FinderApplication";
+    String homefilepath = System.getProperty("user.dir") + "/Finder_Application";
 
     private Action aboutAction = new AbstractAction("About") {
         public void actionPerformed(ActionEvent e) {
-            AboutDialog dlg = new AboutDialog(FinderApplication.this);
+            AboutDialog dlg = new AboutDialog(MainFinderApplication.this);
             dlg.setVisible(true);
         }
     };
+    
+    /*private Action uiAction = new AbstractAction("UI Configuration") {
+        public void actionPerformed(ActionEvent e) {
+            ConfigruationDialog dlg = new ConfigruationDialog(MainFinderApplication.this);
+            dlg.setVisible(true);
+        }
+    };*/
 
     LanguagesController langController;
     LanguageModel langModel;
 
-    public FinderApplication(File ontologyFile, Settings setting) {
+    public MainFinderApplication(File ontologyFile, Settings setting) {
         view = true;
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(900, 600);
@@ -146,7 +154,6 @@ public class FinderApplication extends JFrame implements ActionListener {
         /*languages = new ArrayList<>(ontology.getLanguages().size());
         
          Iterator it = ontology.getLanguages().entrySet().iterator();
-         //System.out.println(ontology.getLanguages().size());
          for(int i=0; i<ontology.getLanguages().size(); i++){
          Map.Entry pairs = (Map.Entry)it.next();
          JRadioButtonMenuItem temp = new JRadioButtonMenuItem(pairs.getKey().toString());
@@ -166,6 +173,14 @@ public class FinderApplication extends JFrame implements ActionListener {
         langController.control();
 
         menuItemUIConfig = new JMenuItem("UI Configuration");
+        menuItemUIConfig.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ConfigruationDialog dlg = new ConfigruationDialog(MainFinderApplication.this, cp,qp);
+            dlg.setVisible(true);
+            }
+            
+        });
         importImage = new ImageIcon(getClass().getClassLoader().getResource("uiConfig.png"));
         menuItemUIConfig.setIcon(importImage);
         menuConfiguration.add(menuItemUIConfig);
@@ -177,6 +192,7 @@ public class FinderApplication extends JFrame implements ActionListener {
     }
 
     private void setupLogoPanel() {
+        System.out.println(setting.getLogoLocation());
         logoPanel = new LogoPanel(Toolkit.getDefaultToolkit().getImage(setting.getLogoLocation()));
         finderPanel.setLogoComponent(logoPanel);
     }
@@ -214,7 +230,7 @@ public class FinderApplication extends JFrame implements ActionListener {
     // Testing
     /*public static void main(String[] arg){
 
-     FinderApplication f = new FinderApplication(null);
+     MainFinderApplication f = new MainFinderApplication(null);
      f.setVisible(true);
      }*/
     public void setupMenuLanguage() {
@@ -224,7 +240,6 @@ public class FinderApplication extends JFrame implements ActionListener {
         languages = new ArrayList<>(ontology.getLanguages().size());
 
         Iterator it = ontology.getLanguages().entrySet().iterator();
-        //System.out.println(ontology.getLanguages().size());
         for (int i = 0; i < ontology.getLanguages().size(); i++) {
             Map.Entry pairs = (Map.Entry) it.next();
             JRadioButtonMenuItem temp = new JRadioButtonMenuItem(pairs.getKey().toString());
@@ -254,8 +269,9 @@ public class FinderApplication extends JFrame implements ActionListener {
                 File file = fc.getSelectedFile();
                 try {
                     saveFile(file);
+                    System.out.println(file.getAbsoluteFile());
                 } catch (IOException ex) {
-                    Logger.getLogger(FinderApplication.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(MainFinderApplication.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 Settings s = new Settings(file.getAbsolutePath());
 
@@ -316,5 +332,12 @@ public class FinderApplication extends JFrame implements ActionListener {
         //setupChooserPanel(ontology);
         //setupQueryPanel(ontology);
         //setupResultsPanel(ontology);
+    }
+    
+    public ChooserPanel getChooserPanel(){
+        return cp;
+    }
+    public QueryPanel getQueryPanel(){
+        return qp;
     }
 }

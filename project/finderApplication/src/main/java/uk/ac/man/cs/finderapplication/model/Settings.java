@@ -7,12 +7,7 @@
 package uk.ac.man.cs.finderapplication.model;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
@@ -44,7 +39,7 @@ public class Settings {
     String ontologyLocation,logoLocation,iconLocation;
     String fileName;
     
-    String homefilepath = System.getProperty("user.dir")+"/FinderApplication";
+    String homefilepath = System.getProperty("user.dir")+"/Finder_Application";
     
     public Settings(){
         PrepSettings();

@@ -58,7 +58,8 @@ public class TreeFiltersController {
                     //selectedFilter = filters.get(i);
                 }
             }
-            filterModel.applyFilter(index); 
+            filterModel.applyFilter(index);
+            
         }
         else
         {
@@ -69,9 +70,11 @@ public class TreeFiltersController {
                     //btnFilterArray.get(i).setSelected(true);
                 }
             }
-            filterModel.removeFilter();
+            filterModel.undoFilter();
         }
-        //filterModel.applyFilter(index);                
+        //filterModel.applyFilter(index); 
+        
         chooserPanel.getIngPanel().setTreeModel(filterModel.getTreeModel());
+        chooserPanel.getIngPanel().renderTree();
     }  
 }

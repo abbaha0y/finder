@@ -36,7 +36,6 @@ public class FinderOntology {
         loadOntology();
         setupReasoner();
         setupShortFormProvider(lang);
-        //System.out.println(getFilters());
     }
 
     protected void loadOntology() {
@@ -45,7 +44,6 @@ public class FinderOntology {
             df = manager.getOWLDataFactory();
             //ontology = manager.loadOntologyFromOntologyDocument(PREFERENCES.getOntologyDocumentIRI());
             // hardcoded ontology creatition
-            System.out.println(new Settings().getOnologyLocation());
             ontology = manager.loadOntologyFromOntologyDocument(IRI.create(new File(new Settings().getOnologyLocation()).getAbsoluteFile()));
         } catch (final Throwable e) {
             Runnable runnable = new Runnable() {

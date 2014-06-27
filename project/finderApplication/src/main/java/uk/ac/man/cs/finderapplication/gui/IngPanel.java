@@ -7,6 +7,7 @@ package uk.ac.man.cs.finderapplication.gui;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -114,7 +115,7 @@ public final class IngPanel extends JPanel implements Selectable {
     protected JTree buildTree() {
         //MutableTreeNode rootNode = new DefaultMutableTreeNode("Ingredient");
         //Getting the root node from the ontology itself
-        MutableTreeNode rootNode = new DefaultMutableTreeNode(ontology.getIngClass());
+        MyMutableTreeNode rootNode = new MyMutableTreeNode(ontology.getIngClass(), false);
         for (OWLClassExpression owlClassExpression : ontology.getIngredientsCategories()) {
             OWLClass cls = (OWLClass) owlClassExpression;
             addClsToTree(cls, rootNode);
@@ -125,6 +126,21 @@ public final class IngPanel extends JPanel implements Selectable {
         t.setShowsRootHandles(true);
         t.setCellRenderer(new OWLClassTreeCellRenderer());
         return t;
+    }
+
+    protected void addClsToTree(OWLClass cls, MutableTreeNode treeNode) {
+        // add class and its subclasses
+        MyMutableTreeNode childNode = new MyMutableTreeNode(cls, false);
+        clsNodeMap.put(cls, childNode);
+        treeNode.insert(childNode, 0);
+
+        // Iterator it = cls.getInferredSubclasses().iterator();
+        NodeSet<OWLClass> subClasses = ontology.getReasoner().getSubClasses(cls, true);
+        if (!subClasses.containsEntity(ontology.getOntology().getOWLOntologyManager().getOWLDataFactory().getOWLNothing())) {
+            for (OWLClass curCls : subClasses.getFlattened()) {
+                addClsToTree(curCls, childNode);
+            }
+        }
     }
 
     protected JList buildList() {
@@ -175,21 +191,6 @@ public final class IngPanel extends JPanel implements Selectable {
         }
     }
 
-    protected void addClsToTree(OWLClass cls, MutableTreeNode treeNode) {
-        // add class and its subclasses
-        MutableTreeNode childNode = new DefaultMutableTreeNode(cls);
-        clsNodeMap.put(cls, childNode);
-        treeNode.insert(childNode, 0);
-
-        // Iterator it = cls.getInferredSubclasses().iterator();
-        NodeSet<OWLClass> subClasses = ontology.getReasoner().getSubClasses(cls, true);
-        if (!subClasses.containsEntity(ontology.getOntology().getOWLOntologyManager().getOWLDataFactory().getOWLNothing())) {
-            for (OWLClass curCls : subClasses.getFlattened()) {
-                addClsToTree(curCls, childNode);
-            }
-        }
-    }
-
         // for test
 	/*public static void main(String [] args) {
      IngPanel panel = new IngPanel(new FinderOntology());
@@ -201,7 +202,7 @@ public final class IngPanel extends JPanel implements Selectable {
      frm.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
      frm.show();
      }*/
-	/////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////
     //
     // An inner class that renders tree nodes.  If the user object
     // is an OWLClass the name fragment of the class is renderered,
@@ -226,7 +227,17 @@ public final class IngPanel extends JPanel implements Selectable {
                 boolean hasFocus) {
 
             JLabel label = (JLabel) super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
+            boolean d = ((MyMutableTreeNode) value).getType();
             Object obj = ((DefaultMutableTreeNode) value).getUserObject();
+
+            if (d) {
+                label.setOpaque(true);
+                label.setBackground(Color.YELLOW);
+            }
+            else{
+                label.setOpaque(false);
+                label.setBackground(Color.WHITE);
+            }
 
             if (obj instanceof OWLClass) {
 
@@ -236,6 +247,8 @@ public final class IngPanel extends JPanel implements Selectable {
                 label.setText(value.toString());
                 //System.out.println(value.toString());
             }
+            //label.setOpaque(true);
+            //label.setBackground(Color.YELLOW);
             return label;
         }
 
@@ -257,7 +270,6 @@ public final class IngPanel extends JPanel implements Selectable {
     }
 
     ////////////////////////////////////////////////////////////////////////////
-
     public class OWLClassListCellRenderer extends DefaultListCellRenderer {
 
         private Icon icon;
@@ -287,7 +299,7 @@ public final class IngPanel extends JPanel implements Selectable {
 
     }
 
-	/////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////
     //
     // Implementation of Selectable
     //
@@ -372,6 +384,10 @@ public final class IngPanel extends JPanel implements Selectable {
     public JTree getTree() {
         return tree;
     }
+
+    public void renderTree() {
+        tree.setCellRenderer(new OWLClassTreeCellRenderer());
+    }
 }
 
 class MyDefaultMutableTreeNode extends DefaultMutableTreeNode implements Comparable {
@@ -389,3 +405,5 @@ class MyDefaultMutableTreeNode extends DefaultMutableTreeNode implements Compara
     }
 
 }
+//kjhklds
+///this jusy ins
