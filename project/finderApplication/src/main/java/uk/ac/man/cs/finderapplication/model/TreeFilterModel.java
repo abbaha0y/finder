@@ -37,13 +37,20 @@ public class TreeFilterModel {
     
     public void applyFilter(int filterIndex){
         MyMutableTreeNode node = (MyMutableTreeNode) getMatchingNode(((DefaultMutableTreeNode)originalModel.getRoot()),new DefaultMutableTreeNode((filters.get(filterIndex))));
+        MyMutableTreeNode root = (MyMutableTreeNode) originalModel.getRoot();
         node.setType(true);
+        
+        
+        disableAllNode(root); 
+        root.setEnabled(false);
+        node.setEnabled(true);
         applyTreeFilter(node);
     }
     
     public void undoFilter(){
         MyMutableTreeNode root = (MyMutableTreeNode) originalModel.getRoot();
         root.setType(false);
+        root.setEnabled(true);
         removeFilter(root);
     }
     
@@ -53,6 +60,8 @@ public class TreeFilterModel {
         for(int i=0;i<count;i++){
             MyMutableTreeNode currnetNode = (MyMutableTreeNode) originalModel.getChild(filter, i);
             currnetNode.setType(true);
+            currnetNode.setEnabled(true);
+            //currnetNode.setEnabled(false);
             if(currnetNode.isLeaf()){
             }
             else{
@@ -60,6 +69,18 @@ public class TreeFilterModel {
             }
         }
 	tree.setSelectionPath(new TreePath(filter.getPath()));
+        
+    }
+    
+    private void disableAllNode(MyMutableTreeNode root){
+        int count = root.getChildCount();
+        for(int i =0;i<count; i++){
+            MyMutableTreeNode currnetNode = (MyMutableTreeNode) originalModel.getChild(root, i);
+            currnetNode.setEnabled(false);
+            if(!currnetNode.isLeaf()){
+                disableAllNode(currnetNode);
+            }
+        }
     }
     
     private void removeFilter(MyMutableTreeNode root){
@@ -67,6 +88,7 @@ public class TreeFilterModel {
         for(int i =0;i<count; i++){
             MyMutableTreeNode currnetNode = (MyMutableTreeNode) originalModel.getChild(root, i);
             currnetNode.setType(false);
+            currnetNode.setEnabled(true);
             if(!currnetNode.isLeaf()){
                 removeFilter(currnetNode);
             }

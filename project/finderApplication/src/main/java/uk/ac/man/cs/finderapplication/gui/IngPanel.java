@@ -39,6 +39,8 @@ import org.semanticweb.owlapi.model.OWLClass;
 import org.semanticweb.owlapi.model.OWLClassExpression;
 import org.semanticweb.owlapi.reasoner.NodeSet;
 import uk.ac.man.cs.finderapplication.model.FinderOntology;
+import uk.ac.man.cs.finderapplication.model.MyTreeSelectionModel;
+import uk.ac.man.cs.finderapplication.renderers.OWLClassTreeCellRenderer;
 import uk.ac.man.cs.finderapplication.selection.Selectable;
 import uk.ac.man.cs.finderapplication.selection.SelectionEvent;
 import uk.ac.man.cs.finderapplication.selection.SelectionListener;
@@ -124,7 +126,9 @@ public final class IngPanel extends JPanel implements Selectable {
 
         JTree t = new JTree(rootNode);
         t.setShowsRootHandles(true);
-        t.setCellRenderer(new OWLClassTreeCellRenderer());
+        //t.setCellRenderer(new OWLClassTreeCellRenderer());
+        t.setCellRenderer(new OWLClassTreeCellRenderer(ontology));
+        t.setSelectionModel(new MyTreeSelectionModel());
         return t;
     }
 
@@ -209,7 +213,7 @@ public final class IngPanel extends JPanel implements Selectable {
     // otherwise, the toString method of the user object is called.
     //
     /////////////////////////////////////////////////////////////////////////////
-    public class OWLClassTreeCellRenderer extends DefaultTreeCellRenderer {
+/*    public class OWLClassTreeCellRenderer extends DefaultTreeCellRenderer {
 
         private final Icon icon;
 
@@ -268,7 +272,7 @@ public final class IngPanel extends JPanel implements Selectable {
         }
 
     }
-
+*/
     ////////////////////////////////////////////////////////////////////////////
     public class OWLClassListCellRenderer extends DefaultListCellRenderer {
 
@@ -386,7 +390,8 @@ public final class IngPanel extends JPanel implements Selectable {
     }
 
     public void renderTree() {
-        tree.setCellRenderer(new OWLClassTreeCellRenderer());
+        tree.setCellRenderer(new OWLClassTreeCellRenderer(ontology));
+        tree.setSelectionModel(new MyTreeSelectionModel());
     }
 }
 
