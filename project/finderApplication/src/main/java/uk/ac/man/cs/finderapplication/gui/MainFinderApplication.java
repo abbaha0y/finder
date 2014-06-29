@@ -207,6 +207,7 @@ public class MainFinderApplication extends JFrame implements ActionListener {
     private void setupQueryPanel(FinderOntology ont) {
         //pass the selectable to the queryPanel
         qp = new QueryPanel(ont, this, getSelecatable());
+        finderPanel.setDividerLocationButtomRight();
         finderPanel.setButtomCenterComponent(qp);
     }
 
@@ -328,7 +329,7 @@ public class MainFinderApplication extends JFrame implements ActionListener {
         //rp.setPizzaPanels(rp.getPanels());
         //qp.refershResult();
         setupResultsPanel(ontology);
-        cp.refreshFilters();
+        //cp.refreshFilters();
         //setupChooserPanel(ontology);
         //setupQueryPanel(ontology);
         //setupResultsPanel(ontology);

@@ -66,7 +66,14 @@ public class OWLClassTreeCellRenderer extends DefaultTreeCellRenderer {
         //System.out.println(ontology.render(stringValue));
         if (d) {
             label.setOpaque(true);
-            label.setBackground(Color.YELLOW);
+            
+            if (sel) {
+                label.setBackground(Color.RED);
+                setTextSelectionColor(Color.WHITE);
+            }
+            else{
+                label.setBackground(Color.YELLOW);
+            }
         } else {
             label.setOpaque(false);
             label.setBackground(Color.WHITE);

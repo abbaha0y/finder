@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package uk.ac.man.cs.finderapplication.model;
 
 import java.util.ArrayList;
@@ -21,108 +20,133 @@ import uk.ac.man.cs.finderapplication.gui.MyMutableTreeNode;
  * @author Hani Al Abbas - hani.alabbas@postgrad.manchester.ac.uk
  */
 public class TreeFilterModel {
+
     ArrayList<OWLClass> filters;
     OWLOntology ontology;
     TreeModel originalModel, tempModel;
     JTree tree;
-    
-    public TreeFilterModel(ArrayList<OWLClass> filters, OWLOntology ontology, JTree tree){
+
+    public TreeFilterModel(ArrayList<OWLClass> filters, OWLOntology ontology, JTree tree) {
         this.filters = filters;
         this.ontology = ontology;
         this.originalModel = tree.getModel();
         this.tempModel = originalModel;
         this.tree = tree;
-        
+
     }
-    
-    public void applyFilter(int filterIndex){
-        MyMutableTreeNode node = (MyMutableTreeNode) getMatchingNode(((DefaultMutableTreeNode)originalModel.getRoot()),new DefaultMutableTreeNode((filters.get(filterIndex))));
+
+    public void applyFilter(int filterIndex) {
+        MyMutableTreeNode node = (MyMutableTreeNode) getMatchingNode(((DefaultMutableTreeNode) originalModel.getRoot()), new DefaultMutableTreeNode((filters.get(filterIndex))));
         MyMutableTreeNode root = (MyMutableTreeNode) originalModel.getRoot();
+        
         node.setType(true);
         
+        //expandAllNodes();
+        tree.setSelectionPath(new TreePath(node.getPath()));
+        disableAllNode(root);
         
-        disableAllNode(root); 
-        root.setEnabled(false);
         node.setEnabled(true);
         applyTreeFilter(node);
+        
+        root.setEnabled(false);
+        
     }
-    
-    public void undoFilter(){
+
+    public void undoFilter() {
         MyMutableTreeNode root = (MyMutableTreeNode) originalModel.getRoot();
         root.setType(false);
         root.setEnabled(true);
         removeFilter(root);
+        //tree.setSelectionPath(new TreePath(root.getPath()));
+        expandLevel(root);
     }
-    
-    private void applyTreeFilter(MyMutableTreeNode filter){
+
+    private void applyTreeFilter(MyMutableTreeNode filter) {
         //filter
         int count = originalModel.getChildCount(filter);
-        for(int i=0;i<count;i++){
+        for (int i = 0; i < count; i++) {
             MyMutableTreeNode currnetNode = (MyMutableTreeNode) originalModel.getChild(filter, i);
             currnetNode.setType(true);
             currnetNode.setEnabled(true);
+            
             //currnetNode.setEnabled(false);
-            if(currnetNode.isLeaf()){
+            if (currnetNode.isLeaf()) {
+                //currnetNode.setEnabled(true);
+            } else {
+                applyTreeFilter(currnetNode);
+                //currnetNode.setEnabled(true);
+            }
+
+        }
+        tree.setSelectionPath(new TreePath(filter.getPath()));
+
+    }
+
+    private void disableAllNode(MyMutableTreeNode root) {
+        int count = root.getChildCount();
+        for (int i = 0; i < count; i++) {
+            MyMutableTreeNode currnetNode = (MyMutableTreeNode) originalModel.getChild(root, i);
+            
+            if (!currnetNode.isLeaf()) {
+                disableAllNode(currnetNode);
+                currnetNode.setEnabled(false);
             }
             else{
-		applyTreeFilter(currnetNode);
-            }
-        }
-	tree.setSelectionPath(new TreePath(filter.getPath()));
-        
-    }
-    
-    private void disableAllNode(MyMutableTreeNode root){
-        int count = root.getChildCount();
-        for(int i =0;i<count; i++){
-            MyMutableTreeNode currnetNode = (MyMutableTreeNode) originalModel.getChild(root, i);
-            currnetNode.setEnabled(false);
-            if(!currnetNode.isLeaf()){
-                disableAllNode(currnetNode);
+                currnetNode.setEnabled(false);
             }
         }
     }
-    
-    private void removeFilter(MyMutableTreeNode root){
+
+    private void removeFilter(MyMutableTreeNode root) {
         int count = root.getChildCount();
-        for(int i =0;i<count; i++){
+        for (int i = 0; i < count; i++) {
             MyMutableTreeNode currnetNode = (MyMutableTreeNode) originalModel.getChild(root, i);
             currnetNode.setType(false);
             currnetNode.setEnabled(true);
-            if(!currnetNode.isLeaf()){
+            if (!currnetNode.isLeaf()) {
                 removeFilter(currnetNode);
             }
         }
-        //tree.collapsePath(new TreePath(root.getPath()));
+        tree.collapsePath(new TreePath(root.getPath()));
+    }
+
+    private void expandAllNodes() {
+        for (int i = 0; i < tree.getRowCount(); i++) {
+            tree.expandRow(i);
+        }
     }
     
-    
-    private String getFilterName(OWLClass filterClass){
+    private void expandLevel(MyMutableTreeNode node){
+        for(int i=0;i<node.getChildCount();i++){
+            tree.setSelectionPath(new TreePath(((MyMutableTreeNode)(node.getChildAt(i))).getPath()));
+        }
+    }
+
+    private String getFilterName(OWLClass filterClass) {
         String filterName = null;
-        for(OWLAnnotation a:filterClass.getAnnotations(ontology)){
-            if(a.getProperty().toString().equals("label")){
+        for (OWLAnnotation a : filterClass.getAnnotations(ontology)) {
+            if (a.getProperty().toString().equals("label")) {
                 filterName = a.getValue().toString().replace("\"", "");
             }
         }
         return filterName;
     }
-    
-    public TreeModel getTreeModel(){
+
+    public TreeModel getTreeModel() {
         return originalModel;
     }
-    
-    public DefaultMutableTreeNode getMatchingNode(DefaultMutableTreeNode root ,DefaultMutableTreeNode filterName){
+
+    public DefaultMutableTreeNode getMatchingNode(DefaultMutableTreeNode root, DefaultMutableTreeNode filterName) {
         DefaultMutableTreeNode filterNode = null;
         int count = originalModel.getChildCount(root);
-        for(int i=0;i<count;i++){
+        for (int i = 0; i < count; i++) {
             DefaultMutableTreeNode currnetNode = (DefaultMutableTreeNode) originalModel.getChild(root, i);
 
-            if((currnetNode.getUserObject()).equals(filterName.getUserObject())){
+            if ((currnetNode.getUserObject()).equals(filterName.getUserObject())) {
                 return currnetNode;
-            }
-            else{
+            } else {
 
-		filterNode = getMatchingNode(currnetNode, filterName);
+                filterNode = getMatchingNode(currnetNode, filterName);
             }
         }
         //System.out.println(count);

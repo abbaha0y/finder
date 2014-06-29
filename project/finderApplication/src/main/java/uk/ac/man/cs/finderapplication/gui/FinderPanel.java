@@ -54,4 +54,7 @@ public class FinderPanel extends JPanel{
         public void setDividerLocationButtomLeft(){
             buttomLeft.setDividerLocation(300);
         }
+        public void setDividerLocationButtomRight(){
+            buttomRight.setDividerLocation(300);
+        }
 }
