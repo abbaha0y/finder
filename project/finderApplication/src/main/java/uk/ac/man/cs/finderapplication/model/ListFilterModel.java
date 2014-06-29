@@ -39,7 +39,7 @@ public class ListFilterModel extends AbstractListModel{
         String term = filter.getText();
         for(int i=0; i<originalModel.size();i++){
             //System.out.println(getOWLClassName(originalModel.get(i).toString()));
-            if(getOWLClassName(originalModel.get(i).toString()).indexOf(term,0) != -1){
+            if(getOWLClassName(originalModel.get(i).toString().toLowerCase()).indexOf(term.toLowerCase(),0) != -1){
                 filteredModel.add(originalModel.get(i));
             }
         }

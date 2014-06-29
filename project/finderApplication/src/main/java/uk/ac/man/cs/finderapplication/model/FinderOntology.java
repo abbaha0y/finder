@@ -15,7 +15,6 @@ import org.semanticweb.owlapi.util.ShortFormProvider;
 public class FinderOntology {
 
     //public static final Preferences PREFERENCES;
-
     public static final String TOPPING_SUFFIX = "";//"Topping";
 
     private OWLReasoner reasoner;
@@ -29,13 +28,14 @@ public class FinderOntology {
     private ShortFormProvider sfp;
 
     /*static {
-        PREFERENCES = Preferences.getInstance();
-    }*/
-
-     public FinderOntology(String lang){
+     PREFERENCES = Preferences.getInstance();
+     }*/
+    public FinderOntology(String lang) {
         loadOntology();
         setupReasoner();
         setupShortFormProvider(lang);
+
+        //getFacets();
     }
 
     protected void loadOntology() {
@@ -49,10 +49,10 @@ public class FinderOntology {
             Runnable runnable = new Runnable() {
                 public void run() {
                     JOptionPane.showMessageDialog(null,
-                            "Could not create the ontology.  (This probably happened\n" +
-                                    "because the ontology could not be accessed due to network\n" +
-                                    "problems.)\n" +
-                                    "[" + e.getMessage() + "]",
+                            "Could not create the ontology.  (This probably happened\n"
+                            + "because the ontology could not be accessed due to network\n"
+                            + "problems.)\n"
+                            + "[" + e.getMessage() + "]",
                             "Error",
                             JOptionPane.ERROR_MESSAGE);
                     System.exit(1);
@@ -74,8 +74,8 @@ public class FinderOntology {
             reasoner = factory.createReasoner(ontology);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,
-                    "A reasoner error has ocurred.\n" +
-                            "[" + e.getMessage() + "]",
+                    "A reasoner error has ocurred.\n"
+                    + "[" + e.getMessage() + "]",
                     "Reasoner Error",
                     JOptionPane.ERROR_MESSAGE);
         }
@@ -88,7 +88,7 @@ public class FinderOntology {
         sfp = new AnnotationValueShortFormProvider(Arrays.asList(df.getRDFSLabel()),
                 langMap, manager);
     }
-    
+
     /**
      * getReasoner
      *
@@ -99,8 +99,8 @@ public class FinderOntology {
     }
 
     /**
-     * Gets the main Ingredients categories.  This actually returns
-     * the direct named subclasses of the Ingredients class.
+     * Gets the main Ingredients categories. This actually returns the direct
+     * named subclasses of the Ingredients class.
      *
      * @return A <code>Collection</code> of <code>OWLNamedClasses</code>
      */
@@ -108,54 +108,56 @@ public class FinderOntology {
         OWLClass ingredientsCls = getIngClass();
         return reasoner.getSubClasses(ingredientsCls, true).getFlattened();
     }
-   /** This method add by Hani Al Abbas.
-    *@return a OWLClass that hasRoll as IngClass
-    */
-    public OWLClass getIngClass(){
+
+    /**
+     * This method add by Hani Al Abbas.
+     *
+     * @return a OWLClass that hasRoll as IngClass
+     */
+    public OWLClass getIngClass() {
         OWLClass cls = null;
-        for(OWLClass c:ontology.getClassesInSignature()){
-            for(OWLAnnotationAssertionAxiom a:c.getAnnotationAssertionAxioms(ontology)){
-                if(a.getValue().toString().replace("\"", "").equals("IngClass")){
+        for (OWLClass c : ontology.getClassesInSignature()) {
+            for (OWLAnnotationAssertionAxiom a : c.getAnnotationAssertionAxioms(ontology)) {
+                if (a.getValue().toString().replace("\"", "").equals("IngClass")) {
                     cls = c;
                     break;
                 }
             }
         }
-        return cls;   
+        return cls;
     }
-    
+
     /**
-    * Removing Suffix from ingredients classes
-    */
+     * Removing Suffix from ingredients classes
+     */
     public String render(OWLEntity entity) {
         String shortForm = sfp.getShortForm(entity);
         StringBuilder sb = null;
         String suffix = getSuffix();
-        if(suffix!=null) {
-            if(shortForm.endsWith(suffix)){
+        if (suffix != null) {
+            if (shortForm.endsWith(suffix)) {
                 shortForm = shortForm.substring(0, shortForm.length() - suffix.length());
             }
             sb = new StringBuilder();
             char last = 0;
-            for(int i = 0; i < shortForm.length(); i++) {
+            for (int i = 0; i < shortForm.length(); i++) {
                 char ch = shortForm.charAt(i);
-                if(Character.isUpperCase(ch) && last != 0 && last != ' ') {
+                if (Character.isUpperCase(ch) && last != 0 && last != ' ') {
                     sb.append(" ");
                 }
                 sb.append(ch);
                 last = ch;
             }
-        }
-        else{
+        } else {
             suffix = "";
-            if(shortForm.endsWith(suffix)){
+            if (shortForm.endsWith(suffix)) {
                 shortForm = shortForm.substring(0, shortForm.length() - suffix.length());
             }
             sb = new StringBuilder();
             char last = 0;
-            for(int i = 0; i < shortForm.length(); i++) {
+            for (int i = 0; i < shortForm.length(); i++) {
                 char ch = shortForm.charAt(i);
-                if(Character.isUpperCase(ch) && last != 0 && last != ' ') {
+                if (Character.isUpperCase(ch) && last != 0 && last != ' ') {
                     sb.append(" ");
                 }
                 sb.append(ch);
@@ -166,21 +168,20 @@ public class FinderOntology {
     }
 
     /**
-     * Tests to see if the specified class is a VegetarianPizza - i.e.
-     * a subclass of the vegetarian pizza class.
+     * Tests to see if the specified class is a VegetarianPizza - i.e. a
+     * subclass of the vegetarian pizza class.
      *
      * @param pizzaClass The class to be tested.
      * @return <code>true</code> if the specified class is a vegetarian pizza
-     *         (subclass of the vegetarian pizza class), or <code>false</code> if the
-     *         specified class is not a vegetarian pizza (not a subclass of the vegetarian
-     *         pizza class).
+     * (subclass of the vegetarian pizza class), or <code>false</code> if the
+     * specified class is not a vegetarian pizza (not a subclass of the
+     * vegetarian pizza class).
      */
     public boolean isVegetarianPizza(OWLClass pizzaClass) {
         OWLClass cl = getVegetarianClass();
-        if(cl != null){
+        if (cl != null) {
             return this.filterClasses(reasoner.getSuperClasses(pizzaClass, false)).contains(getVegetarianClass());
-        }
-        else{
+        } else {
             return false;
         }
     }
@@ -196,21 +197,21 @@ public class FinderOntology {
     }
 
     /**
-     * Tests to see if the specified class is a SpicyPizza - i.e. a
-     * subclass of the Spicy Pizza class.
+     * Tests to see if the specified class is a SpicyPizza - i.e. a subclass of
+     * the Spicy Pizza class.
      *
      * @param pizzaClass The class to be tested.
-     * @return <code>true</code> if instances of the specified class are spciy pizzas
-     *         (i.e. the specified class is a subclass of the spicy pizza class), or <code>false</code>
-     *         if instances of the specified class are not spicy pizzas (i.e. the specified class cannot
-     *         be determined to be a subclass of the hot pizza class).
+     * @return <code>true</code> if instances of the specified class are spciy
+     * pizzas (i.e. the specified class is a subclass of the spicy pizza class),
+     * or <code>false</code> if instances of the specified class are not spicy
+     * pizzas (i.e. the specified class cannot be determined to be a subclass of
+     * the hot pizza class).
      */
     public boolean isSpicyPizza(OWLClass pizzaClass) {
         OWLClass cl = getSpicyClass();
-        if(cl != null){
+        if (cl != null) {
             return this.filterClasses(reasoner.getSuperClasses(pizzaClass, true)).contains(getSpicyClass());
-        }
-        else{
+        } else {
             return false;
         }
     }
@@ -218,14 +219,13 @@ public class FinderOntology {
     /**
      * Gets the Vegetarian class.
      *
-     * @return The named class that represents things that are
-     *         vegetarian class.
+     * @return The named class that represents things that are vegetarian class.
      */
     public OWLClass getVegetarianClass() {
         OWLClass cls = null;
-        for(OWLClass c:ontology.getClassesInSignature()){
-            for(OWLAnnotationAssertionAxiom a:c.getAnnotationAssertionAxioms(ontology)){
-                if(a.getValue().toString().contains("VegeClass")){
+        for (OWLClass c : ontology.getClassesInSignature()) {
+            for (OWLAnnotationAssertionAxiom a : c.getAnnotationAssertionAxioms(ontology)) {
+                if (a.getValue().toString().contains("VegeClass")) {
                     cls = c;
                 }
             }
@@ -240,30 +240,32 @@ public class FinderOntology {
      */
     public OWLClass getSpicyClass() {
         OWLClass cls = null;
-        for(OWLClass c:ontology.getClassesInSignature()){
-            for(OWLAnnotationAssertionAxiom a:c.getAnnotationAssertionAxioms(ontology)){
-                if(a.getValue().toString().contains("SpicyClass")){
+        for (OWLClass c : ontology.getClassesInSignature()) {
+            for (OWLAnnotationAssertionAxiom a : c.getAnnotationAssertionAxioms(ontology)) {
+                if (a.getValue().toString().contains("SpicyClass")) {
                     cls = c;
                 }
             }
         }
         return cls;
     }
-    
-    /** This method add by Hani Al Abbas.
-    *@return a OWLClass that hasRoll as BaseClass
-    */
-    public OWLClass getBaseClass(){
+
+    /**
+     * This method add by Hani Al Abbas.
+     *
+     * @return a OWLClass that hasRoll as BaseClass
+     */
+    public OWLClass getBaseClass() {
         OWLClass cls = null;
-        for(OWLClass c:ontology.getClassesInSignature()){
-            for(OWLAnnotationAssertionAxiom a:c.getAnnotationAssertionAxioms(ontology)){
-                if(a.getValue().toString().replace("\"", "").equals("BaseClass")){
+        for (OWLClass c : ontology.getClassesInSignature()) {
+            for (OWLAnnotationAssertionAxiom a : c.getAnnotationAssertionAxioms(ontology)) {
+                if (a.getValue().toString().replace("\"", "").equals("BaseClass")) {
                     cls = c;
                     break;
                 }
             }
         }
-        return cls;   
+        return cls;
     }
 
     /**
@@ -273,7 +275,7 @@ public class FinderOntology {
      * @param includeToppings The toppings that the pizza should have.
      * @param excludeToppings The toppings that the pizza should NOT have.
      * @return A <code>Collection</code> of classes that represent the pizza
-     *         classes that statisfy the description of the required toppings.
+     * classes that statisfy the description of the required toppings.
      */
     public Collection getPizzas(Set<OWLClass> includeToppings, Set<OWLClass> excludeToppings) {
         Collection c;
@@ -286,7 +288,8 @@ public class FinderOntology {
     }
 
     /**
-     * Creates OWLClassExpression (query) by given inclided topping and excluded topping
+     * Creates OWLClassExpression (query) by given inclided topping and excluded
+     * topping
      *
      * @param includeToppings
      * @param excludeToppings
@@ -319,25 +322,28 @@ public class FinderOntology {
         // are looking for.
         return df.getOWLObjectIntersectionOf(classes);
     }
-    
-    /** This method add by Hani Al Abbas.
-    *@return a OWLClass that hasRoll as BaseClass
-    */
-    public OWLObjectProperty getProperty(){
+
+    /**
+     * This method add by Hani Al Abbas.
+     *
+     * @return a OWLClass that hasRoll as BaseClass
+     */
+    public OWLObjectProperty getProperty() {
         OWLObjectProperty obj = null;
-        for(OWLObjectProperty o:ontology.getObjectPropertiesInSignature()){
-            for(OWLAnnotationAssertionAxiom a:o.getAnnotationAssertionAxioms(ontology)){
-                if(a.getValue().toString().replace("\"", "").equals("Property")){
+        for (OWLObjectProperty o : ontology.getObjectPropertiesInSignature()) {
+            for (OWLAnnotationAssertionAxiom a : o.getAnnotationAssertionAxioms(ontology)) {
+                if (a.getValue().toString().replace("\"", "").equals("Property")) {
                     obj = o;
                     break;
                 }
             }
         }
-        return obj;   
+        return obj;
     }
 
     /**
-     * filters the result of e.g. getSubclasses which is  Set<Set<OWLClass>>  To  Set<OWLClass>
+     * filters the result of e.g. getSubclasses which is Set<Set<OWLClass>> To
+     * Set<OWLClass>
      *
      * @param original
      * @return
@@ -351,53 +357,51 @@ public class FinderOntology {
         }
         return result;
     }
-    
-    public String getSuffix(){
+
+    public String getSuffix() {
         String cls = null;
-            for(OWLAnnotationAssertionAxiom a:getIngClass().getAnnotationAssertionAxioms(ontology)){
-                String property = a.getProperty().toString();
-                if(property.contains("suffix")){
-                    cls = a.getValue().toString().trim().replaceAll("\"", "");
-                    
-                    break;
-                }
+        for (OWLAnnotationAssertionAxiom a : getIngClass().getAnnotationAssertionAxioms(ontology)) {
+            String property = a.getProperty().toString();
+            if (property.contains("suffix")) {
+                cls = a.getValue().toString().trim().replaceAll("\"", "");
+
+                break;
             }
-        return cls;   
+        }
+        return cls;
     }
-    
-    public ArrayList<OWLClass> getFilters(){
+
+    public ArrayList<OWLClass> getFilters() {
         ArrayList<OWLClass> filters = new ArrayList<>();
-        for(OWLClass c:ontology.getClassesInSignature()){
-            for(OWLAnnotation a:c.getAnnotations(ontology)){
-                if(a.getValue().toString().contains("filter")){
+        for (OWLClass c : ontology.getClassesInSignature()) {
+            for (OWLAnnotation a : c.getAnnotations(ontology)) {
+                if (a.getValue().toString().contains("filter")) {
                     filters.add(c);
                 }
             }
         }
         return filters;
     }
-    
-    public boolean FilterExists(){
-        if(getFilters().size()!=0){
+
+    public boolean FilterExists() {
+        if (getFilters().size() != 0) {
             return true;
-        }
-        else{
+        } else {
             return false;
         }
     }
-    
-    public Map<String, Double> getLanguages(){
+
+    public Map<String, Double> getLanguages() {
         Map<String, Double> hashMap;
         hashMap = new HashMap<>();
         double numOfClasses = ontology.getClassesInSignature().size();
-        for(OWLClass c:ontology.getClassesInSignature()){
-            for(OWLAnnotation a:c.getAnnotations(ontology)){
-                if(a.toString().contains("@") && a.getProperty().isLabel()){
-                    String key = a.toString().substring(a.toString().indexOf("@")+1, a.toString().indexOf(")"));
-                    if(hashMap.containsKey(key)){
-                        hashMap.put(key, hashMap.get(key)+1);
-                    }
-                    else{
+        for (OWLClass c : ontology.getClassesInSignature()) {
+            for (OWLAnnotation a : c.getAnnotations(ontology)) {
+                if (a.toString().contains("@") && a.getProperty().isLabel()) {
+                    String key = a.toString().substring(a.toString().indexOf("@") + 1, a.toString().indexOf(")"));
+                    if (hashMap.containsKey(key)) {
+                        hashMap.put(key, hashMap.get(key) + 1);
+                    } else {
                         hashMap.put(key, 1.0);
                     }
                 }
@@ -407,20 +411,37 @@ public class FinderOntology {
         fullNamesHashMap = new TreeMap<>();
         fullNamesHashMap.put("English", new Double(100));
         for (Map.Entry pairs : hashMap.entrySet()) {
-            if(pairs.getKey().equals("de")){
-                fullNamesHashMap.put("German", ((double)pairs.getValue()/numOfClasses*100));
+            if (pairs.getKey().equals("de")) {
+                fullNamesHashMap.put("German", ((double) pairs.getValue() / numOfClasses * 100));
+            } else if (pairs.getKey().equals("es")) {
+                fullNamesHashMap.put("Spanish", ((double) pairs.getValue() / numOfClasses * 100));
+            } else if (pairs.getKey().equals("fr")) {
+                fullNamesHashMap.put("French", ((double) pairs.getValue() / numOfClasses * 100));
+            } else if (pairs.getKey().equals("pt")) {
+                fullNamesHashMap.put("Portuguese", ((double) pairs.getValue() / numOfClasses * 100));
             }
-            else if(pairs.getKey().equals("es")){
-                fullNamesHashMap.put("Spanish", ((double)pairs.getValue()/numOfClasses*100));
-            }
-            else if(pairs.getKey().equals("fr")){
-                fullNamesHashMap.put("French", ((double)pairs.getValue()/numOfClasses*100));
-            }
-            else if(pairs.getKey().equals("pt")){
-                fullNamesHashMap.put("Portuguese", ((double)pairs.getValue()/numOfClasses*100));
+        }
+
+        return fullNamesHashMap;
+    }
+
+    public Map<OWLClass, ArrayList<OWLClass>> getFacets() {
+        Map<OWLClass, ArrayList<OWLClass>> hashMap = new HashMap<>();
+        for (OWLClass c : ontology.getClassesInSignature()) {
+            for (OWLAnnotation a : c.getAnnotations(ontology)) {
+                if (a.getProperty().toString().contains("hasRole") && a.getValue().toString().contains("facet")) {
+                    //System.out.println(c.getSubClasses(ontology));
+                    ArrayList<OWLClass> arrayListFacets = new ArrayList<>();
+                    Set subClass = c.getSubClasses(ontology);
+                    Iterator it = subClass.iterator();
+                    while(it.hasNext()){
+                        arrayListFacets.add((OWLClass)it.next());
+                    }
+                    hashMap.put(c, arrayListFacets);
+                }
             }
         }
         
-        return fullNamesHashMap;
+        return hashMap;
     }
 }

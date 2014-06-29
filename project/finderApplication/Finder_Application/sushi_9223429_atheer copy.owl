@@ -48,12 +48,6 @@
     
 
 
-    <!-- http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasProperty -->
-
-    <owl:AnnotationProperty rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasProperty"/>
-    
-
-
     <!-- http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasRole -->
 
     <owl:AnnotationProperty rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasRole"/>
@@ -260,18 +254,6 @@
         <rdfs:label xml:lang="es">Asian Dressing in Spanish</rdfs:label>
         <rdfs:label xml:lang="fr">Asian Dressing in French</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Dressing"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -473,18 +455,6 @@
         <rdfs:label xml:lang="es">Avocado in Spanish</rdfs:label>
         <rdfs:label xml:lang="fr">Avocado in French</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Fruit"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -493,6 +463,12 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#AvocadoMaki">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NamedSushi"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
@@ -509,6 +485,12 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Avocado"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -587,18 +569,6 @@
         <rdfs:label xml:lang="es">Beef in Spanich</rdfs:label>
         <rdfs:label xml:lang="fr">Beef in French</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Meat"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -637,6 +607,12 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#RegularMayonnaise"/>
             </owl:Restriction>
@@ -661,6 +637,12 @@
                         </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -712,6 +694,12 @@
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NamedSushi"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#BlackPepper"/>
             </owl:Restriction>
@@ -758,6 +746,12 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasCategory"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Sashimi"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -813,18 +807,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#BlackPepper">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Seasoning"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -848,18 +830,6 @@
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#BrownRiceMiso">
         <rdfs:label xml:lang="fr">Brown Rice Miso in French</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Grain"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Rice"/>
     </owl:Class>
     
@@ -869,6 +839,12 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#CaliforniaHandrolls">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NamedSushi"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
@@ -914,6 +890,12 @@
                         </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -983,6 +965,12 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:allValuesFrom>
                     <owl:Class>
@@ -1026,6 +1014,12 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasCategory"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#ISO"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1081,18 +1075,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Carrot">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Vegetable"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1115,18 +1097,6 @@
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Chicken">
         <rdfs:label xml:lang="fr">Chicken in French</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Meat"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1135,18 +1105,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Chives">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Vegetable"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1157,18 +1115,6 @@
         <rdfs:label>Chive Mayo in English</rdfs:label>
         <rdfs:label xml:lang="fr">Chive Mayo in French</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Mayonnaise"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1200,18 +1146,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Coriander">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Vegetable"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1222,18 +1156,6 @@
         <rdfs:label>Coriander Dressing in English</rdfs:label>
         <rdfs:label xml:lang="fr">Coriander Dressing in French</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Dressing"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1281,6 +1203,12 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasCategory"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Sashimi"/>
             </owl:Restriction>
@@ -1289,6 +1217,12 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Coriander"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1338,18 +1272,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Crabstick">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#SeaFood"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1458,6 +1380,12 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasCategory"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Handrolls"/>
             </owl:Restriction>
@@ -1466,6 +1394,12 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Nori"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1486,6 +1420,12 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Rice"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1532,6 +1472,12 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Cucumber"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1645,6 +1591,18 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Nori"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1768,8 +1726,20 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Nori"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -1874,6 +1844,12 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Nori"/>
             </owl:Restriction>
@@ -1882,6 +1858,12 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#RegularMayonnaise"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -1943,18 +1925,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Cucumber">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Vegetable"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -1992,6 +1962,12 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Rice"/>
             </owl:Restriction>
@@ -2000,6 +1976,12 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Nori"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2067,18 +2049,6 @@
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Duck">
         <rdfs:label xml:lang="fr">Duck in French</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Meat"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2089,18 +2059,6 @@
         <rdfs:label xml:lang="es">Egg in Spanish</rdfs:label>
         <rdfs:label xml:lang="fr">Egg in French</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#SushiIngredient"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Sweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2265,18 +2223,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Inari">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Vegetable"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2316,6 +2262,12 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Rice"/>
             </owl:Restriction>
@@ -2324,6 +2276,12 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#ShichimiPowder"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Spicy"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2443,6 +2401,18 @@
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Inari"/>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2491,18 +2461,6 @@
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#JapaneseMayonnaise">
         <rdfs:label xml:lang="fr">Japanese Mayo in French</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Mayonnaise"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Spicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2511,18 +2469,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#JapanesePickles">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Vegetable"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Spicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2531,6 +2477,12 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#KaisoGunkan">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NamedSushi"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
@@ -2567,6 +2519,12 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Rice"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -2618,18 +2576,6 @@
         <rdfs:label>Katsu Sauce in English</rdfs:label>
         <rdfs:label xml:lang="fr">Katsu souce in French</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Dressing"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2679,6 +2625,18 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#RegularMasago"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2774,18 +2732,6 @@
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#MoromiMisoSauce">
         <rdfs:label xml:lang="fr">Moromi Miso in French</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Dressing"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Spicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -2828,34 +2774,6 @@
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NamedSushi"/>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
-                <owl:someValuesFrom>
-                    <owl:Class>
-                        <owl:intersectionOf rdf:parseType="Collection">
-                            <rdf:Description rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Salmon"/>
-                            <owl:Restriction>
-                                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasCookingStyle"/>
-                                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Raw"/>
-                            </owl:Restriction>
-                        </owl:intersectionOf>
-                    </owl:Class>
-                </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Avocado"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Rice"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasCategory"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Maki"/>
             </owl:Restriction>
@@ -2863,19 +2781,7 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#RegularMasago"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#AsianDressing"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Cucumber"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Avocado"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2908,7 +2814,59 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#AsianDressing"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#RegularMayonnaise"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
+                <owl:someValuesFrom>
+                    <owl:Class>
+                        <owl:intersectionOf rdf:parseType="Collection">
+                            <rdf:Description rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Salmon"/>
+                            <owl:Restriction>
+                                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasCookingStyle"/>
+                                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Raw"/>
+                            </owl:Restriction>
+                        </owl:intersectionOf>
+                    </owl:Class>
+                </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Rice"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Cucumber"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#RegularMasago"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -2998,18 +2956,6 @@
         <rdfs:label xml:lang="es">Nori in Spanich</rdfs:label>
         <rdfs:label xml:lang="fr">Nori in French</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Seaweed"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
         <owl:disjointWith rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#SumisoMarinatedKaiso"/>
     </owl:Class>
     
@@ -3068,18 +3014,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Onion">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Vegetable"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -3124,18 +3058,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Prawn">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#SeaFood"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -3148,6 +3070,12 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Rice"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3193,6 +3121,12 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasCategory"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Maki"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3268,6 +3202,12 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -3280,6 +3220,12 @@
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3377,18 +3323,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Radish">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Vegetable"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Spicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -3433,6 +3367,12 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -3455,6 +3395,12 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Nori"/>
             </owl:Restriction>
@@ -3473,6 +3419,12 @@
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#RegularMasago"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3517,12 +3469,6 @@
                         </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#RegularMasago"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3586,18 +3532,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#RegularMasago">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#FishRoe"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -3607,18 +3541,6 @@
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#RegularMayonnaise">
         <rdfs:label xml:lang="fr">Regular Mayo in French</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Mayonnaise"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -3628,18 +3550,6 @@
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Rice">
         <rdfs:label xml:lang="fr">Rice in French</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Grain"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -3648,18 +3558,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Rocket">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Vegetable"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -3668,18 +3566,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Salmon">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#SeaFood"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -3729,6 +3615,12 @@
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NamedSushi"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Avocado"/>
             </owl:Restriction>
@@ -3768,6 +3660,12 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Rice"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3867,8 +3765,20 @@
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NamedSushi"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Spicy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Crabstick"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Avocado"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#ShichimiPowder"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3879,14 +3789,26 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasCategory"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#ISO"/>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Crabstick"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Rice"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasCategory"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#ISO"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3918,12 +3840,6 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Avocado"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom>
                     <owl:Class>
                         <owl:intersectionOf rdf:parseType="Collection">
@@ -3935,12 +3851,6 @@
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#ShichimiPowder"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -3996,6 +3906,18 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#SalmonMaki">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NamedSushi"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasCategory"/>
@@ -4108,6 +4030,12 @@
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NamedSushi"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:allValuesFrom>
                     <owl:Class>
@@ -4142,6 +4070,12 @@
                         </owl:intersectionOf>
                     </owl:Class>
                 </owl:someValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4243,8 +4177,20 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasCategory"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Sashimi"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -4355,18 +4301,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#SalmonSkin">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#SeaFood"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -4471,6 +4405,18 @@
                 </owl:allValuesFrom>
             </owl:Restriction>
         </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -4518,18 +4464,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#SesameSeed">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Seasoning"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -4544,18 +4478,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#ShichimiPowder">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Seasoning"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Spicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -4621,6 +4543,42 @@
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NamedSushi"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Spicy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Rice"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#SweetChiliMayonnaise"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Sweet"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#YuzuTobikoFishRoe"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Rocket"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:allValuesFrom>
                     <owl:Class>
@@ -4669,32 +4627,8 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Rice"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#SweetChiliMayonnaise"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#YuzuTobikoFishRoe"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasCategory"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Handrolls"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Rocket"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -4784,8 +4718,20 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Spicy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Nori"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Sweet"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -4843,7 +4789,6 @@
             </owl:Class>
         </rdfs:subClassOf>
         <hasRole>facet</hasRole>
-        <hasProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
     </owl:Class>
     
 
@@ -4920,6 +4865,18 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Spicy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#KatsuSauce"/>
             </owl:Restriction>
@@ -4978,18 +4935,6 @@
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#SpicyMasagoSauce">
         <rdfs:label xml:lang="fr">Spicy Masago in French</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Dressing"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Spicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -5077,12 +5022,6 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Rice"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#RegularMasago"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -5100,14 +5039,38 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Spicy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Onion"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#SpicyMasagoSauce"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Rice"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#RegularMayonnaise"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Onion"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5135,12 +5098,6 @@
                         </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#SpicyMasagoSauce"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5212,6 +5169,12 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Spicy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Onion"/>
             </owl:Restriction>
@@ -5236,6 +5199,12 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#SpicyMasagoSauce"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5297,18 +5266,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#SumisoMarinatedKaiso">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Seaweed"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -5437,18 +5394,6 @@
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#SweetChiliMayonnaise">
         <rdfs:label xml:lang="fr">Sweet Chilli in French</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Mayonnaise"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Spicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Sweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -5483,7 +5428,6 @@
             </owl:Class>
         </rdfs:subClassOf>
         <hasRole>facet</hasRole>
-        <hasProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
     </owl:Class>
     
 
@@ -5496,6 +5440,18 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#EggOmelet"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Sweet"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5570,18 +5526,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#TempuraSoftShellCrab">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#SeaFood"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -5724,18 +5668,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Tuna">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#SeaFood"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -5748,6 +5680,12 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasCategory"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Maki"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5777,6 +5715,12 @@
                         </owl:unionOf>
                     </owl:Class>
                 </owl:allValuesFrom>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -5884,6 +5828,12 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom>
                     <owl:Class>
@@ -5908,6 +5858,12 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Wasabi"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -5959,6 +5915,12 @@
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NamedSushi"/>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:allValuesFrom>
                     <owl:Class>
@@ -5993,6 +5955,12 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasCategory"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Sashimi"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -6193,18 +6161,6 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#EggOmelet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasCategory"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#FutoMaki"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Carrot"/>
             </owl:Restriction>
         </rdfs:subClassOf>
@@ -6212,6 +6168,30 @@
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Radish"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Rice"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#EggOmelet"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasCategory"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#FutoMaki"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -6229,13 +6209,13 @@
         <rdfs:subClassOf>
             <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Rice"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Nori"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Nori"/>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
             </owl:Restriction>
         </rdfs:subClassOf>
     </owl:Class>
@@ -6350,8 +6330,20 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#RegularMayonnaise"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -6449,18 +6441,6 @@
         <rdfs:label xml:lang="es">Wasabi in Spanish</rdfs:label>
         <rdfs:label xml:lang="fr">Wasabi in French</rdfs:label>
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Dressing"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Spicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -6469,18 +6449,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#WasabiMasagoFishRoe">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#FishRoe"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Spicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 
@@ -6497,8 +6465,20 @@
         </rdfs:subClassOf>
         <rdfs:subClassOf>
             <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
                 <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasIngredient"/>
                 <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#Avocado"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
+                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
             </owl:Restriction>
         </rdfs:subClassOf>
         <rdfs:subClassOf>
@@ -6613,18 +6593,6 @@
 
     <owl:Class rdf:about="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#YuzuTobikoFishRoe">
         <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#FishRoe"/>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSweetness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSweet"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
-        <rdfs:subClassOf>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#hasSpiciness"/>
-                <owl:someValuesFrom rdf:resource="http://www.semanticweb.org/atheer/ontologies/2013/10/untitled-ontology-14#NonSpicy"/>
-            </owl:Restriction>
-        </rdfs:subClassOf>
     </owl:Class>
     
 

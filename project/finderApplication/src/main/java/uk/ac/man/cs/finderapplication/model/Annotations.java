@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package uk.ac.man.cs.finderapplication.model;
 
 import java.io.File;
@@ -23,23 +22,24 @@ import org.semanticweb.owlapi.model.OWLOntologyManager;
  * @author Hani Al Abbas - hani.alabbas@postgrad.manchester.ac.uk
  */
 public class Annotations {
-    public static final String BASE_CLASS="BaseClass";
-    public static final String ING_CLASS="IngClass";
-    public static final String PROPERTY="Property";
-    public static final String ANNOTATION_PROPERTY="hasRole";
-    
+
+    public static final String BASE_CLASS = "BaseClass";
+    public static final String ING_CLASS = "IngClass";
+    public static final String PROPERTY = "Property";
+    public static final String ANNOTATION_PROPERTY = "hasRole";
+
     private OWLOntology ontology;
     private OWLDataFactory df;
     private OWLOntologyManager manager;
-    
+
     private File ontologyFile;
-    
-    public Annotations(File ontologyFile){
+
+    public Annotations(File ontologyFile) {
         this.ontologyFile = ontologyFile;
         loadOntology();
     }
-    
-    private void loadOntology(){
+
+    private void loadOntology() {
         try {
             manager = OWLManager.createOWLOntologyManager();
             df = manager.getOWLDataFactory();
@@ -49,10 +49,10 @@ public class Annotations {
             Runnable runnable = new Runnable() {
                 public void run() {
                     JOptionPane.showMessageDialog(null,
-                            "Could not create the ontology.  (This probably happened\n" +
-                                    "because the ontology could not be accessed due to network\n" +
-                                    "problems.)\n" +
-                                    "[" + e.getMessage() + "]",
+                            "Could not create the ontology.  (This probably happened\n"
+                            + "because the ontology could not be accessed due to network\n"
+                            + "problems.)\n"
+                            + "[" + e.getMessage() + "]",
                             "Error",
                             JOptionPane.ERROR_MESSAGE);
                     System.exit(1);
@@ -61,31 +61,49 @@ public class Annotations {
             SwingUtilities.invokeLater(runnable);
         }
     }
-    
-    public boolean checkAnnotationsExist(){
+
+    public boolean checkAnnotationsExist() {
         boolean check = false;
         boolean baseClassFlag = false;
         boolean IngClassFlag = false;
         boolean PropertyFlag = false;
-        for(OWLClass c:ontology.getClassesInSignature()){
-            for(OWLAnnotation a:c.getAnnotations(ontology))
-                if(a.getValue().toString().contains(BASE_CLASS))
+        for (OWLClass c : ontology.getClassesInSignature()) {
+            for (OWLAnnotation a : c.getAnnotations(ontology)) {
+                if (a.getValue().toString().contains(BASE_CLASS)) {
                     baseClassFlag = true;
-                else if(a.getValue().toString().contains(ING_CLASS))
+                } else if (a.getValue().toString().contains(ING_CLASS)) {
                     IngClassFlag = true;
+                }
+            }
         }
-        for(OWLObjectProperty o:ontology.getObjectPropertiesInSignature()){
-            for(OWLAnnotation a:o.getAnnotations(ontology))
-                if(a.getValue().toString().contains(PROPERTY))
+        for (OWLObjectProperty o : ontology.getObjectPropertiesInSignature()) {
+            for (OWLAnnotation a : o.getAnnotations(ontology)) {
+                if (a.getValue().toString().contains(PROPERTY)) {
                     PropertyFlag = true;
+                }
+            }
         }
-        if(baseClassFlag&&IngClassFlag&&PropertyFlag){
+        if (baseClassFlag && IngClassFlag && PropertyFlag) {
             check = true;
         }
         return check;
     }
-    
-    public static void main(String [] args){
+
+    public boolean checkFacetsExist() {
+        boolean check = false;
+        for (OWLClass c : ontology.getClassesInSignature()) {
+            for (OWLAnnotation a : c.getAnnotations(ontology)) {
+                if (a.getValue().toString().contains("facet")) {
+                    check = true;
+                } else {
+                    check = false;
+                }
+            }
+        }
+        return check;
+    }
+
+    public static void main(String[] args) {
         Annotations ant = new Annotations(new File("/Users/machdd/Project/project/finderApplication/src/main/resources/week2-hierarchy-mbaxkha4.owl"));
         System.out.println(ant.checkAnnotationsExist());
     }

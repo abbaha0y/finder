@@ -330,9 +330,9 @@ public class MainFinderApplication extends JFrame implements ActionListener {
         //qp.refershResult();
         setupResultsPanel(ontology);
         //cp.refreshFilters();
-        //setupChooserPanel(ontology);
-        //setupQueryPanel(ontology);
-        //setupResultsPanel(ontology);
+        setupChooserPanel(ontology);
+        setupQueryPanel(ontology);
+        setupResultsPanel(ontology);
     }
     
     public ChooserPanel getChooserPanel(){
