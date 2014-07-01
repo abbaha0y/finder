@@ -6,6 +6,7 @@
 package uk.ac.man.cs.finderapplication.gui;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,6 +19,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ButtonGroup;
@@ -28,9 +30,12 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.filechooser.FileNameExtensionFilter;
+
 import org.semanticweb.owlapi.model.OWLClass;
+
 import uk.ac.man.cs.finderapplication.controller.LanguagesController;
 import uk.ac.man.cs.finderapplication.model.FinderOntology;
 import uk.ac.man.cs.finderapplication.model.LanguageModel;
@@ -52,6 +57,7 @@ public class MainFinderApplication extends JFrame implements ActionListener {
     Selectable selectable;
     JFileChooser fc;
     //private ChoiceModel choiceModel;
+    private JPanel cardPanel;
 
     ChooserPanel cp;
     QueryPanel qp;
@@ -75,19 +81,19 @@ public class MainFinderApplication extends JFrame implements ActionListener {
             dlg.setVisible(true);
         }
     };
-    
-    /*private Action uiAction = new AbstractAction("UI Configuration") {
-        public void actionPerformed(ActionEvent e) {
-            ConfigruationDialog dlg = new ConfigruationDialog(MainFinderApplication.this);
-            dlg.setVisible(true);
-        }
-    };*/
 
+    /*private Action uiAction = new AbstractAction("UI Configuration") {
+     public void actionPerformed(ActionEvent e) {
+     ConfigruationDialog dlg = new ConfigruationDialog(MainFinderApplication.this);
+     dlg.setVisible(true);
+     }
+     };*/
     LanguagesController langController;
     LanguageModel langModel;
 
     public MainFinderApplication(File ontologyFile, Settings setting) {
         view = true;
+        this.getContentPane().setLayout(new BorderLayout());
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setSize(900, 600);
         this.setLocationRelativeTo(null);
@@ -102,11 +108,11 @@ public class MainFinderApplication extends JFrame implements ActionListener {
         setupLogoPanel();
         setupChooserPanel(ontology);
         setupQueryPanel(ontology);
-        setupResultsPanel(ontology);
+        setupCardPanel();
+	//setupResultsPanel(ontology);
         //ontology.setupShortFormProvider("fr");
-        this.getContentPane().setLayout(new BorderLayout());
-        this.getContentPane().add(finderPanel);
-
+        //this.getContentPane().add(finderPanel);
+        
     }
 
     private void setupMenuBar() {
@@ -152,7 +158,7 @@ public class MainFinderApplication extends JFrame implements ActionListener {
         menuConfiguration.add(menuItemLanguages);
 
         /*languages = new ArrayList<>(ontology.getLanguages().size());
-        
+
          Iterator it = ontology.getLanguages().entrySet().iterator();
          for(int i=0; i<ontology.getLanguages().size(); i++){
          Map.Entry pairs = (Map.Entry)it.next();
@@ -173,13 +179,13 @@ public class MainFinderApplication extends JFrame implements ActionListener {
         langController.control();
 
         menuItemUIConfig = new JMenuItem("UI Configuration");
-        menuItemUIConfig.addActionListener(new ActionListener(){
+        menuItemUIConfig.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ConfigruationDialog dlg = new ConfigruationDialog(MainFinderApplication.this, cp,qp);
-            dlg.setVisible(true);
+                ConfigruationDialog dlg = new ConfigruationDialog(MainFinderApplication.this, cp, qp);
+                dlg.setVisible(true);
             }
-            
+
         });
         importImage = new ImageIcon(getClass().getClassLoader().getResource("uiConfig.png"));
         menuItemUIConfig.setIcon(importImage);
@@ -191,15 +197,25 @@ public class MainFinderApplication extends JFrame implements ActionListener {
         menuHelp.add(menuItemAbout);
     }
 
+    protected void setupCardPanel() {
+        if(cardPanel != null)
+        this.getContentPane().remove(cardPanel);
+        cardPanel = new JPanel();
+        cardPanel.setLayout(new CardLayout());
+        cardPanel.add(finderPanel, "ToppingsChooserPanel");
+        cardPanel.add(rp = new ResultsPanel(ontology, this), "ResultsPanel");
+        this.getContentPane().add(cardPanel);
+    }
+
     private void setupLogoPanel() {
-        System.out.println(setting.getLogoLocation());
+        //System.out.println(setting.getLogoLocation());
         logoPanel = new LogoPanel(Toolkit.getDefaultToolkit().getImage(setting.getLogoLocation()));
         finderPanel.setLogoComponent(logoPanel);
     }
 
     private void setupChooserPanel(FinderOntology ont) {
         cp = new ChooserPanel(ont, this, view);
-        finderPanel.setDividerLocationButtomLeft();
+        finderPanel.setDividerLocationButtom();
         finderPanel.setButtomLeftComponent(cp);
         setSelectable(cp.getSelectable());
     }
@@ -207,15 +223,14 @@ public class MainFinderApplication extends JFrame implements ActionListener {
     private void setupQueryPanel(FinderOntology ont) {
         //pass the selectable to the queryPanel
         qp = new QueryPanel(ont, this, getSelecatable());
-        finderPanel.setDividerLocationButtomRight();
-        finderPanel.setButtomCenterComponent(qp);
+        finderPanel.setDividerLocationButtom();
+        finderPanel.setButtomRightComponent(qp);
     }
 
-    private void setupResultsPanel(FinderOntology ont) {
-        rp = new ResultsPanel(ont, this);
-        finderPanel.setButtomRightComponent(rp);
-    }
-
+    /*private void setupResultsPanel(FinderOntology ont) {
+     rp = new ResultsPanel(ont, this);
+     finderPanel.setButtomRightComponent(rp);
+     }*/
     private void setSelectable(Selectable selectable) {
         this.selectable = selectable;
     }
@@ -224,20 +239,10 @@ public class MainFinderApplication extends JFrame implements ActionListener {
         return selectable;
     }
 
-    public void showResultsPanel(Collection<OWLClass> results) {
-        rp.setPizzas(results);
-    }
-
-    // Testing
-    /*public static void main(String[] arg){
-
-     MainFinderApplication f = new MainFinderApplication(null);
-     f.setVisible(true);
-     }*/
     public void setupMenuLanguage() {
         groupLanguages = new ButtonGroup();
         menuItemLanguages.removeAll();
-        
+
         languages = new ArrayList<>(ontology.getLanguages().size());
 
         Iterator it = ontology.getLanguages().entrySet().iterator();
@@ -270,7 +275,7 @@ public class MainFinderApplication extends JFrame implements ActionListener {
                 File file = fc.getSelectedFile();
                 try {
                     saveFile(file);
-                    System.out.println(file.getAbsoluteFile());
+                    //System.out.println(file.getAbsoluteFile());
                 } catch (IOException ex) {
                     Logger.getLogger(MainFinderApplication.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -279,7 +284,11 @@ public class MainFinderApplication extends JFrame implements ActionListener {
                 ontology = new FinderOntology("en");
                 setupChooserPanel(ontology);
                 setupQueryPanel(ontology);
-                setupResultsPanel(ontology);
+                
+                setupCardPanel();
+                showIngPanel();
+                
+                //setupResultsPanel(ontology);
                 //setupMenuBar();
                 setupMenuLanguage();
                 langModel = new LanguageModel(ontology);
@@ -293,12 +302,12 @@ public class MainFinderApplication extends JFrame implements ActionListener {
             view = true;
             setupChooserPanel(ontology);
             setupQueryPanel(ontology);
-            setupResultsPanel(ontology);
+            //setupResultsPanel(ontology);
         } else if (e.getSource() == rbMenuItemListView) {
             view = false;
             setupChooserPanel(ontology);
             setupQueryPanel(ontology);
-            setupResultsPanel(ontology);
+            //setupResultsPanel(ontology);
         }
     }
 
@@ -326,19 +335,29 @@ public class MainFinderApplication extends JFrame implements ActionListener {
         cp.getList().repaint();
         qp.getIncList().repaint();
         qp.getExcList().repaint();
-        //rp.setPizzaPanels(rp.getPanels());
+	//rp.setPizzaPanels(rp.getPanels());
         //qp.refershResult();
-        setupResultsPanel(ontology);
+        //setupResultsPanel(ontology);
         //cp.refreshFilters();
         setupChooserPanel(ontology);
         setupQueryPanel(ontology);
-        setupResultsPanel(ontology);
+        //setupResultsPanel(ontology);
     }
-    
-    public ChooserPanel getChooserPanel(){
+
+    public ChooserPanel getChooserPanel() {
         return cp;
     }
-    public QueryPanel getQueryPanel(){
+
+    public QueryPanel getQueryPanel() {
         return qp;
+    }
+
+    public void showIngPanel() {
+        ((CardLayout) cardPanel.getLayout()).first(cardPanel);
+    }
+
+    public void showResultsPanel(Collection<OWLClass> pizzas) {
+        rp.setPizzas(pizzas);
+        ((CardLayout) cardPanel.getLayout()).last(cardPanel);
     }
 }

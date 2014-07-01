@@ -284,11 +284,12 @@ public class FinderOntology {
         // OWLClassExpression toppingDesc = createPizzaDescription(includeToppings, excludeToppings,"7");
         OWLClassExpression toppingDesc = createPizzaDescription(includeToppings, excludeToppings);
         // Ask the reasoner for the subclasses of the temp description
+        //System.out.println(toppingDesc);
         return filterClasses(reasoner.getSubClasses(toppingDesc, false));
     }
 
     /**
-     * Creates OWLClassExpression (query) by given inclided topping and excluded
+     * Creates OWLClassExpression (query) by given included topping and excluded
      * topping
      *
      * @param includeToppings
@@ -444,4 +445,64 @@ public class FinderOntology {
         
         return hashMap;
     }
+    
+    
+    // by Al Abbas, Hani
+    public Collection getFacetedFood(Set<OWLClass> includeToppings, Set<OWLClass> excludeToppings, Facet facet) {
+        Collection c;
+        // Temporarily create a description (class) that will have the required
+        // pizzas (the pizzas with the included toppings but not the excluded toppings).
+        // OWLClassExpression toppingDesc = createPizzaDescription(includeToppings, excludeToppings,"7");
+        OWLClassExpression ingDesc = createFoodDescription(includeToppings, excludeToppings, facet);
+        // Ask the reasoner for the subclasses of the temp description
+        
+        return filterClasses(reasoner.getSubClasses(ingDesc, false));
+    }
+    
+    private OWLClassExpression createFoodDescription(Set<OWLClass> includeToppings, Set<OWLClass> excludeToppings, Facet facet) {
+        // Include means existential restrictions
+        // Exclude means negated existential restrictions
+        OWLObjectProperty prop = getProperty();   //has_topping
+        // Create a hash set to stor the components (existential restrictions)
+        // of our description
+        Set<OWLClassExpression> classes = new HashSet<OWLClassExpression>();
+        // Everthing must be a pizza
+        classes.add(getBaseClass());        //get OWL class for Pizza
+        // Create the existential restrictions that represent the toppings
+        // that we want to include.
+        OWLDataFactory df = manager.getOWLDataFactory();
+        for (OWLClass topping : includeToppings) {
+            Set<OWLClassExpression> facets = new HashSet<OWLClassExpression>();
+            facets.add(topping);
+            //System.out.println(facet.getFacetProperty());
+            facets.add(df.getOWLObjectSomeValuesFrom(facet.getFacetProperty(), facet.getFacetClass()));  
+            classes.add(df.getOWLObjectSomeValuesFrom(prop, df.getOWLObjectIntersectionOf(facets)));         // e.g. hasTopping some top_A , hasTopping some top_B
+        }
+        // Create the negated existential restrictions of the toppings that we
+        // want to exclude
+        for (OWLClass excludeTopping : excludeToppings) {
+            Set<OWLClassExpression> facets = new HashSet<OWLClassExpression>();
+            facets.add(excludeTopping);
+            facets.add(df.getOWLObjectSomeValuesFrom(facet.getFacetProperty(), facet.getFacetClass()));
+            OWLClassExpression restriction = df.getOWLObjectSomeValuesFrom(prop, df.getOWLObjectIntersectionOf(facets));  // has_topping some topping_A
+            OWLObjectComplementOf neg = df.getOWLObjectComplementOf(restriction);    //not (has_topping some topping_A)
+            classes.add(neg);
+        }
+        // Bind the whole thing up in an intersection class
+        // to create a concept description of the pizza we
+        // are looking for.
+        return df.getOWLObjectIntersectionOf(classes);
+    }
+    
+    public OWLObjectProperty getFacetProperty(OWLClass c){
+        OWLObjectProperty objProp = null;
+        OWLClass realClass = (OWLClass) c.getSuperClasses(ontology).toArray()[0];
+        for(OWLAnnotation a:realClass.getAnnotations(ontology)){
+            if(a.getProperty().toString().contains("hasProperty")){
+                objProp = df.getOWLObjectProperty((IRI) a.getValue());
+            }
+        }
+        return objProp;
+    }
+    
 }

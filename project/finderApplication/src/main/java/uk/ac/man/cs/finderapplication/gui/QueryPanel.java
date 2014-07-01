@@ -10,6 +10,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.util.Collection;
+import java.util.Set;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.BorderFactory;
@@ -21,6 +22,7 @@ import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
+import org.semanticweb.owlapi.model.OWLClass;
 import uk.ac.man.cs.finderapplication.model.ChoiceModel;
 import uk.ac.man.cs.finderapplication.model.FinderOntology;
 import uk.ac.man.cs.finderapplication.selection.Selectable;
@@ -104,6 +106,7 @@ public class QueryPanel extends JPanel {
         Action queryReasonerAction = new AbstractAction("Get "+ontology.render(ontology.getBaseClass())) {
             public void actionPerformed(ActionEvent e) {
                 Collection c = ontology.getPizzas(choiceModel.getIncluded(), choiceModel.getExcluded());
+                //Collection c = ontology.getFacetedFood(choiceModel.getIncluded(), choiceModel.getExcluded(), )
                 application.showResultsPanel(c);
             }
         };
@@ -113,6 +116,13 @@ public class QueryPanel extends JPanel {
         //queryPanel.add(templatesPanel,BorderLayout.WEST);
         queryPanel.add(btnGet, BorderLayout.EAST);
         add(queryPanel, BorderLayout.SOUTH);
+    }
+    
+    public Set<OWLClass> getIncluded(){
+        return choiceModel.getIncluded();
+    }
+    public Set<OWLClass> getExcluded(){
+        return choiceModel.getExcluded();
     }
     
     public JList getIncList(){

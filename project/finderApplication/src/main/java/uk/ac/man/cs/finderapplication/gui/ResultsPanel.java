@@ -5,16 +5,27 @@
  */
 package uk.ac.man.cs.finderapplication.gui;
 
+import java.awt.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
 import java.util.Collection;
 import java.util.Iterator;
+
+import javax.swing.*;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
+
 import org.semanticweb.owlapi.model.OWLClass;
+import uk.ac.man.cs.finderapplication.controller.FacetsController;
+import uk.ac.man.cs.finderapplication.model.Annotations;
+import uk.ac.man.cs.finderapplication.model.FacetsModel;
 import uk.ac.man.cs.finderapplication.model.FinderOntology;
 
 /**
@@ -38,6 +49,9 @@ public class ResultsPanel extends JPanel {
 
     private JSplitPane split;
 
+    private FacetsController facetController;
+    private FacetsModel facetModel;
+
     public ResultsPanel(FinderOntology ontology, MainFinderApplication application) {
         this.ontology = ontology;
         this.application = application;
@@ -46,17 +60,29 @@ public class ResultsPanel extends JPanel {
     }
 
     private void createUI() {
-        
-        split = new JSplitPane(JSplitPane.VERTICAL_SPLIT);
+
+        split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT);
         split.setDividerSize(0);
         split.setBorder(null);
-        
+
         setLayout(new BorderLayout(7, 7));
+        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+
+        Action backAction = new AbstractAction("Back") {
+            public void actionPerformed(ActionEvent e) {
+                application.showIngPanel();
+            }
+        };
+        buttonPanel.add(new JButton(backAction));
+        add(buttonPanel, BorderLayout.SOUTH);
         box = new Box(BoxLayout.Y_AXIS);
         box.setBackground(Color.WHITE);
-        split.setBottomComponent(new JScrollPane(box));
+        split.setRightComponent(new JScrollPane(box));
         add(split);
-        //setupFacets();
+        //Annotations a = new Annotations(ontology.getOntology());
+        //if (a.checkFacetsExist()) {
+            setupFacets();
+        //}
     }
 
     public void setPizzas(Collection<OWLClass> pizzas) {
@@ -94,9 +120,13 @@ public class ResultsPanel extends JPanel {
     public PizzaPanel[] getPanels() {
         return panels;
     }
-    
-    private void setupFacets(){
-        split.setTopComponent(new FacetsPanel(ontology));
+
+    private void setupFacets() {
+        FacetsPanel fp = new FacetsPanel(ontology);
+        facetModel = new FacetsModel(application, ontology);
+        facetController = new FacetsController(facetModel, fp);
+        facetController.control();
+        split.setLeftComponent(fp);
     }
-    
+
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <Settings>
-    <Ontology OntLocation="/Users/machdd/Project/project/finderApplication/Finder_Application/sushi_9223429_atheer.owl"/>
+    <Ontology OntLocation="/Users/machdd/Project/project/finderApplication/Finder_Application/pizza-latest.owl"/>
     <UI IconLocation="/Users/machdd/Project/project/finderApplication/Finder_Application/defualt_Icon.png" LogoLocation="/Users/machdd/Project/project/finderApplication/Finder_Application/defualt_Logo.jpg"/>
 </Settings>

@@ -31,12 +31,16 @@ public class Annotations {
     private OWLOntology ontology;
     private OWLDataFactory df;
     private OWLOntologyManager manager;
+    
 
     private File ontologyFile;
 
     public Annotations(File ontologyFile) {
         this.ontologyFile = ontologyFile;
         loadOntology();
+    }
+    public Annotations(OWLOntology ontology){
+        this.ontology = ontology;
     }
 
     private void loadOntology() {
