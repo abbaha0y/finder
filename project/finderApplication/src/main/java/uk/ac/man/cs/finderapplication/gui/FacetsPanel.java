@@ -4,9 +4,7 @@
 package uk.ac.man.cs.finderapplication.gui;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import javax.swing.BorderFactory;
@@ -15,10 +13,10 @@ import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.SpringLayout;
 import org.semanticweb.owlapi.model.OWLClass;
+import uk.ac.man.cs.finderapplication.model.Facet;
 import uk.ac.man.cs.finderapplication.model.FinderOntology;
 
 /**
@@ -28,6 +26,8 @@ import uk.ac.man.cs.finderapplication.model.FinderOntology;
 public class FacetsPanel extends JPanel {
 
     FinderOntology ontology;
+    ArrayList<Facet> facetArrayList;
+    ArrayList<JButton> btnArrayList;
     JScrollPane scrollPanel;
     JPanel[] panels;
     Box box;
@@ -39,10 +39,13 @@ public class FacetsPanel extends JPanel {
 
     private void createUI() {
         box = new Box(BoxLayout.Y_AXIS);
-        //box.setBackground(Color.WHITE);
+
         this.setLayout(new BorderLayout());
         scrollPanel = new JScrollPane();
 
+        facetArrayList = new ArrayList<>();
+        btnArrayList = new ArrayList();
+        
         Map<OWLClass, ArrayList<OWLClass>> hashMap = ontology.getFacets();
         panels = new JPanel[hashMap.size()];
         Iterator it = hashMap.entrySet().iterator();
@@ -51,18 +54,19 @@ public class FacetsPanel extends JPanel {
             panels[i] = new JPanel();
             panels[i].setLayout(new SpringLayout());
         }
-        //System.out.println(hashMap.size());
         for (JPanel panel : panels) {
             Map.Entry pairs = (Map.Entry) it.next();
-            //panel = new JPanel();
-            //panel.setLayout(new SpringLayout());
             panel.setBorder(BorderFactory.createTitledBorder(ontology.render((OWLClass) pairs.getKey())));
             ArrayList<OWLClass> facets = (ArrayList<OWLClass>) pairs.getValue();
             ButtonGroup grbFacet = new ButtonGroup();
             for (OWLClass facet : facets) {
-                JRadioButton rbtnFacet = new JRadioButton(ontology.render(facet));
+                JButton rbtnFacet = new JButton(ontology.render(facet));
                 grbFacet.add(rbtnFacet);
                 panel.add(rbtnFacet);
+                btnArrayList.add(rbtnFacet);
+                //System.out.println(ontology.getFacetProperty(facet));
+                facetArrayList.add(new Facet(facet,ontology.getFacetProperty(facet)));
+                
             }
             SpringUtilities.makeCompactGrid(panel, facets.size(), 1, 3, 3, 3, 3);
             box.add(panel);
@@ -70,5 +74,11 @@ public class FacetsPanel extends JPanel {
         scrollPanel.add(box);
         this.add(new JScrollPane(box));
     }
-
+    
+    public ArrayList<JButton> getFacetsBtns(){
+        return btnArrayList;
+    }
+    public ArrayList<Facet> getFacets(){
+        return facetArrayList;
+    }
 }
