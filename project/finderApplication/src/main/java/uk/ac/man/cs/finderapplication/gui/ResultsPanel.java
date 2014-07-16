@@ -12,7 +12,6 @@ import java.awt.event.ActionEvent;
 import java.util.Collection;
 import java.util.Iterator;
 
-import javax.swing.*;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.Box;

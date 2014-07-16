@@ -38,18 +38,18 @@ public class TreeFilterModel {
     public void applyFilter(int filterIndex) {
         MyMutableTreeNode node = (MyMutableTreeNode) getMatchingNode(((DefaultMutableTreeNode) originalModel.getRoot()), new DefaultMutableTreeNode((filters.get(filterIndex))));
         MyMutableTreeNode root = (MyMutableTreeNode) originalModel.getRoot();
-        
+
         node.setType(true);
-        
+
         //expandAllNodes();
         tree.setSelectionPath(new TreePath(node.getPath()));
         disableAllNode(root);
-        
+
         node.setEnabled(true);
-        applyTreeFilter(node);
-        
+        //applyTreeFilter(node);
+        applyTreeFilter(root, node);
         root.setEnabled(false);
-        
+
     }
 
     public void undoFilter() {
@@ -61,19 +61,21 @@ public class TreeFilterModel {
         expandLevel(root);
     }
 
-    private void applyTreeFilter(MyMutableTreeNode filter) {
+    private void applyTreeFilter(MyMutableTreeNode root, MyMutableTreeNode filter) {
+    //private void applyTreeFilter(MyMutableTreeNode filter) {
         //filter
         int count = originalModel.getChildCount(filter);
         for (int i = 0; i < count; i++) {
             MyMutableTreeNode currnetNode = (MyMutableTreeNode) originalModel.getChild(filter, i);
             currnetNode.setType(true);
             currnetNode.setEnabled(true);
-            
+            applyBasedOnClassEx(root, currnetNode);
             //currnetNode.setEnabled(false);
             if (currnetNode.isLeaf()) {
                 //currnetNode.setEnabled(true);
             } else {
-                applyTreeFilter(currnetNode);
+                //applyTreeFilter(currnetNode);
+                applyTreeFilter(root,currnetNode);
                 //currnetNode.setEnabled(true);
             }
 
@@ -86,14 +88,27 @@ public class TreeFilterModel {
         int count = root.getChildCount();
         for (int i = 0; i < count; i++) {
             MyMutableTreeNode currnetNode = (MyMutableTreeNode) originalModel.getChild(root, i);
-            
+
             if (!currnetNode.isLeaf()) {
                 disableAllNode(currnetNode);
                 currnetNode.setEnabled(false);
-            }
-            else{
+            } else {
                 currnetNode.setEnabled(false);
             }
+        }
+    }
+
+    private void applyBasedOnClassEx(MyMutableTreeNode root, MyMutableTreeNode filter) {
+        //System.out.println(((OWLClass)filter.getUserObject()).getEquivalentClasses(ontology));
+        int count = root.getChildCount();
+        for (int i = 0; i < count; i++) {
+            MyMutableTreeNode currnetNode = (MyMutableTreeNode) originalModel.getChild(root, i);
+            if (currnetNode.getUserObject().toString().equals(filter.getUserObject().toString())) {
+                currnetNode.setEnabled(true);
+                currnetNode.setType(true);
+            }
+            tree.setSelectionPath(new TreePath(currnetNode.getPath()));
+            applyBasedOnClassEx(currnetNode, filter);
         }
     }
 
@@ -115,10 +130,10 @@ public class TreeFilterModel {
             tree.expandRow(i);
         }
     }
-    
-    private void expandLevel(MyMutableTreeNode node){
-        for(int i=0;i<node.getChildCount();i++){
-            tree.setSelectionPath(new TreePath(((MyMutableTreeNode)(node.getChildAt(i))).getPath()));
+
+    private void expandLevel(MyMutableTreeNode node) {
+        for (int i = 0; i < node.getChildCount(); i++) {
+            tree.setSelectionPath(new TreePath(((MyMutableTreeNode) (node.getChildAt(i))).getPath()));
         }
     }
 

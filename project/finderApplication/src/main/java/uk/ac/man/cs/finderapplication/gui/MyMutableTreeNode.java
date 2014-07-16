@@ -54,11 +54,12 @@ public class MyMutableTreeNode extends DefaultMutableTreeNode implements Compara
     }
 
     public int getChildCount() {
-        if (enabled) {
+        // make disabled node to have children
+        //if (enabled) {
             return super.getChildCount();
-        } else {
-            return 0;
-        }
+        //} else {
+        //    return 0;
+        //}
     }
 
     public boolean isLeaf() {
