@@ -15,7 +15,7 @@ import org.semanticweb.owlapi.util.ShortFormProvider;
 public class FinderOntology {
 
     //public static final Preferences PREFERENCES;
-    public static final String TOPPING_SUFFIX = "";//"Topping";
+    public static final String TOPPING_SUFFIX = "";
 
     private OWLReasoner reasoner;
 
@@ -42,7 +42,7 @@ public class FinderOntology {
         try {
             manager = OWLManager.createOWLOntologyManager();
             df = manager.getOWLDataFactory();
-            //ontology = manager.loadOntologyFromOntologyDocument(PREFERENCES.getOntologyDocumentIRI());
+			//ontology = manager.loadOntologyFromOntologyDocument(PREFERENCES.getOntologyDocumentIRI());
             // hardcoded ontology creatition
             ontology = manager.loadOntologyFromOntologyDocument(IRI.create(new File(new Settings().getOnologyLocation()).getAbsoluteFile()));
         } catch (final Throwable e) {
@@ -279,12 +279,12 @@ public class FinderOntology {
      */
     public Collection getPizzas(Set<OWLClass> includeToppings, Set<OWLClass> excludeToppings) {
         Collection c;
-        // Temporarily create a description (class) that will have the required
+		// Temporarily create a description (class) that will have the required
         // pizzas (the pizzas with the included toppings but not the excluded toppings).
         // OWLClassExpression toppingDesc = createPizzaDescription(includeToppings, excludeToppings,"7");
         OWLClassExpression toppingDesc = createPizzaDescription(includeToppings, excludeToppings);
-        // Ask the reasoner for the subclasses of the temp description
-        //System.out.println(toppingDesc);
+		// Ask the reasoner for the subclasses of the temp description
+        //System.out.println(reasoner.getSubClasses(toppingDesc, false));
         return filterClasses(reasoner.getSubClasses(toppingDesc, false));
     }
 
@@ -297,7 +297,7 @@ public class FinderOntology {
      * @return
      */
     private OWLClassExpression createPizzaDescription(Set<OWLClass> includeToppings, Set<OWLClass> excludeToppings) {
-        // Include means existential restrictions
+		// Include means existential restrictions
         // Exclude means negated existential restrictions
         OWLObjectProperty prop = getProperty();   //has_topping
         // Create a hash set to stor the components (existential restrictions)
@@ -311,14 +311,14 @@ public class FinderOntology {
         for (OWLClass topping : includeToppings) {
             classes.add(df.getOWLObjectSomeValuesFrom(prop, topping));         // e.g. hasTopping some top_A , hasTopping some top_B
         }
-        // Create the negated existential restrictions of the toppings that we
+		// Create the negated existential restrictions of the toppings that we
         // want to exclude
         for (OWLClass excludeTopping : excludeToppings) {
             OWLClassExpression restriction = df.getOWLObjectSomeValuesFrom(prop, excludeTopping);  // has_topping some topping_A
             OWLObjectComplementOf neg = df.getOWLObjectComplementOf(restriction);    //not (has_topping some topping_A)
             classes.add(neg);
         }
-        // Bind the whole thing up in an intersection class
+		// Bind the whole thing up in an intersection class
         // to create a concept description of the pizza we
         // are looking for.
         return df.getOWLObjectIntersectionOf(classes);
@@ -327,7 +327,7 @@ public class FinderOntology {
     /**
      * This method add by Hani Al Abbas.
      *
-     * @return a OWLClass that hasRoll as BaseClass
+     * @return a OWLObjectProperty that hasRoll as Property
      */
     public OWLObjectProperty getProperty() {
         OWLObjectProperty obj = null;
@@ -426,41 +426,36 @@ public class FinderOntology {
         return fullNamesHashMap;
     }
 
-    public Map<OWLClass, ArrayList<OWLClass>> getFacets() {
-        Map<OWLClass, ArrayList<OWLClass>> hashMap = new HashMap<>();
+    public ArrayList<OWLClass> getFacets() {
+        ArrayList<OWLClass> arrayListFacets = new ArrayList<>();
         for (OWLClass c : ontology.getClassesInSignature()) {
             for (OWLAnnotation a : c.getAnnotations(ontology)) {
                 if (a.getProperty().toString().contains("hasRole") && a.getValue().toString().contains("facet")) {
-                    //System.out.println(c.getSubClasses(ontology));
-                    ArrayList<OWLClass> arrayListFacets = new ArrayList<>();
-                    Set subClass = c.getSubClasses(ontology);
-                    Iterator it = subClass.iterator();
-                    while(it.hasNext()){
-                        arrayListFacets.add((OWLClass)it.next());
-                    }
-                    hashMap.put(c, arrayListFacets);
+					//System.out.println(c.getSubClasses(ontology));
+
+                    arrayListFacets.add((OWLClass) c);
+
                 }
             }
         }
-        
-        return hashMap;
+
+        return arrayListFacets;
     }
-    
-    
+
     // by Al Abbas, Hani
     public Collection getFacetedFood(Set<OWLClass> includeToppings, Set<OWLClass> excludeToppings, Facet facet) {
         Collection c;
-        // Temporarily create a description (class) that will have the required
+		// Temporarily create a description (class) that will have the required
         // pizzas (the pizzas with the included toppings but not the excluded toppings).
         // OWLClassExpression toppingDesc = createPizzaDescription(includeToppings, excludeToppings,"7");
         OWLClassExpression ingDesc = createFoodDescription(includeToppings, excludeToppings, facet);
         // Ask the reasoner for the subclasses of the temp description
-        
+
         return filterClasses(reasoner.getSubClasses(ingDesc, false));
     }
-    
+
     private OWLClassExpression createFoodDescription(Set<OWLClass> includeToppings, Set<OWLClass> excludeToppings, Facet facet) {
-        // Include means existential restrictions
+		// Include means existential restrictions
         // Exclude means negated existential restrictions
         OWLObjectProperty prop = getProperty();   //has_topping
         // Create a hash set to stor the components (existential restrictions)
@@ -475,10 +470,10 @@ public class FinderOntology {
             Set<OWLClassExpression> facets = new HashSet<OWLClassExpression>();
             facets.add(topping);
             //System.out.println(facet.getFacetProperty());
-            facets.add(df.getOWLObjectSomeValuesFrom(facet.getFacetProperty(), facet.getFacetClass()));  
+            facets.add(df.getOWLObjectSomeValuesFrom(facet.getFacetProperty(), facet.getFacetClass()));
             classes.add(df.getOWLObjectSomeValuesFrom(prop, df.getOWLObjectIntersectionOf(facets)));         // e.g. hasTopping some top_A , hasTopping some top_B
         }
-        // Create the negated existential restrictions of the toppings that we
+		// Create the negated existential restrictions of the toppings that we
         // want to exclude
         for (OWLClass excludeTopping : excludeToppings) {
             Set<OWLClassExpression> facets = new HashSet<OWLClassExpression>();
@@ -488,21 +483,20 @@ public class FinderOntology {
             OWLObjectComplementOf neg = df.getOWLObjectComplementOf(restriction);    //not (has_topping some topping_A)
             classes.add(neg);
         }
-        // Bind the whole thing up in an intersection class
+		// Bind the whole thing up in an intersection class
         // to create a concept description of the pizza we
         // are looking for.
         return df.getOWLObjectIntersectionOf(classes);
     }
-    
-    public OWLObjectProperty getFacetProperty(OWLClass c){
+
+    public OWLObjectProperty getFacetProperty(OWLClass c) {
         OWLObjectProperty objProp = null;
-        OWLClass realClass = (OWLClass) c.getSuperClasses(ontology).toArray()[0];
-        for(OWLAnnotation a:realClass.getAnnotations(ontology)){
-            if(a.getProperty().toString().contains("hasProperty")){
+        for (OWLAnnotation a : c.getAnnotations(ontology)) {
+            if (a.getProperty().toString().contains("hasProperty")) {
                 objProp = df.getOWLObjectProperty((IRI) a.getValue());
             }
         }
         return objProp;
     }
-    
+
 }

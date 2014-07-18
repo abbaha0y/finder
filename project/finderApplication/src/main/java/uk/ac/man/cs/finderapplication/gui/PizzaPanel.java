@@ -18,9 +18,8 @@ import uk.ac.man.cs.finderapplication.model.FinderOntology;
  * matthew.horridge@cs.man.ac.uk<br>
  * www.cs.man.ac.uk/~horridgm<br><br>
  * <p/>
- * A panel that displays the description of a
- * pizza (i.e. its name, its toppings and icons to indiciate
- * if the pizza is vegetarian and/or spicy).
+ * A panel that displays the description of a pizza (i.e. its name, its toppings
+ * and icons to indiciate if the pizza is vegetarian and/or spicy).
  */
 public class PizzaPanel extends JPanel {
 
@@ -117,32 +116,48 @@ public class PizzaPanel extends JPanel {
     }
 
     /**
-     * gets Toppings of the Named pizza (OWLClass pizzaClass),e.g.  for Margherita Pizza: Mozzarella topping and Tomato topping
+     * gets Toppings of the Named pizza (OWLClass pizzaClass),e.g. for
+     * Margherita Pizza: Mozzarella topping and Tomato topping
      *
      * @return
      */
     protected Collection<OWLClass> getToppings() {
-        final java.util.List<OWLClass> toppingClasses = new ArrayList<OWLClass>();
-        final OWLObjectProperty toppingProperty = ontology.getProperty();     //e.g. has_topping property
+        java.util.List<OWLClass> toppingClasses = new ArrayList<OWLClass>();
+        OWLObjectProperty toppingProperty = ontology.getProperty();     //e.g. has_topping property
         OWLClass superPizzaClass = null;
         // get topping from super calss e.g. SmallAmerican toppings are American Topping, if no super class e.g American pizza toppings are directly from AmericanPizza
-        for (OWLClassExpression superCls : pizzaClass.getSuperClasses(ontology.getOntology())) {
-            if (superCls instanceof OWLClass)
-                if (ontology.isNamedPizza((OWLClass) superCls)) superPizzaClass = (OWLClass) superCls;
+        for (OWLClassExpression superCls : pizzaClass.getSuperClasses(ontology.getOntology())) {        
+            if (superCls instanceof OWLClass) {
+                /*System.out.println(superCls);
+                System.out.println(ontology.getBaseClass());
+                System.out.println();*/
+                //if(superCls.equals(ontology.getBaseClass())){
+                if (ontology.isNamedPizza((OWLClass) superCls)) {
+                    //System.out.println(superCls);
+                    superPizzaClass = (OWLClass) superCls;
+                }
+            }
             //if no super class e.g American pizza toppings are directly from AmericanPizza
             if (superPizzaClass == null && (ontology.isNamedPizza((OWLClass) pizzaClass))) {
                 superPizzaClass = pizzaClass;
+                
             }
             if (superPizzaClass != null) {
+                System.out.println("No");
                 for (OWLClassExpression curSuperCls : superPizzaClass.getSuperClasses(ontology.getOntology())) {
+                    
                     if (curSuperCls instanceof OWLObjectSomeValuesFrom) {
                         OWLObjectSomeValuesFrom someValuesFrom = (OWLObjectSomeValuesFrom) curSuperCls;
                         if (someValuesFrom.getProperty().equals(toppingProperty)) {
                             OWLClassExpression filler = someValuesFrom.getFiller();
                             if (filler instanceof OWLClass) {
-                                if (!toppingClasses.contains(filler))
+                                if (!toppingClasses.contains(filler)) {
                                     toppingClasses.add((OWLClass) filler);
+                                    
+                                }
+                                
                             }
+                            
                         }
                     }
                 }
@@ -155,4 +170,3 @@ public class PizzaPanel extends JPanel {
         return "PizzaPanel(" + pizzaName + ")";
     }
 }
-

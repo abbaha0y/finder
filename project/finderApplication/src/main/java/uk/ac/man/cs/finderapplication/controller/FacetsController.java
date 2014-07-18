@@ -8,7 +8,10 @@ package uk.ac.man.cs.finderapplication.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+
 import javax.swing.JButton;
+import javax.swing.JRadioButton;
+
 import uk.ac.man.cs.finderapplication.gui.FacetsPanel;
 import uk.ac.man.cs.finderapplication.model.Facet;
 import uk.ac.man.cs.finderapplication.model.FacetsModel;
@@ -22,7 +25,7 @@ public class FacetsController {
     private ActionListener actionListener;
     private FacetsModel model;
     private FacetsPanel view;
-    ArrayList<JButton> arrayListFacetsBtns;
+    ArrayList<JRadioButton> arrayListFacetsBtns;
     ArrayList<Facet> arrayListFacets;
 
     public FacetsController(FacetsModel model, FacetsPanel view) {
@@ -47,7 +50,15 @@ public class FacetsController {
     }
 
     public void linkFacetsAndView(int index, ActionEvent e) {
-        model.applyFacet(arrayListFacets.get(index));
+    	System.out.println(arrayListFacetsBtns.get(index).getText());
+    	if(arrayListFacetsBtns.get(index).getText().equals("All Results")){
+    		//model.applyFacet(arrayListFacets.get(index));
+    		model.applyFacet();
+    	}
+    	else{
+    		model.applyFacet(arrayListFacets.get(index));
+    	}
+        
         //System.out.println("here");
     }
 }

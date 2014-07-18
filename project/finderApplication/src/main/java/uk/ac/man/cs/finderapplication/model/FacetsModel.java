@@ -27,4 +27,9 @@ public class FacetsModel {
         Collection c = ontology.getFacetedFood(application.getQueryPanel().getIncluded(), application.getQueryPanel().getExcluded(), facet);
         application.showResultsPanel(c);
     }
+    
+    public void applyFacet(){
+        Collection c = ontology.getPizzas(application.getQueryPanel().getIncluded(), application.getQueryPanel().getExcluded());
+        application.showResultsPanel(c);
+    }
 }
